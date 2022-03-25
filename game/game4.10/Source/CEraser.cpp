@@ -38,8 +38,8 @@ namespace game_framework {
 
 	void CEraser::Initialize()
 	{
-		const int X_POS = 280;
-		const int Y_POS = 400;
+		const int X_POS = 0;
+		const int Y_POS = 0;
 		x = X_POS;
 		y = Y_POS;
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
@@ -47,15 +47,17 @@ namespace game_framework {
 
 	void CEraser::LoadBitmap()
 	{
-		animation.AddBitmap(IDB_ERASER1, RGB(255, 255, 255));
-		animation.AddBitmap(IDB_ERASER2, RGB(255, 255, 255));
-		animation.AddBitmap(IDB_ERASER3, RGB(255, 255, 255));
-		animation.AddBitmap(IDB_ERASER2, RGB(255, 255, 255));
+		
+		//animation.AddBitmap(IDB_ERASER1, RGB(255, 255, 255));
+		//animation.AddBitmap(IDB_ERASER2, RGB(255, 255, 255));
+		//animation.AddBitmap(IDB_ERASER3, RGB(255, 255, 255));
+		//animation.AddBitmap(IDB_ERASER2, RGB(255, 255, 255));
+		animation.AddBitmap(player1);
 	}
 
 	void CEraser::OnMove()
 	{
-		const int STEP_SIZE = 2;
+		const int STEP_SIZE = 7;
 		animation.OnMove();
 		if (isMovingLeft)
 			x -= STEP_SIZE;

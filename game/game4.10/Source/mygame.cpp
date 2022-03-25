@@ -221,8 +221,8 @@ void CPractice::LoadBitmap()
 }
 void CPractice::OnShow()
 {
-	pic.SetTopLeft(x, y);
-	pic.ShowBitmap();
+	//pic.SetTopLeft(x, y);
+	//pic.ShowBitmap();
 }
 
 void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -325,7 +325,7 @@ void CGameStateOver::OnShow()
 /////////////////////////////////////////////////////////////////////////////
 
 CGameStateRun::CGameStateRun(CGame *g)
-: CGameState(g), NUMBALLS(28)
+: CGameState(g), NUMBALLS(0)
 {
 	picX = picY = 0;
 	ball = new CBall [NUMBALLS];
@@ -443,7 +443,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	// 完成部分Loading動作，提高進度
 	//
 	ShowInitProgress(50);
-	Sleep(300); // 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
+	//Sleep(300); // 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
 	//
 	// 繼續載入其他資料
 	//
@@ -536,18 +536,18 @@ void CGameStateRun::OnShow()
 	hits_left.ShowBitmap();
 	for (int i=0; i < NUMBALLS; i++)
 		ball[i].OnShow();				// 貼上第i號球
-	bball.OnShow();						// 貼上彈跳的球
+	//bball.OnShow();						// 貼上彈跳的球
 	eraser.OnShow();					// 貼上擦子
 	//
 	//  貼上左上及右下角落的圖
 	//
-	gamemap.OnShow();
+	//gamemap.OnShow();
 	corner.SetTopLeft(0,0);
 	corner.ShowBitmap();
 	corner.SetTopLeft(SIZE_X-corner.Width(), SIZE_Y-corner.Height());
 	corner.ShowBitmap();
-	practice.ShowBitmap();
-	c_practice.OnShow();
+	//practice.ShowBitmap();
+	//c_practice.OnShow();
 
 }
 }
