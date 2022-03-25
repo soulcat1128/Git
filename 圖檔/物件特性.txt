@@ -1,0 +1,4 @@
+backmap(背景地圖)
+blocks_r,blocks_y,wooden_box(可破壞物件)
+house_b,house_r,house_y(不可破壞物件)
+grass(可破壞物件,但可躲在裡面)*進階
