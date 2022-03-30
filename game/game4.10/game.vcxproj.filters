@@ -189,5 +189,41 @@
     <Image Include="RES\Player1.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="..\..\圖檔\bangP1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\圖檔\Player1_down.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\圖檔\Player1_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\圖檔\Player1_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\圖檔\Player1_up.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\圖檔\house_b.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\圖檔\house_r.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\圖檔\house_y.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\圖檔\blocks_r.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\圖檔\blocks_y.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\圖檔\grass.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\圖檔\tree.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

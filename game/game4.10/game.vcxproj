@@ -323,6 +323,18 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\..\圖檔\bangP1.bmp" />
+    <Image Include="..\..\圖檔\blocks_r.bmp" />
+    <Image Include="..\..\圖檔\blocks_y.bmp" />
+    <Image Include="..\..\圖檔\grass.bmp" />
+    <Image Include="..\..\圖檔\house_b.bmp" />
+    <Image Include="..\..\圖檔\house_r.bmp" />
+    <Image Include="..\..\圖檔\house_y.bmp" />
+    <Image Include="..\..\圖檔\Player1_down.bmp" />
+    <Image Include="..\..\圖檔\Player1_left.bmp" />
+    <Image Include="..\..\圖檔\Player1_right.bmp" />
+    <Image Include="..\..\圖檔\Player1_up.bmp" />
+    <Image Include="..\..\圖檔\tree.bmp" />
     <Image Include="RES\backgroundTest1.bmp" />
     <Image Include="res\bitmap3.bmp" />
     <Image Include="res\bitmap4.bmp" />

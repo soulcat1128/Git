@@ -40,8 +40,20 @@
 #define IDB_BITMAP5                     159
 #define IDB_BLUE                        159
 #define backgroundTest1                 160
-#define IDB_BITMAP4                     161
 #define player1                         161
+#define bangP1                          162
+#define Player1_down                    163
+#define Player1_left                    164
+#define Player1_right                   165
+#define Player1_up                      166
+#define house_b                         167
+#define house_r                         168
+#define house_y                         169
+#define blocks_r                        170
+#define blocks_y                        171
+#define grass                           172
+#define IDB_BITMAP7                     173
+#define tree                            173
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -54,7 +66,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        162
+#define _APS_NEXT_RESOURCE_VALUE        174
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101
