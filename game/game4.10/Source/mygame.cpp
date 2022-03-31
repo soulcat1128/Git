@@ -64,7 +64,7 @@ namespace game_framework {
 // 這個class為遊戲的遊戲開頭畫面物件
 /////////////////////////////////////////////////////////////////////////////
 
-CGameStateInit::CGameStateInit(CGame *g)
+CGameStateInit::CGameStateInit(CGame *g)	
 : CGameState(g)
 {
 }
