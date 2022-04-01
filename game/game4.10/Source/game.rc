@@ -138,6 +138,10 @@ grass                   BITMAP                  "C:\\Users\\eva38\\Desktop\\遊戲
 
 tree                    BITMAP                  "C:\\Users\\eva38\\Desktop\\遊戲\\Git\\圖檔\\tree.bmp"
 
+wooden_box              BITMAP                  "C:\\Users\\eva38\\Desktop\\遊戲\\Git\\圖檔\\wooden_box.bmp"
+
+LOGO                    BITMAP                  "C:\\Users\\eva38\\Desktop\\遊戲\\Git\\圖檔\\LOGO.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

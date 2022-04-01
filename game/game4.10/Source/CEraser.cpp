@@ -53,7 +53,7 @@ namespace game_framework {
 		animation.AddBitmap(IDB_ERASER3, RGB(255, 255, 255));
 		animation.AddBitmap(IDB_ERASER2, RGB(255, 255, 255));
 		*/
-		animation.AddBitmap(Player1_down);
+		animation.AddBitmap(Player1_down, RGB(255, 255, 255));
 	}
 
 	void CEraser::OnMove()

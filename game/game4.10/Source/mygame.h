@@ -115,8 +115,8 @@ namespace game_framework {
 		void InitializeBouncingBall(int, int, int);
 		~CGameMap();
 	protected:
-		CMovingBitmap blue, green;
-		int map[4][5];
+		CMovingBitmap House_r, House_y, House_b, Blocks_r, Blocks_y, Wooden_box, Tree, Grass;
+		int map[13][15];
 		const int X, Y;
 		const int MW, MH;
 		CBouncingBall* bballs;

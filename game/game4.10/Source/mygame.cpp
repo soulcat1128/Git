@@ -142,7 +142,7 @@ void CGameStateInit::OnInit()
 	//
 	// 開始載入資料
 	//
-	logo.LoadBitmap(IDB_BACKGROUND);
+	logo.LoadBitmap(LOGO);
 	//Sleep(300);				// 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
 	//
 	// 此OnInit動作會接到CGameStaterRun::OnInit()，所以進度還沒到100%
@@ -154,15 +154,24 @@ void CGameStateInit::OnBeginState()
 }
 
 CGameMap::CGameMap()
-	:X(20), Y(40), MW(120), MH(100)
+	:X(0), Y(0), MW(70), MH(70)
 {
-	int map_init[4][5] = { {0, 0, 1, 0, 0},
-		{0, 1, 2, 1, 0},
-		{1, 2, 1, 2, 1},
-		{2, 1, 2, 1, 2} };
-
-	for (int i = 0; i < 4; i++) {
-		for (int j = 0; j < 5; j++) {
+	int map_init[13][15] = { 
+		{0, 0, 4, 5, 4, 8, 0, 0, 6, 8, 2, 5, 2, 0, 2},
+		{0, 1, 6, 1, 6, 7, 6, 0, 0, 7, 4, 5, 4, 0, 0},
+		{5, 4, 5, 4, 5, 8, 0, 6, 6, 8, 2, 6, 2, 6, 2},
+		{6, 1, 6, 1, 6, 7, 6, 0, 0, 7, 5, 4, 5, 4, 5},
+		{4, 5, 4, 5, 4, 8, 0, 0, 6, 8, 2, 6, 2, 6, 2},
+		{5, 1, 5, 1, 5, 7, 6, 6, 0, 7, 4, 5, 4, 5, 4},
+		{7, 8, 7, 8, 7, 8, 0, 0, 6, 8, 7, 8, 7, 8, 7},
+		{4, 5, 4, 5, 4, 7, 6, 0, 0, 7, 4, 1, 4, 1, 4},
+		{3, 6, 3, 6, 3, 8, 0, 6, 6, 8, 5, 4, 5, 4, 5},
+		{5, 4, 5, 4, 5, 7, 6, 0, 0, 7, 6, 1, 6, 1, 6},
+		{3, 6, 3, 6, 3, 8, 0, 0, 6, 8, 4, 5, 4, 5, 4},
+		{0, 0, 4, 5, 4, 7, 6, 6, 0, 7, 6, 1, 6, 1, 0},
+		{3, 0, 3, 4, 3, 8, 0, 0, 6, 8, 5, 4, 5, 0, 0}};
+	for (int i = 0; i < 13; i++) {
+		for (int j = 0; j < 15; j++) {
 			map[i][j] = map_init[i][j];
 		}
 	}
@@ -171,24 +180,54 @@ CGameMap::CGameMap()
 
 void CGameMap::LoadBitmap()
 {
-	blue.LoadBitmap(IDB_BLUE);
-	green.LoadBitmap(IDB_GREEN);
+	House_r.LoadBitmap(house_r,RGB(255,255,255));//1
+	House_y.LoadBitmap(house_y, RGB(255, 255, 255));//2
+	House_b.LoadBitmap(house_b, RGB(255, 255, 255));//3
+	Blocks_r.LoadBitmap(blocks_r,RGB(255,255,255));//4
+	Blocks_y.LoadBitmap(blocks_y, RGB(255, 255, 255));//5
+	Wooden_box.LoadBitmap(wooden_box, RGB(255, 255, 255));//6
+	Tree.LoadBitmap(tree, RGB(255, 255, 255));//7
+	Grass.LoadBitmap(grass, RGB(255, 255, 255));//8
 }
 
 void CGameMap::OnShow()
 {
-	for (int i = 0; i < 5; i++)
-		for (int j = 0; j < 4; j++) {
+	for (int i = 0; i < 15; i++)
+		for (int j = 0; j < 13; j++) {
 			switch (map[j][i]) {
 			case 0:
 				break;
 			case 1:
-				blue.SetTopLeft(X + (MW * i), Y + (MH * j));
-				blue.ShowBitmap();
+				House_r.SetTopLeft(X + (MW * i), Y + (MH * j));
+				House_r.ShowBitmap();
 				break;
 			case 2:
-				green.SetTopLeft(X + (MW * i), Y + (MH * j));
-				green.ShowBitmap();
+				House_y.SetTopLeft(X + (MW * i), Y + (MH * j));
+				House_y.ShowBitmap();
+				break;
+			case 3:
+				House_b.SetTopLeft(X + (MW * i), Y + (MH * j));
+				House_b.ShowBitmap();
+				break;
+			case 4:
+				Blocks_r.SetTopLeft(X + (MW * i), Y + (MH * j));
+				Blocks_r.ShowBitmap();
+				break;
+			case 5:
+				Blocks_y.SetTopLeft(X + (MW * i), Y + (MH * j));
+				Blocks_y.ShowBitmap();
+				break;
+			case 6:
+				Wooden_box.SetTopLeft(X + (MW * i), Y + (MH * j));
+				Wooden_box.ShowBitmap();
+				break;
+			case 7:
+				Tree.SetTopLeft(X + (MW * i), Y + (MH * j));
+				Tree.ShowBitmap();
+				break;
+			case 8:
+				Grass.SetTopLeft(X + (MW * i), Y + (MH * j));
+				Grass.ShowBitmap();
 				break;
 			default:
 				ASSERT(0);
@@ -256,11 +295,11 @@ void CGameStateInit::OnShow()
 	fp=pDC->SelectObject(&f);					// 選用 font f
 	pDC->SetBkColor(RGB(0,0,0));
 	pDC->SetTextColor(RGB(255,255,0));
-	pDC->TextOut(120,220,"Please click mouse or press SPACE to begin.");
-	pDC->TextOut(5,395,"Press Ctrl-F to switch in between window mode and full screen mode.");
+	//pDC->TextOut(120,220,"Please click mouse or press SPACE to begin.");
+	//pDC->TextOut(5,395,"Press Ctrl-F to switch in between window mode and full screen mode.");
 	if (ENABLE_GAME_PAUSE)
-		pDC->TextOut(5,425,"Press Ctrl-Q to pause the Game.");
-	pDC->TextOut(5,455,"Press Alt-F4 or ESC to Quit.");
+		//pDC->TextOut(5,425,"Press Ctrl-Q to pause the Game.");
+	//pDC->TextOut(5,455,"Press Alt-F4 or ESC to Quit.");
 	pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 	CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 }								
@@ -537,15 +576,16 @@ void CGameStateRun::OnShow()
 	for (int i=0; i < NUMBALLS; i++)
 		ball[i].OnShow();				// 貼上第i號球
 	//bball.OnShow();						// 貼上彈跳的球
-	eraser.OnShow();					// 貼上擦子
+	
 	//
 	//  貼上左上及右下角落的圖
 	//
-	//gamemap.OnShow();
+	gamemap.OnShow();
 	corner.SetTopLeft(0,0);
 	corner.ShowBitmap();
 	corner.SetTopLeft(SIZE_X-corner.Width(), SIZE_Y-corner.Height());
 	corner.ShowBitmap();
+	eraser.OnShow();					// 貼上擦子
 	//practice.ShowBitmap();
 	//c_practice.OnShow();
 

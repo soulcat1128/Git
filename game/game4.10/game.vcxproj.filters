@@ -225,5 +225,11 @@
     <Image Include="..\..\圖檔\tree.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="..\..\圖檔\wooden_box.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\圖檔\LOGO.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
