@@ -38,8 +38,8 @@ namespace game_framework {
 
 	void CEraser::Initialize()
 	{
-		const int X_POS = 100;
-		const int Y_POS = 200;
+		const int X_POS = 0;
+		const int Y_POS = 0;
 		x = X_POS;
 		y = Y_POS;
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
@@ -60,13 +60,13 @@ namespace game_framework {
 	{
 		const int STEP_SIZE = 7;
 		animation.OnMove();
-		if (isMovingLeft)
+		if (isMovingLeft &&  x > 0)
 			x -= STEP_SIZE;
-		if (isMovingRight)
+		if (isMovingRight && x < 980)
 			x += STEP_SIZE;
-		if (isMovingUp)
+		if (isMovingUp && y > 0)
 			y -= STEP_SIZE;
-		if (isMovingDown)
+		if (isMovingDown && y < 817)
 			y += STEP_SIZE;
 	}
 
