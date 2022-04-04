@@ -110,37 +110,37 @@ IDB_GREEN               BITMAP                  "..\\res\\bitmap4.bmp"
 
 IDB_BLUE                BITMAP                  "..\\res\\bitmap5.bmp"
 
-backgroundTest1         BITMAP                  "C:\\Users\\eva38\\Desktop\\遊戲\\Git\\game\\game4.10\\RES\\backgroundTest1.bmp"
+backgroundTest1         BITMAP                  "..\\res\\backgroundTest1.bmp"
 
-player1                 BITMAP                  "C:\\Users\\eva38\\Desktop\\遊戲\\Git\\game\\game4.10\\RES\\Player1.bmp"
+player1                 BITMAP                  "..\\res\\Player1.bmp"
 
-bangP1                  BITMAP                  "C:\\Users\\eva38\\Desktop\\遊戲\\Git\\圖檔\\bangP1.bmp"
+bangP1                  BITMAP                  "..\\res\\bangP1.bmp"
 
-Player1_down            BITMAP                  "C:\\Users\\eva38\\Desktop\\遊戲\\Git\\圖檔\\Player1_down.bmp"
+Player1_down            BITMAP                  "..\\res\\Player1_down.bmp"
 
-Player1_left            BITMAP                  "C:\\Users\\eva38\\Desktop\\遊戲\\Git\\圖檔\\Player1_left.bmp"
+Player1_left            BITMAP                  "..\\res\\Player1_left.bmp"
 
-Player1_right           BITMAP                  "C:\\Users\\eva38\\Desktop\\遊戲\\Git\\圖檔\\Player1_right.bmp"
+Player1_right           BITMAP                  "..\\res\\Player1_right.bmp"
 
-Player1_up              BITMAP                  "C:\\Users\\eva38\\Desktop\\遊戲\\Git\\圖檔\\Player1_up.bmp"
+Player1_up              BITMAP                  "..\\res\\Player1_up.bmp"
 
-house_b                 BITMAP                  "C:\\Users\\eva38\\Desktop\\遊戲\\Git\\圖檔\\house_b.bmp"
+house_b                 BITMAP                  "..\\res\\house_b.bmp"
 
-house_r                 BITMAP                  "C:\\Users\\eva38\\Desktop\\遊戲\\Git\\圖檔\\house_r.bmp"
+house_r                 BITMAP                  "..\\res\\house_r.bmp"
 
-house_y                 BITMAP                  "C:\\Users\\eva38\\Desktop\\遊戲\\Git\\圖檔\\house_y.bmp"
+house_y                 BITMAP                  "..\\res\\house_y.bmp"
 
-blocks_r                BITMAP                  "C:\\Users\\eva38\\Desktop\\遊戲\\Git\\圖檔\\blocks_r.bmp"
+blocks_r                BITMAP                  "..\\res\\blocks_r.bmp"
 
-blocks_y                BITMAP                  "C:\\Users\\eva38\\Desktop\\遊戲\\Git\\圖檔\\blocks_y.bmp"
+blocks_y                BITMAP                  "..\\res\\blocks_y.bmp"
 
-grass                   BITMAP                  "C:\\Users\\eva38\\Desktop\\遊戲\\Git\\圖檔\\grass.bmp"
+grass                   BITMAP                  "..\\res\\grass.bmp"
 
-tree                    BITMAP                  "C:\\Users\\eva38\\Desktop\\遊戲\\Git\\圖檔\\tree.bmp"
+tree                    BITMAP                  "..\\res\\tree.bmp"
 
-wooden_box              BITMAP                  "C:\\Users\\eva38\\Desktop\\遊戲\\Git\\圖檔\\wooden_box.bmp"
+wooden_box              BITMAP                  "..\\res\\wooden_box.bmp"
 
-LOGO                    BITMAP                  "C:\\Users\\eva38\\Desktop\\遊戲\\Git\\圖檔\\LOGO.bmp"
+LOGO                    BITMAP                  "..\\res\\LOGO.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
