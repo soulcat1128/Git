@@ -6,6 +6,7 @@
 #include "gamelib.h"
 #include "CEraser.h"
 
+
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// CEraser: Eraser class
@@ -36,8 +37,16 @@ namespace game_framework {
 		return y + animation.Height();
 	}
 
+	//static void setmap()
+	//{
+	//	for (int i = 0; i < 11; i++)
+	//	{
+	//		map_init[i][0] = 1;
+	//	}
+	//}
 	void CEraser::Initialize()
 	{
+		//p = map_init;
 		const int X_POS = 0;
 		const int Y_POS = 0;
 		x = X_POS;
@@ -68,11 +77,13 @@ namespace game_framework {
 			y -= STEP_SIZE;
 		if (isMovingDown && y < 817)
 			y += STEP_SIZE;
+		//setmap();
 	}
 
 	void CEraser::SetMovingDown(bool flag)
 	{
 		isMovingDown = flag;
+		//game_framework:: map_init[1][0] = 1;
 	}
 
 	void CEraser::SetMovingLeft(bool flag)
