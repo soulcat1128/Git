@@ -13,7 +13,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// ‰∏≠Êñá (ÁπÅÈ´îÔºåÂè∞ÁÅ£) resources
+// §§§Â (¡c≈È°A•x∆W) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHT)
 LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL
@@ -134,6 +134,16 @@ wooden_box              BITMAP                  "..\\res\\wooden_box.bmp"
 
 LOGO                    BITMAP                  "..\\res\\LOGO.bmp"
 
+bomb                    BITMAP                  "..\\res\\bomb.bmp"
+
+bomb2                   BITMAP                  "..\\res\\bomb2.bmp"
+
+explode                 BITMAP                  "..\\res\\explode.bmp"
+
+water_column            BITMAP                  "..\\res\\water_column.bmp"
+
+water_column2           BITMAP                  "..\\res\\water_column2.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -142,12 +152,12 @@ LOGO                    BITMAP                  "..\\res\\LOGO.bmp"
 
 IDC_GAMECURSOR          CURSOR                  "..\\res\\gamecurs.cur"
 
-#endif    // ‰∏≠Êñá (ÁπÅÈ´îÔºåÂè∞ÁÅ£) resources
+#endif    // §§§Â (¡c≈È°A•x∆W) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Ëã±Êñá (ÁæéÂúã) resources
+// ≠^§Â (¨¸∞Í) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
@@ -445,7 +455,7 @@ BEGIN
     ID_BUTTON_UNITTEST      "Perform Unit Test"
 END
 
-#endif    // Ëã±Êñá (ÁæéÂúã) resources
+#endif    // ≠^§Â (¨¸∞Í) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

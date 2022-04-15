@@ -231,5 +231,62 @@
     <Image Include="..\..\圖檔\LOGO.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\bomb.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\bomb2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\explode.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\backmap.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Player1_down.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Player1_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Player1_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Player1_up.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\house_b.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\house_r.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\house_y.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\blocks_r.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\blocks_y.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\grass.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\tree.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\wooden_box.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\LOGO.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\water_column.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\water_column2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
