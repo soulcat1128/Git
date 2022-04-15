@@ -68,10 +68,13 @@ namespace game_framework {
 	void CEraser::OnMove()
 	{
 		const int STEP_SIZE = 7;
+		int GetX = x / 70;
+		int GetY = y / 70;
 		animation.OnMove();
 		if (isMovingLeft &&  x > 0)
 			x -= STEP_SIZE;
-		if (isMovingRight && x < 980)
+		if (isMovingRight && x < 980 && (map_init[GetY][GetX + 1] == 0 || map_init[GetY][GetX + 1] == 9))
+		//if (isMovingRight && x < 980)
 			x += STEP_SIZE;
 		if (isMovingUp && y > 0)
 			y -= STEP_SIZE;
@@ -100,7 +103,14 @@ namespace game_framework {
 	{
 		isMovingUp = flag;
 	}
-
+	void CEraser::SetMap(int map[13][15])
+	{
+		for (int i = 0; i < 13; i++) {
+			for (int j = 0; j < 15; j++) {
+				map_init[i][j] = map[i][j];
+			}
+		}
+	}
 	void CEraser::SetXY(int nx, int ny)
 	{
 		x = nx; y = ny;

@@ -1,3 +1,56 @@
+/*
+ * mygame.cpp: 本檔案儲遊戲本身的class的implementation
+ * Copyright (C) 2002-2008 Woei-Kae Chen <wkc@csie.ntut.edu.tw>
+ *
+ * This file is part of game, a free game development framework for windows.
+ *
+ * game is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * game is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *
+ * History:
+ *   2002-03-04 V3.1
+ *          Add codes to demostrate the use of CMovingBitmap::ShowBitmap(CMovingBitmap &).
+ *	 2004-03-02 V4.0
+ *      1. Add CGameStateInit, CGameStateRun, and CGameStateOver to
+ *         demonstrate the use of states.
+ *      2. Demo the use of CInteger in CGameStateRun.
+ *   2005-09-13
+ *      Rewrite the codes for CBall and CEraser.
+ *   2005-09-20 V4.2Beta1.
+ *   2005-09-29 V4.2Beta2.
+ *      1. Add codes to display IDC_GAMECURSOR in GameStateRun.
+ *   2006-02-08 V4.2
+ *      1. Revise sample screens to display in English only.
+ *      2. Add code in CGameStateInit to demo the use of PostQuitMessage().
+ *      3. Rename OnInitialUpdate() -> OnInit().
+ *      4. Fix the bug that OnBeginState() of GameStateInit is not called.
+ *      5. Replace AUDIO_CANYON as AUDIO_NTUT.
+ *      6. Add help bitmap to CGameStateRun.
+ *   2006-09-09 V4.3
+ *      1. Rename Move() and Show() as OnMove and OnShow() to emphasize that they are
+ *         event driven.
+ *   2006-12-30
+ *      1. Bug fix: fix a memory leak problem by replacing PostQuitMessage(0) as
+ *         PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE,0,0).
+ *   2008-02-15 V4.4
+ *      1. Add namespace game_framework.
+ *      2. Replace the demonstration of animation as a new bouncing ball.
+ *      3. Use ShowInitProgress(percent) to display loading progress. 
+ *   2010-03-23 V4.6
+ *      1. Demo MP3 support: use lake.mp3 to replace lake.wav.
+*/
+
 #include "stdafx.h"
 #include "Resource.h"
 #include <mmsystem.h>
@@ -5,26 +58,8 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "mygame.h"
-//#include "../CGamemap.h"
-//#include "CGameMap.h"
 
 namespace game_framework {
-	/*
-	int map_init[13][15] = {
-	{0, 0, 4, 5, 4, 8, 0, 0, 6, 8, 2, 5, 2, 0, 2},
-	{0, 1, 6, 1, 6, 7, 6, 0, 0, 7, 4, 5, 4, 0, 0},
-	{5, 4, 5, 4, 5, 8, 0, 6, 6, 8, 2, 6, 2, 6, 2},
-	{6, 1, 6, 1, 6, 7, 6, 0, 0, 7, 5, 4, 5, 4, 5},
-	{4, 5, 4, 5, 4, 8, 0, 0, 6, 8, 2, 6, 2, 6, 2},
-	{5, 1, 5, 1, 5, 7, 6, 6, 0, 7, 4, 5, 4, 5, 4},
-	{7, 8, 7, 8, 7, 8, 0, 0, 6, 8, 7, 8, 7, 8, 7},
-	{4, 5, 4, 5, 4, 7, 6, 0, 0, 7, 4, 1, 4, 1, 4},
-	{3, 6, 3, 6, 3, 8, 0, 6, 6, 8, 5, 4, 5, 4, 5},
-	{5, 4, 5, 4, 5, 7, 6, 0, 0, 7, 6, 1, 6, 1, 6},
-	{3, 6, 3, 6, 3, 8, 0, 0, 6, 8, 4, 5, 4, 5, 4},
-	{0, 0, 4, 5, 4, 7, 6, 6, 0, 7, 6, 1, 6, 1, 0},
-	{3, 0, 3, 4, 3, 8, 0, 0, 6, 8, 5, 4, 5, 0, 0} };
-	*/
 /////////////////////////////////////////////////////////////////////////////
 // 這個class為遊戲的遊戲開頭畫面物件
 /////////////////////////////////////////////////////////////////////////////
@@ -53,20 +88,21 @@ void CBouncingBall::SetVelocity(int velocity)
 
 void CGameMap::RandomBouncingBall()
 {
-	const int MAX_RAND_NUM = 10;
-	random_num = (rand() % MAX_RAND_NUM) + 1;
-
-	bballs = new CBouncingBall[random_num];
-	int ini_index = 0;
-	for(int row = 0; row < 4; row ++)
-		for (int col = 0; col < 5; col++)
-		{
-			if (map[row][col] != 0 && ini_index < random_num)
-			{
-				InitializeBouncingBall(ini_index, row, col);
-				ini_index++;
-			}
-		}
+	//const int MAX_RAND_NUM = 10;
+	//random_num = (rand() % MAX_RAND_NUM) + 1;
+	//bballs = new CBouncingBall[random_num];
+	//int ini_index = 0;
+	//for(int row = 0; row < 4; row ++)
+	//	for (int col = 0; col < 5; col++)
+	//	{
+	//		if (map[row][col] != 0 && ini_index < random_num)
+	//		{
+	//			InitializeBouncingBall(ini_index, row, col);
+	//			ini_index++;
+	//		}
+	//	}
+	//int X = (eraser.GetX1()/70);
+	//int Y = (eraser.GetY1()/70);
 }
 
 void CGameMap::InitializeBouncingBall(int ini_index, int row, int col)
@@ -83,8 +119,9 @@ void CGameMap::InitializeBouncingBall(int ini_index, int row, int col)
 void CGameMap::OnKeyDown(UINT nChar)
 {
 	const int KEY_SPACE = 0x20;
-	if (nChar == KEY_SPACE)
-		RandomBouncingBall();
+	//if (nChar == KEY_SPACE)
+		//RandomBouncingBall();
+		//map_init[1][1] = 9;
 }
 void CGameMap::OnMove()
 {
@@ -92,14 +129,11 @@ void CGameMap::OnMove()
 	{
 		bballs[i].OnMove();
 	}
-
-
 }
 
 CGameMap::~CGameMap()
 {
 }
-
 void CGameStateInit::OnInit()
 {
 	//
@@ -124,22 +158,6 @@ void CGameStateInit::OnBeginState()
 CGameMap::CGameMap()
 	:X(0), Y(0), MW(70), MH(70)
 {
-	/*
-	int map_init[13][15] = { 
-		{0, 0, 4, 5, 4, 8, 0, 0, 6, 8, 2, 5, 2, 0, 2},
-		{0, 1, 6, 1, 6, 7, 6, 0, 0, 7, 4, 5, 4, 0, 0},
-		{5, 4, 5, 4, 5, 8, 0, 6, 6, 8, 2, 6, 2, 6, 2},
-		{6, 1, 6, 1, 6, 7, 6, 0, 0, 7, 5, 4, 5, 4, 5},
-		{4, 5, 4, 5, 4, 8, 0, 0, 6, 8, 2, 6, 2, 6, 2},
-		{5, 1, 5, 1, 5, 7, 6, 6, 0, 7, 4, 5, 4, 5, 4},
-		{7, 8, 7, 8, 7, 8, 0, 0, 6, 8, 7, 8, 7, 8, 7},
-		{4, 5, 4, 5, 4, 7, 6, 0, 0, 7, 4, 1, 4, 1, 4},
-		{3, 6, 3, 6, 3, 8, 0, 6, 6, 8, 5, 4, 5, 4, 5},
-		{5, 4, 5, 4, 5, 7, 6, 0, 0, 7, 6, 1, 6, 1, 6},
-		{3, 6, 3, 6, 3, 8, 0, 0, 6, 8, 4, 5, 4, 5, 4},
-		{0, 0, 4, 5, 4, 7, 6, 6, 0, 7, 6, 1, 6, 1, 0},
-		{3, 0, 3, 4, 3, 8, 0, 0, 6, 8, 5, 4, 5, 0, 0}};
-	*/
 	for (int i = 0; i < 13; i++) {
 		for (int j = 0; j < 15; j++) {
 			map[i][j] = map_init[i][j];
@@ -158,11 +176,12 @@ void CGameMap::LoadBitmap()
 	Wooden_box.LoadBitmap(wooden_box, RGB(255, 255, 255));//6
 	Tree.LoadBitmap(tree, RGB(255, 255, 255));//7
 	Grass.LoadBitmap(grass, RGB(255, 255, 255));//8
+
+	Bomb.LoadBitmap(bomb, RGB(255, 255, 255));//水球test
 }
 
 void CGameMap::OnShow()
 {
-
 	for (int i = 0; i < 13; i++) {
 		for (int j = 0; j < 15; j++) {
 			map[i][j] = map_init[i][j];
@@ -205,8 +224,12 @@ void CGameMap::OnShow()
 				Grass.SetTopLeft(X + (MW * i), Y + (MH * j));
 				Grass.ShowBitmap();
 				break;
+			case 9:
+				Bomb.SetTopLeft(X + (MW * i), Y + (MH * j));
+				Bomb.ShowBitmap();
+				break;
 			default:
-				ASSERT(0);	// 矩陣不該出現其他值
+				ASSERT(0);
 			}
 		}
 	for (int i = 0; i < random_num; i++) {
@@ -389,7 +412,6 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	//
 	//practice.SetTopLeft(10, 10);
 	c_practice.OnMove();
-	//eraser.setmap();
 	if (picX <= SIZE_Y) {
 		picX += 5;
 		picY += 5;
@@ -414,7 +436,6 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	// 移動擦子
 	//
 	eraser.OnMove();
-	//eraser.setmap();
 	//
 	// 判斷擦子是否碰到球
 	//
@@ -485,16 +506,22 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_UP    = 0x26; // keyboard上箭頭
 	const char KEY_RIGHT = 0x27; // keyboard右箭頭
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
+	const char KEY_SPACE = 0x20; // keyboard下箭頭
 	gamemap.OnKeyDown(nChar);
+	int GetX = eraser.GetX1()/ 70;
+	int GetY = eraser.GetY1()/ 70;
 	if (nChar == KEY_LEFT)
 		eraser.SetMovingLeft(true);
+	//if (nChar == KEY_RIGHT && (map_init[GetY][GetX+1] == 0 || map_init[GetY][GetX+1] == 9))
 	if (nChar == KEY_RIGHT)
 		eraser.SetMovingRight(true);
 	if (nChar == KEY_UP)
 		eraser.SetMovingUp(true);
 	if (nChar == KEY_DOWN)
 		eraser.SetMovingDown(true);
-
+	if (nChar == KEY_SPACE)
+		map_init[(eraser.GetY1()+35)/70][(eraser.GetX1()+35)/70] = 9;
+		eraser.SetMap(map_init);
 }
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -548,26 +575,24 @@ void CGameStateRun::OnShow()
 	//
 	//  貼上背景圖、撞擊數、球、擦子、彈跳的球
 	//
-
 	background.ShowBitmap();			// 貼上背景圖
 	help.ShowBitmap();					// 貼上說明圖
-	hits_left.ShowBitmap();
-	for (int i=0; i < NUMBALLS; i++)
-		ball[i].OnShow();				// 貼上第i號球
-	//bball.OnShow();						// 貼上彈跳的球
+	hits_left.ShowBitmap();				// 貼上彈跳的球
 	
 	//
 	//  貼上左上及右下角落的圖
 	//
-	eraser.OnShow();					// 貼上擦子
+	gamemap.OnShow();
 	corner.SetTopLeft(0,0);
 	corner.ShowBitmap();
 	corner.SetTopLeft(SIZE_X-corner.Width(), SIZE_Y-corner.Height());
 	corner.ShowBitmap();
-	gamemap.OnShow();
-	
+	eraser.OnShow();					// 貼上擦子
 	//practice.ShowBitmap();
 	//c_practice.OnShow();
+	for (int i = 0; i < NUMBALLS; i++)
+		ball[i].OnShow();				// 貼上第i號球
+	bball.OnShow();
 
 }
 }

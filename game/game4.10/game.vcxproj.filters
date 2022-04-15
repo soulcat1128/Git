@@ -231,13 +231,7 @@
     <Image Include="..\..\圖檔\LOGO.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="RES\bomb.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\bomb2.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\explode.bmp">
+    <Image Include="RES\Bomb.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\backmap.bmp">
@@ -282,10 +276,7 @@
     <Image Include="res\LOGO.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="RES\water_column.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\water_column2.bmp">
+    <Image Include="RES\bomb2.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

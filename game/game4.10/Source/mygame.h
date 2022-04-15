@@ -78,13 +78,12 @@ namespace game_framework {
 		void InitializeBouncingBall(int, int, int);
 		~CGameMap();
 	protected:
-		CMovingBitmap House_r, House_y, House_b, Blocks_r, Blocks_y, Wooden_box, Tree, Grass;
+		CMovingBitmap House_r, House_y, House_b, Blocks_r, Blocks_y, Wooden_box, Tree, Grass,Bomb;
 		int map[13][15];
 		const int X, Y;
 		const int MW, MH;
 		CBouncingBall* bballs;
 		int random_num;
-
 	};
 	
 	class CGameStateRun : public CGameState {
