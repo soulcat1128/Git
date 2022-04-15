@@ -138,12 +138,6 @@ bomb                    BITMAP                  "..\\res\\bomb.bmp"
 
 bomb2                   BITMAP                  "..\\res\\bomb2.bmp"
 
-explode                 BITMAP                  "..\\res\\explode.bmp"
-
-water_column            BITMAP                  "..\\res\\water_column.bmp"
-
-water_column2           BITMAP                  "..\\res\\water_column2.bmp"
-
 
 /////////////////////////////////////////////////////////////////////////////
 //

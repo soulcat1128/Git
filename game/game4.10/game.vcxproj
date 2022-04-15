@@ -345,9 +345,8 @@
     <Image Include="res\bitmap5.bmp" />
     <Image Include="res\blocks_r.bmp" />
     <Image Include="res\blocks_y.bmp" />
-    <Image Include="RES\bomb.bmp" />
+    <Image Include="RES\Bomb.bmp" />
     <Image Include="RES\bomb2.bmp" />
-    <Image Include="RES\explode.bmp" />
     <Image Include="res\grass.bmp" />
     <Image Include="res\house_b.bmp" />
     <Image Include="res\house_r.bmp" />
@@ -359,8 +358,6 @@
     <Image Include="res\Player1_right.bmp" />
     <Image Include="res\Player1_up.bmp" />
     <Image Include="res\tree.bmp" />
-    <Image Include="RES\water_column.bmp" />
-    <Image Include="RES\water_column2.bmp" />
     <Image Include="res\wooden_box.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -88,20 +88,21 @@ void CBouncingBall::SetVelocity(int velocity)
 
 void CGameMap::RandomBouncingBall()
 {
-	const int MAX_RAND_NUM = 10;
-	random_num = (rand() % MAX_RAND_NUM) + 1;
-
-	bballs = new CBouncingBall[random_num];
-	int ini_index = 0;
-	for(int row = 0; row < 4; row ++)
-		for (int col = 0; col < 5; col++)
-		{
-			if (map[row][col] != 0 && ini_index < random_num)
-			{
-				InitializeBouncingBall(ini_index, row, col);
-				ini_index++;
-			}
-		}
+	//const int MAX_RAND_NUM = 10;
+	//random_num = (rand() % MAX_RAND_NUM) + 1;
+	//bballs = new CBouncingBall[random_num];
+	//int ini_index = 0;
+	//for(int row = 0; row < 4; row ++)
+	//	for (int col = 0; col < 5; col++)
+	//	{
+	//		if (map[row][col] != 0 && ini_index < random_num)
+	//		{
+	//			InitializeBouncingBall(ini_index, row, col);
+	//			ini_index++;
+	//		}
+	//	}
+	//int X = (eraser.GetX1()/70);
+	//int Y = (eraser.GetY1()/70);
 }
 
 void CGameMap::InitializeBouncingBall(int ini_index, int row, int col)
@@ -118,8 +119,9 @@ void CGameMap::InitializeBouncingBall(int ini_index, int row, int col)
 void CGameMap::OnKeyDown(UINT nChar)
 {
 	const int KEY_SPACE = 0x20;
-	if (nChar == KEY_SPACE)
-		RandomBouncingBall();
+	//if (nChar == KEY_SPACE)
+		//RandomBouncingBall();
+		//map_init[1][1] = 9;
 }
 void CGameMap::OnMove()
 {
@@ -156,20 +158,6 @@ void CGameStateInit::OnBeginState()
 CGameMap::CGameMap()
 	:X(0), Y(0), MW(70), MH(70)
 {
-	int map_init[13][15] = { 
-		{0, 0, 4, 5, 4, 8, 0, 0, 6, 8, 2, 5, 2, 0, 2},
-		{0, 1, 6, 1, 6, 7, 6, 0, 0, 7, 4, 5, 4, 0, 0},
-		{5, 4, 5, 4, 5, 8, 0, 6, 6, 8, 2, 6, 2, 6, 2},
-		{6, 1, 6, 1, 6, 7, 6, 0, 0, 7, 5, 4, 5, 4, 5},
-		{4, 5, 4, 5, 4, 8, 0, 0, 6, 8, 2, 6, 2, 6, 2},
-		{5, 1, 5, 1, 5, 7, 6, 6, 0, 7, 4, 5, 4, 5, 4},
-		{7, 8, 7, 8, 7, 8, 0, 0, 6, 8, 7, 8, 7, 8, 7},
-		{4, 5, 4, 5, 4, 7, 6, 0, 0, 7, 4, 1, 4, 1, 4},
-		{3, 6, 3, 6, 3, 8, 0, 6, 6, 8, 5, 4, 5, 4, 5},
-		{5, 4, 5, 4, 5, 7, 6, 0, 0, 7, 6, 1, 6, 1, 6},
-		{3, 6, 3, 6, 3, 8, 0, 0, 6, 8, 4, 5, 4, 5, 4},
-		{0, 0, 4, 5, 4, 7, 6, 6, 0, 7, 6, 1, 6, 1, 0},
-		{3, 0, 3, 4, 3, 8, 0, 0, 6, 8, 5, 4, 5, 0, 0}};
 	for (int i = 0; i < 13; i++) {
 		for (int j = 0; j < 15; j++) {
 			map[i][j] = map_init[i][j];
@@ -188,10 +176,17 @@ void CGameMap::LoadBitmap()
 	Wooden_box.LoadBitmap(wooden_box, RGB(255, 255, 255));//6
 	Tree.LoadBitmap(tree, RGB(255, 255, 255));//7
 	Grass.LoadBitmap(grass, RGB(255, 255, 255));//8
+
+	Bomb.LoadBitmap(bomb, RGB(255, 255, 255));//水球test
 }
 
 void CGameMap::OnShow()
 {
+	for (int i = 0; i < 13; i++) {
+		for (int j = 0; j < 15; j++) {
+			map[i][j] = map_init[i][j];
+		}
+	}
 	for (int i = 0; i < 15; i++)
 		for (int j = 0; j < 13; j++) {
 			switch (map[j][i]) {
@@ -228,6 +223,10 @@ void CGameMap::OnShow()
 			case 8:
 				Grass.SetTopLeft(X + (MW * i), Y + (MH * j));
 				Grass.ShowBitmap();
+				break;
+			case 9:
+				Bomb.SetTopLeft(X + (MW * i), Y + (MH * j));
+				Bomb.ShowBitmap();
 				break;
 			default:
 				ASSERT(0);
@@ -507,16 +506,22 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_UP    = 0x26; // keyboard上箭頭
 	const char KEY_RIGHT = 0x27; // keyboard右箭頭
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
+	const char KEY_SPACE = 0x20; // keyboard下箭頭
 	gamemap.OnKeyDown(nChar);
+	int GetX = eraser.GetX1()/ 70;
+	int GetY = eraser.GetY1()/ 70;
 	if (nChar == KEY_LEFT)
 		eraser.SetMovingLeft(true);
+	//if (nChar == KEY_RIGHT && (map_init[GetY][GetX+1] == 0 || map_init[GetY][GetX+1] == 9))
 	if (nChar == KEY_RIGHT)
 		eraser.SetMovingRight(true);
 	if (nChar == KEY_UP)
 		eraser.SetMovingUp(true);
 	if (nChar == KEY_DOWN)
 		eraser.SetMovingDown(true);
-
+	if (nChar == KEY_SPACE)
+		map_init[(eraser.GetY1()+35)/70][(eraser.GetX1()+35)/70] = 9;
+		eraser.SetMap(map_init);
 }
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -572,10 +577,7 @@ void CGameStateRun::OnShow()
 	//
 	background.ShowBitmap();			// 貼上背景圖
 	help.ShowBitmap();					// 貼上說明圖
-	hits_left.ShowBitmap();
-	for (int i=0; i < NUMBALLS; i++)
-		ball[i].OnShow();				// 貼上第i號球
-	//bball.OnShow();						// 貼上彈跳的球
+	hits_left.ShowBitmap();				// 貼上彈跳的球
 	
 	//
 	//  貼上左上及右下角落的圖
@@ -588,6 +590,9 @@ void CGameStateRun::OnShow()
 	eraser.OnShow();					// 貼上擦子
 	//practice.ShowBitmap();
 	//c_practice.OnShow();
+	for (int i = 0; i < NUMBALLS; i++)
+		ball[i].OnShow();				// 貼上第i號球
+	bball.OnShow();
 
 }
 }
