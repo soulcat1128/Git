@@ -36,8 +36,9 @@ namespace game_framework {
 		void SetXY(int nx, int ny);		// 設定擦子左上角座標
 		void SetMap(int map[13][15]);
 	protected:
-		CAnimation animation;		// 擦子的動畫
-		int x, y;					// 擦子左上角座標
+		//CAnimation animation;		// 擦子的動畫
+		CMovingBitmap P1_down, P1_up, P1_left, P1_right;
+		int x, y, mode;					// 擦子左上角座標
 		bool isMovingDown;			// 是否正在往下移動
 		bool isMovingLeft;			// 是否正在往左移動
 		bool isMovingRight;			// 是否正在往右移動
