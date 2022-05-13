@@ -68,25 +68,24 @@ namespace game_framework {
 		int GetX = x / 70;
 		int GetY = y / 70;
 		//animation.OnMove();
-		if (isMovingUp && y > 0) {
+		if (isMovingUp && y > 0 && (map_init[GetY - 1][GetX] == 0 || map_init[GetY - 1][GetX] == 9)) {
 			y -= STEP_SIZE;
 			mode = 0;
 		}
-		else if (isMovingDown && y < 817) {
+		else if (isMovingDown && y < 817 && (map_init[GetY + 1][GetX] == 0 || map_init[GetY + 1][GetX] == 9)) {
 			y += STEP_SIZE;
 			mode = 1;
 		}
 
-		else if (isMovingLeft && x > 0) {
+		else if (isMovingLeft && x > 0 && (map_init[GetY][GetX - 1] == 0 || map_init[GetY][GetX - 1] == 9)) {
 			x -= STEP_SIZE;
 			mode = 2;
 		}
-		//if (isMovingRight && x < 980 && (map_init[GetY][GetX + 1] == 0 || map_init[GetY][GetX + 1] == 9))
-		else if (isMovingRight && x < 980) {
+		else if (isMovingRight && x < 980 && (map_init[GetY][GetX + 1] == 0 || map_init[GetY][GetX + 1] == 9)){
+		//else if (isMovingRight && x < 980) {
 			x += STEP_SIZE;
 			mode = 3;
 		}
-
 	}
 
 	void CEraser::SetMovingDown(bool flag)

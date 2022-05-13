@@ -16,7 +16,7 @@ namespace game_framework {
 		const int INITIAL_VELOCITY = 20;	// 初始上升速度
 		const int FLOOR = 400;				// 地板座標
 		floor = FLOOR;
-		x = 70; y = 70;				// y座標比地板高1點(站在地板上)
+		x = 910; y = 0;				// y座標比地板高1點(站在地板上)
 		rising = true;						// true 上升 , false 下降
 		initial_velocity = INITIAL_VELOCITY;// 初始速度
 		velocity = initial_velocity;		// 目前速度

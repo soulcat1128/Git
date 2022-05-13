@@ -58,7 +58,7 @@ namespace game_framework {
 
 	void Play2::OnMove()
 	{
-		const int STEP_SIZE = 7;
+		const int STEP_SIZE = 10;
 		int GetX = x / 70;
 		int GetY = y / 70;
 		animation.OnMove();

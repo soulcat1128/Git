@@ -526,9 +526,17 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		eraser.SetMovingUp(true);
 	if (nChar == KEY_DOWN)
 		eraser.SetMovingDown(true);
-	if (nChar == KEY_SPACE)
-		map_init[(eraser.GetY1()+35)/70][(eraser.GetX1()+35)/70] = 9;
+	if (nChar == KEY_SPACE) {
+		int Xtest = (eraser.GetX1() + 35) / 70;
+		int Ytest = (eraser.GetY1() + 35) / 70;
+		map_init[(eraser.GetY1() + 35) / 70][(eraser.GetX1() + 35) / 70] = 9;
+		map_init[Ytest][Xtest + 1] = 0;
+		map_init[Ytest][Xtest -1] = 0;
+		map_init[Ytest + 1][Xtest] = 0;
+		map_init[Ytest - 1][Xtest] = 0;
+		//暫時拿來當作水球爆炸消除方塊的效果
 		eraser.SetMap(map_init);
+	}
 	if (nChar == KEY_A)
 		play2.SetMovingLeft(true);
 	if (nChar == KEY_D)
