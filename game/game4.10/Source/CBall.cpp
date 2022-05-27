@@ -4,7 +4,7 @@
 #include <ddraw.h>
 #include "audio.h"
 #include "gamelib.h"
-#include "CEraser.h"
+//#include "CEraser.h"
 #include "CBall.h"
 
 namespace game_framework {
@@ -18,12 +18,12 @@ namespace game_framework {
 		x = y = dx = dy = index = delay_counter = 0;
 	}
 
-	bool CBall::HitEraser(CEraser *eraser)
-	{
-		// 檢測擦子所構成的矩形是否碰到球
-		return HitRectangle(eraser->GetX1(), eraser->GetY1(),
-			eraser->GetX2(), eraser->GetY2());
-	}
+	//bool CBall::HitEraser(CEraser *eraser)
+	//{
+	//	// 檢測擦子所構成的矩形是否碰到球
+	//	return HitRectangle(eraser->GetX1(), eraser->GetY1(),
+	//		eraser->GetX2(), eraser->GetY2());
+	//}
 
 	bool CBall::HitRectangle(int tx1, int ty1, int tx2, int ty2)
 	{
@@ -46,27 +46,34 @@ namespace game_framework {
 	{
 		bmp.LoadBitmap(IDB_BALL, RGB(0, 0, 0));			// 載入球的圖形
 		bmp_center.LoadBitmap(IDB_CENTER, RGB(0, 0, 0));	// 載入球圓心的圖形
+		char* filename[3] = { ".\\res\\bomb.bmp",".\\res\\bomb2.bmp",".\\res\\explode.bmp" };
+		for (int i = 0; i < 3; i++)	// 載入動畫(由4張圖形構成)
+		{
+			AnimationBomb.AddBitmap(filename[i], RGB(255, 255, 255));
+			AnimationBomb.SetDelayCount(25);
+		}
 	}
 
 	void CBall::OnMove()
 	{
-		if (!is_alive)
-			return;
-		delay_counter--;
-		if (delay_counter < 0) {
-			delay_counter = delay;
-			//
-			// 計算球向對於圓心的位移量dx, dy
-			//
-			const int STEPS = 18;
-			static const int DIFFX[] = { 35, 32, 26, 17, 6, -6, -17, -26, -32, -34, -32, -26, -17, -6, 6, 17, 26, 32, };
-			static const int DIFFY[] = { 0, 11, 22, 30, 34, 34, 30, 22, 11, 0, -11, -22, -30, -34, -34, -30, -22, -11, };
-			index++;
-			if (index >= STEPS)
-				index = 0;
-			dx = DIFFX[index];
-			dy = DIFFY[index];
-		}
+		//if (!is_alive)
+		//	return;
+		//delay_counter--;
+		//if (delay_counter < 0) {
+		//	delay_counter = delay;
+		//	//
+		//	// 計算球向對於圓心的位移量dx, dy
+		//	//
+		//	const int STEPS = 18;
+		//	static const int DIFFX[] = { 35, 32, 26, 17, 6, -6, -17, -26, -32, -34, -32, -26, -17, -6, 6, 17, 26, 32, };
+		//	static const int DIFFY[] = { 0, 11, 22, 30, 34, 34, 30, 22, 11, 0, -11, -22, -30, -34, -34, -30, -22, -11, };
+		//	index++;
+		//	if (index >= STEPS)
+		//		index = 0;
+		//	dx = DIFFX[index];
+		//	dy = DIFFY[index];
+		//}
+		AnimationBomb.OnMove();
 	}
 
 	void CBall::SetDelay(int d)

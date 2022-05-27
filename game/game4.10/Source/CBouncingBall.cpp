@@ -26,8 +26,10 @@ namespace game_framework {
 	{
 		char *filename[3] = { ".\\res\\bomb.bmp",".\\res\\bomb2.bmp",".\\res\\explode.bmp"};
 		for (int i = 0; i < 3; i++)	// 載入動畫(由4張圖形構成)
+		{
 			animation.AddBitmap(filename[i], RGB(255, 255, 255));
-		animation.SetDelayCount(25);
+			animation.SetDelayCount(25);
+		}
 	}
 
 	void CBouncingBall::OnMove()

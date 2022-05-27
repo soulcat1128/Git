@@ -132,6 +132,9 @@
     <ClCompile Include="Source\Play2.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\CGameMap.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -171,6 +174,10 @@
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\Play2.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="CGamemap.h" />
+    <ClInclude Include="Source\CGameMap.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>
@@ -283,6 +290,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="RES\bomb2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\圖檔\bomb2.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

@@ -6,6 +6,8 @@
 #include "gamelib.h"
 #include "CEraser.h"
 
+
+
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// CEraser: Eraser class
@@ -13,6 +15,7 @@ namespace game_framework {
 
 	CEraser::CEraser()
 	{
+		
 		Initialize();
 	}
 
@@ -42,6 +45,9 @@ namespace game_framework {
 	{
 		const int X_POS = 0;
 		const int Y_POS = 0;
+		isAlive = true;
+		explosionRange = 1;
+		speed = 10;
 		x = X_POS;
 		y = Y_POS;
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
@@ -64,28 +70,88 @@ namespace game_framework {
 
 	void CEraser::OnMove()
 	{
-		const int STEP_SIZE = 10;
-		int GetX = x / 70;
-		int GetY = y / 70;
-		//animation.OnMove();
-		if (isMovingUp && y > 0 && (map_init[GetY - 1][GetX] == 0 || map_init[GetY - 1][GetX] == 9)) {
-			y -= STEP_SIZE;
-			mode = 0;
+		
+		//const int speed = 10;
+		int x2 = GetX2();
+		int y2 = GetY2();
+
+		if (isMovingUp) {
+			if (y > 0 && (map_user[(y - speed) / 70][(x + 35) / 70] == 0 || map_user[(y - speed) / 70][(x + 35) / 70] == 9)) {
+				y -= speed;
+				mode = 0;
+			}
+			
+			else
+			{
+				int temp = speed;
+				while (temp > 0)
+				{
+					temp--;
+					if (y > 0 && (map_user[(y - temp) / 70][(x + 35) / 70] == 0 || map_user[(y - temp) / 70][(x + 35) / 70] == 9))
+					{
+							y--;
+					}
+				}
+			}
 		}
-		else if (isMovingDown && y < 817 && (map_init[GetY + 1][GetX] == 0 || map_init[GetY + 1][GetX] == 9)) {
-			y += STEP_SIZE;
-			mode = 1;
+		else if (isMovingDown) {
+			if (y < 817 && (map_user[(y2 + speed) / 70][(x + 35) / 70] == 0 || map_user[(y2 + speed)/70][(x + 35) / 70] == 9)) {
+				y += speed;
+				mode = 1;
+			}
+			else
+			{
+				int temp = speed;
+				while (temp > 0)
+				{
+					temp--;
+					if (y  < 817 && (map_user[(y2 + temp) / 70][(x + 35) / 70] == 0 || map_user[(y2 + temp)/70][(x + 35) / 70] == 9))
+					{
+						y++;
+					}
+				}
+			}
+		}
+		else if (isMovingLeft) {
+			if (x > 0 && (map_user[(y + 69) / 70][(x - speed) / 70] == 0 || map_user[(y + 69) / 70][(x - speed) / 70] == 9)) {
+				x -= speed;
+				mode = 2;
+			}
+			else
+			{
+				int temp = speed;
+				while (temp > 0)
+				{
+					temp--;
+					if (x > 0 && (map_user[(y + 69) / 70][(x - temp) / 70] == 0 || map_user[(y + 69) / 70][(x - temp) / 70] == 9))
+					{
+						x--;
+					}
+				}
+
+			}
+		}
+		else if (isMovingRight) {
+			if (x < 980 && (map_user[(y + 69) / 70][(x2 + speed) / 70] == 0 || map_user[(y + 69) / 70][(x2 + speed) / 70] == 9)) {
+				x += speed;
+				mode = 3;
+			}
+			else
+			{
+				int temp = speed;
+				while (temp > 0)
+				{
+					temp--;
+					if (x < 980 && (map_user[(y + 69) / 70][(x2 + temp) / 70] == 0 || map_user[(y + 69) / 70][(x2 + temp) / 70] == 9))
+					{
+						x++;
+					}
+				}
+			}
 		}
 
-		else if (isMovingLeft && x > 0 && (map_init[GetY][GetX - 1] == 0 || map_init[GetY][GetX - 1] == 9)) {
-			x -= STEP_SIZE;
-			mode = 2;
-		}
-		else if (isMovingRight && x < 980 && (map_init[GetY][GetX + 1] == 0 || map_init[GetY][GetX + 1] == 9)){
-		//else if (isMovingRight && x < 980) {
-			x += STEP_SIZE;
-			mode = 3;
-		}
+		
+
 	}
 
 	void CEraser::SetMovingDown(bool flag)
@@ -96,6 +162,7 @@ namespace game_framework {
 	void CEraser::SetMovingLeft(bool flag)
 	{
 		isMovingLeft = flag;
+
 	}
 
 	void CEraser::SetMovingRight(bool flag)
@@ -107,11 +174,12 @@ namespace game_framework {
 	{
 		isMovingUp = flag;
 	}
+
 	void CEraser::SetMap(int map[13][15])
 	{
 		for (int i = 0; i < 13; i++) {
 			for (int j = 0; j < 15; j++) {
-				map_init[i][j] = map[i][j];
+				map_user[i][j] = map[i][j];
 			}
 		}
 	}
