@@ -66,8 +66,6 @@ IDB_BALL                BITMAP                  "..\\res\\ball.bmp"
 
 IDB_ERASER1             BITMAP                  "..\\res\\eraser1.bmp"
 
-IDB_BACKGROUND          BITMAP                  "..\\res\\ntutcsie.bmp"
-
 IDB_CORNER              BITMAP                  "..\\res\\corner.bmp"
 
 IDB_0                   BITMAP                  "..\\res\\bmp0.bmp"
@@ -137,6 +135,20 @@ LOGO                    BITMAP                  "..\\res\\LOGO.bmp"
 bomb                    BITMAP                  "..\\res\\bomb.bmp"
 
 bomb2                   BITMAP                  "..\\res\\bomb2.bmp"
+
+props_1                 BITMAP                  "D:\\GitHub\\Git\\game\\game4.10\\RES\\props_1.bmp"
+
+props_2                 BITMAP                  "D:\\GitHub\\Git\\game\\game4.10\\RES\\props_2.bmp"
+
+props_3                 BITMAP                  "D:\\GitHub\\Git\\game\\game4.10\\RES\\props_3.bmp"
+
+Player2_down            BITMAP                  "D:\\GitHub\\Git\\game\\game4.10\\RES\\Player2_down.bmp"
+
+Player2_up              BITMAP                  "D:\\GitHub\\Git\\game\\game4.10\\RES\\Player2_up.bmp"
+
+Player2_right           BITMAP                  "D:\\GitHub\\Git\\game\\game4.10\\RES\\Player2_right.bmp"
+
+Player2_left            BITMAP                  "D:\\GitHub\\Git\\game\\game4.10\\RES\\Player2_left.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

@@ -286,7 +286,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	//bball.OnMove();
 	// 傳入攻擊距離
 	//	gamemap.setDistance(eraser.explosionRange, eraser.explosionRange);
-	gamemap.setDistance(3, 3);
+	gamemap.setDistance(1, 1);
 	gamemap.getP1Range(eraser.GetX1(), eraser.GetY1(), eraser.GetX2(), eraser.GetY2());
 	gamemap.getP2Range(eraser.GetX1(), eraser.GetY1(), eraser.GetX2(), eraser.GetY2());
 	gamemap.OnMove();

@@ -158,7 +158,7 @@ namespace game_framework{
 
 		~CGameMap();
 	protected:
-		CMovingBitmap House_r, House_y, House_b, Blocks_r, Blocks_y, Wooden_box, Tree, Grass, Bomb, Bomb2, explode;
+		CMovingBitmap House_r, House_y, House_b, Blocks_r, Blocks_y, Wooden_box, Tree, Grass, Bomb, Bomb2, explode, Props_1;
 		CAnimation w_L, w_L_E, w_R, w_R_E, w_U, w_U_E, w_D, w_D_E;
 		//CMovingBitmap 
 		CAnimation AnimationBomb;

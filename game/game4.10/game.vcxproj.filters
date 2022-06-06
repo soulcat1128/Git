@@ -295,5 +295,26 @@
     <Image Include="..\..\圖檔\bomb2.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\props_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\props_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\props_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Player2_down.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Player2_up.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Player2_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Player2_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

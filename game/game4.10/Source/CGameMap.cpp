@@ -471,6 +471,8 @@ namespace game_framework {
 
 		explode.LoadBitmap(".\\res\\explode.bmp", RGB(255, 255, 255));
 
+		Props_1.LoadBitmap(props_1, RGB(255, 255, 255));
+
 		char* filename[3] = { ".\\res\\bomb.bmp",".\\res\\bomb2.bmp",".\\res\\explode.bmp" };
 		for (int i = 0; i < 3; i++)	// 載入動畫(由4張圖形構成)
 		{
@@ -584,6 +586,10 @@ namespace game_framework {
 				case 9:
 					Bomb.SetTopLeft(X + (MW * i), Y + (MH * j));
 					Bomb.ShowBitmap();
+					break;
+				case 10:
+					Props_1.SetTopLeft(X + (MW * i), Y + (MH * j));
+					Props_1.ShowBitmap();
 					break;
 				default:
 					ASSERT(0);

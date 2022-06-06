@@ -363,6 +363,13 @@
     <Image Include="res\Player1_left.bmp" />
     <Image Include="res\Player1_right.bmp" />
     <Image Include="res\Player1_up.bmp" />
+    <Image Include="RES\Player2_down.bmp" />
+    <Image Include="RES\Player2_left.bmp" />
+    <Image Include="RES\Player2_right.bmp" />
+    <Image Include="RES\Player2_up.bmp" />
+    <Image Include="RES\props_1.bmp" />
+    <Image Include="RES\props_2.bmp" />
+    <Image Include="RES\props_3.bmp" />
     <Image Include="res\tree.bmp" />
     <Image Include="res\wooden_box.bmp" />
   </ItemGroup>
