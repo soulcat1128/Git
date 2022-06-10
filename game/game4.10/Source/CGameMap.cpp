@@ -42,7 +42,7 @@ namespace game_framework {
 				mapCopy[i][j] = map_copy[i][j];
 			}
 		}
-		timer = 49;
+		timer = 6;
 
 		//random_num = 0;
 	}
@@ -102,7 +102,15 @@ namespace game_framework {
 					{
 						if (exp_Map[i + k][j] == 4 && (i + k) < 13 && k != temp)
 						{
-							mapCopy[i + k + 1][j] = 0;
+							int random_num = (rand() % 6);
+							if (random_num < 3)
+								mapCopy[i + k + 1][j] = 0;
+							else if(random_num == 3)
+								mapCopy[i + k + 1][j] = 10;
+							else if (random_num == 4)
+								mapCopy[i + k + 1][j] = 11;
+							else if(random_num == 5)
+								mapCopy[i + k + 1][j] = 12;
 						}
 					}
 					//開找3 4
@@ -140,7 +148,15 @@ namespace game_framework {
 					{
 						if (exp_Map[i - k][j] == 2 && (i - k) >= 0 && k != temp)
 						{
-							mapCopy[i - k - 1][j] = 0;
+							int random_num = (rand() % 6);
+							if (random_num < 3)
+								mapCopy[i - k - 1][j] = 0;
+							else if (random_num == 3)
+								mapCopy[i - k - 1][j] = 10;
+							else if (random_num == 4)
+								mapCopy[i - k - 1][j] = 11;
+							else if (random_num == 5)
+								mapCopy[i - k - 1][j] = 12;
 						}
 					}
 
@@ -176,7 +192,15 @@ namespace game_framework {
 					{
 						if (exp_Map[i][j+k] == 8 && (j + k) < 15 && k != temp)
 						{
-							mapCopy[i][j + k + 1] = 0;
+							int random_num = (rand() % 6);
+							if (random_num < 3)
+								mapCopy[i][j + k + 1] = 0;
+							else if (random_num == 3)
+								mapCopy[i][j + k + 1] = 10;
+							else if (random_num == 4)
+								mapCopy[i][j + k + 1] = 11;
+							else if (random_num == 5)
+								mapCopy[i][j + k + 1] = 12;
 						}
 					}
 
@@ -211,11 +235,17 @@ namespace game_framework {
 					{
 						if (exp_Map[i][j - k] == 6 && (j - k) >= 0 && k != temp)
 						{
-							mapCopy[i][j - k - 1] = 0;
+							int random_num = (rand() % 6);
+							if (random_num < 3)
+								mapCopy[i][j - k - 1] = 0;
+							else if (random_num == 3)
+								mapCopy[i][j - k - 1] = 10;
+							else if (random_num == 4)
+								mapCopy[i][j - k - 1] = 11;
+							else if (random_num == 5)
+								mapCopy[i][j - k - 1] = 12;
 						}
 					}
-
-
 
 				}
 			}
@@ -224,7 +254,7 @@ namespace game_framework {
 
 	void CGameMap::updateMap()
 	{
-		if (timer % 50 == 0)
+		if (timer % 7 == 0)
 		{
 			for(int i = 0; i < 13; i++)
 				for (int j = 0; j < 15; j++)
@@ -397,8 +427,6 @@ namespace game_framework {
 	{
 		
 	}
-
-
 	void CGameMap::OnKeyDown(UINT nChar, int Xtest, int Ytest)
 	{
 		const int KEY_SPACE = 0x20;
@@ -409,7 +437,7 @@ namespace game_framework {
 		{
 			if (map[Ytest][Xtest] == 0)
 			{
-				bombMap[Ytest][Xtest] = 4;
+				bombMap[Ytest][Xtest] = 11;
 				idMap[Ytest][Xtest] = 1;
 				//map[Ytest][Xtest] = 3;
 			}
@@ -418,7 +446,7 @@ namespace game_framework {
 	}
 	void CGameMap::setBombInfo()
 	{
-		if (timer % 50 == 0)
+		if (timer % 7 == 0)
 		{
 			for (int i = 0; i < 13; i++)
 				for (int j = 0; j < 15; j++)
@@ -440,7 +468,7 @@ namespace game_framework {
 		}*/
 		AnimationBomb.OnMove();
 		if (timer == -1)	
-			timer = 49;	// 復原計時
+			timer = 6;	// 復原計時
 
 		setBombInfo();	// 裝炸彈
 		setLinkBomb();	// 設定連鎖
@@ -466,12 +494,15 @@ namespace game_framework {
 		Tree.LoadBitmap(tree, RGB(255, 255, 255));//7
 		Grass.LoadBitmap(grass, RGB(255, 255, 255));//8
 
-		Bomb.LoadBitmap(bomb, RGB(255, 255, 255));//水球test
+		Bomb.LoadBitmap(bomb, RGB(255, 255, 255));		//水球1狀態
 		Bomb2.LoadBitmap(bomb2, RGB(255, 255, 255));	// 水球2狀態
+		Bomb3.LoadBitmap(bomb3, RGB(255, 255, 255));	// 水球3狀態
 
 		explode.LoadBitmap(".\\res\\explode.bmp", RGB(255, 255, 255));
 
 		Props_1.LoadBitmap(props_1, RGB(255, 255, 255));
+		Props_2.LoadBitmap(props_2, RGB(255, 255, 255));
+		Props_3.LoadBitmap(props_3, RGB(255, 255, 255));
 
 		char* filename[3] = { ".\\res\\bomb.bmp",".\\res\\bomb2.bmp",".\\res\\explode.bmp" };
 		for (int i = 0; i < 3; i++)	// 載入動畫(由4張圖形構成)
@@ -526,13 +557,41 @@ namespace game_framework {
 				switch (bombMap[j][i]) {
 				case 0:
 					break;
+				case 11:
+					Bomb3.SetTopLeft(X + (MW * i), Y + (MH * j));
+					Bomb3.ShowBitmap();
+					break;
+				case 10:
+					Bomb.SetTopLeft(X + (MW * i), Y + (MH * j));
+					Bomb.ShowBitmap();
+					break;
+				case 9:
+					Bomb2.SetTopLeft(X + (MW * i), Y + (MH * j));
+					Bomb2.ShowBitmap();
+					break;
+				case 8:
+					Bomb.SetTopLeft(X + (MW * i), Y + (MH * j));
+					Bomb.ShowBitmap();
+					break;
+				case 7:
+					Bomb3.SetTopLeft(X + (MW * i), Y + (MH * j));
+					Bomb3.ShowBitmap();
+					break;
+				case 6:
+					Bomb.SetTopLeft(X + (MW * i), Y + (MH * j));
+					Bomb.ShowBitmap();
+					break;
+				case 5:
+					Bomb2.SetTopLeft(X + (MW * i), Y + (MH * j));
+					Bomb2.ShowBitmap();
+					break;
 				case 4:
 					Bomb.SetTopLeft(X + (MW * i), Y + (MH * j));
 					Bomb.ShowBitmap();
 					break;
 				case 3:
-					Bomb2.SetTopLeft(X + (MW * i), Y + (MH * j));
-					Bomb2.ShowBitmap();
+					Bomb3.SetTopLeft(X + (MW * i), Y + (MH * j));
+					Bomb3.ShowBitmap();
 					break;
 				case 2:
 					Bomb.SetTopLeft(X + (MW * i), Y + (MH * j));
@@ -588,8 +647,16 @@ namespace game_framework {
 					Bomb.ShowBitmap();
 					break;
 				case 10:
-					Props_1.SetTopLeft(X + (MW * i), Y + (MH * j));
+					Props_1.SetTopLeft(X + (MW * i)+5, Y + (MH * j));
 					Props_1.ShowBitmap();
+					break;
+				case 11:
+					Props_2.SetTopLeft(X + (MW * i)+5, Y + (MH * j));
+					Props_2.ShowBitmap();
+					break;
+				case 12:
+					Props_3.SetTopLeft(X + (MW * i)+5, Y + (MH * j));
+					Props_3.ShowBitmap();
 					break;
 				default:
 					ASSERT(0);
@@ -604,7 +671,7 @@ namespace game_framework {
 				case 1:
 					w_U.SetTopLeft(X + (MW * i), Y + (MH * j));
 					w_U.OnShow();
-					if(timer % 50 == 0)
+					if(timer % 7 == 0)
 					{
 						exp_Map[j][i] = 0;
 					}
@@ -613,7 +680,7 @@ namespace game_framework {
 				case 2:
 					w_U_E.SetTopLeft(X + (MW * i), Y + (MH * j));
 					w_U_E.OnShow();
-					if (timer % 50 == 0)
+					if (timer % 7 == 0)
 					{
 						exp_Map[j][i] = 0;
 					}
@@ -621,7 +688,7 @@ namespace game_framework {
 				case 3:
 					w_D.SetTopLeft(X + (MW * i), Y + (MH * j));
 					w_D.OnShow();
-					if (timer % 50 == 0)
+					if (timer % 7 == 0)
 					{
 						exp_Map[j][i] = 0;
 					}
@@ -629,7 +696,7 @@ namespace game_framework {
 				case 4:
 					w_D_E.SetTopLeft(X + (MW * i), Y + (MH * j));
 					w_D_E.OnShow();
-					if (timer % 50 == 0)
+					if (timer % 7 == 0)
 					{
 						exp_Map[j][i] = 0;
 					}
@@ -637,7 +704,7 @@ namespace game_framework {
 				case 5:
 					w_L.SetTopLeft(X + (MW * i), Y + (MH * j));
 					w_L.OnShow();
-					if (timer % 50 == 0)
+					if (timer % 7 == 0)
 					{
 						exp_Map[j][i] = 0;
 					}
@@ -645,7 +712,7 @@ namespace game_framework {
 				case 6:
 					w_L_E.SetTopLeft(X + (MW * i), Y + (MH * j));
 					w_L_E.OnShow();
-					if (timer % 50 == 0)
+					if (timer % 7 == 0)
 					{
 						exp_Map[j][i] = 0;
 					}
@@ -653,7 +720,7 @@ namespace game_framework {
 				case 7:
 					w_R.SetTopLeft(X + (MW * i), Y + (MH * j));
 					w_R.OnShow();
-					if (timer % 50 == 0)
+					if (timer % 7 == 0)
 					{
 						exp_Map[j][i] = 0;
 					}
@@ -661,7 +728,7 @@ namespace game_framework {
 				case 8:
 					w_R_E.SetTopLeft(X + (MW * i), Y + (MH * j));
 					w_R_E.OnShow();
-					if (timer % 50 == 0)
+					if (timer % 7 == 0)
 					{
 						exp_Map[j][i] = 0;
 					}
@@ -689,8 +756,8 @@ namespace game_framework {
 		//pDC->TextOut(5,395,"Press Ctrl-F to switch in between window mode and full screen mode.");
 		//if (ENABLE_GAME_PAUSE)
 			//pDC->TextOut(5,425,"Press Ctrl-Q to pause the Game.");
-		pDC->TextOut(5, 455, "Press Alt-F4 or ESC to Quit.");
-		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
+		//pDC->TextOut(5, 455, "Press Alt-F4 or ESC to Quit.");
+		//pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 
 		/* 原本練習的map 的 ball

@@ -288,11 +288,10 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	//	gamemap.setDistance(eraser.explosionRange, eraser.explosionRange);
 	gamemap.setDistance(1, 1);
 	gamemap.getP1Range(eraser.GetX1(), eraser.GetY1(), eraser.GetX2(), eraser.GetY2());
-	gamemap.getP2Range(eraser.GetX1(), eraser.GetY1(), eraser.GetX2(), eraser.GetY2());
+	gamemap.getP2Range(play2.GetX1(), play2.GetY1(), play2.GetX2(), play2.GetY2());
 	gamemap.OnMove();
 	eraser.SetMap(gamemap.map);
-
-
+	play2.SetMap(gamemap.map);
 }
 
 void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
@@ -353,7 +352,6 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	int GetY = eraser.GetY1()/ 70;
 	if (nChar == KEY_LEFT)
 		eraser.SetMovingLeft(true);
-	//if (nChar == KEY_RIGHT && (map_init[GetY][GetX+1] == 0 || map_init[GetY][GetX+1] == 9))
 	if (nChar == KEY_RIGHT)
 		eraser.SetMovingRight(true);
 	if (nChar == KEY_UP)
@@ -363,13 +361,6 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	if (nChar == KEY_SPACE) {
 		int Xtest = (eraser.GetX1() + 35) / 70;
 		int Ytest = (eraser.GetY1() + 35) / 70;
-		/*
-		map_init[(eraser.GetY1() + 35) / 70][(eraser.GetX1() + 35) / 70] = 9;
-		map_init[Ytest][Xtest + 1] = 0;
-		map_init[Ytest][Xtest -1] = 0;
-		map_init[Ytest + 1][Xtest] = 0;
-		map_init[Ytest - 1][Xtest] = 0;*/
-		//暫時拿來當作水球爆炸消除方塊的效果
 		//eraser.SetMap(map_init);
 		gamemap.OnKeyDown(nChar, Xtest, Ytest);
 		eraser.SetMap(gamemap.map);
@@ -413,36 +404,8 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 		play2.SetMovingDown(false);
 }
 
-void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
-{
-	eraser.SetMovingLeft(true);
-}
-
-void CGameStateRun::OnLButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
-{
-	eraser.SetMovingLeft(false);
-}
-
-void CGameStateRun::OnMouseMove(UINT nFlags, CPoint point)	// 處理滑鼠的動作
-{
-	// 沒事。如果需要處理滑鼠移動的話，寫code在這裡
-}
-
-void CGameStateRun::OnRButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
-{
-	eraser.SetMovingRight(true);
-}
-
-void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
-{
-	eraser.SetMovingRight(false);
-}
-
 void CGameStateRun::OnShow()
 {
-
-
-
 	//
 	//  注意：Show裡面千萬不要移動任何物件的座標，移動座標的工作應由Move做才對，
 	//        否則當視窗重新繪圖時(OnDraw)，物件就會移動，看起來會很怪。換個術語

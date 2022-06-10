@@ -1,5 +1,7 @@
+#include "CGameMap.h"
 namespace game_framework {
-	class Play2
+
+	class Play2 //:public CGameMap
 	{
 	public:
 		Play2();
@@ -16,10 +18,15 @@ namespace game_framework {
 		void SetMovingRight(bool flag); 
 		void SetMovingUp(bool flag);	
 		void SetXY(int nx, int ny);		
-		/*void SetMap(int map[13][15]);*/
+		int map_user[13][15];
+		void SetMap(int map[13][15]);
+		int speed;
+		int status;
+		bool isAlive;
+		int explosionRange;
 	protected:
-		CAnimation animation;
-		int x, y;
+		CMovingBitmap P2_down, P2_up, P2_left, P2_right;
+		int x, y,mode;
 		bool isMovingDown;
 		bool isMovingLeft;
 		bool isMovingRight;

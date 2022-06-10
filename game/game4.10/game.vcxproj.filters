@@ -316,5 +316,8 @@
     <Image Include="RES\Player2_left.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\bomb3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

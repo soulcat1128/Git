@@ -6,8 +6,6 @@
 #include "gamelib.h"
 #include "CEraser.h"
 
-
-
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// CEraser: Eraser class
@@ -15,7 +13,6 @@ namespace game_framework {
 
 	CEraser::CEraser()
 	{
-		
 		Initialize();
 	}
 

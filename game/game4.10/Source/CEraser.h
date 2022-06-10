@@ -4,7 +4,6 @@ namespace game_framework {
 	// 這個class提供可以用鍵盤或滑鼠控制的擦子
 	// 看懂就可以改寫成自己的程式了
 	/////////////////////////////////////////////////////////////////////////////
-
 	class CEraser :public CGameMap
 	{
 	public:
@@ -28,7 +27,6 @@ namespace game_framework {
 		int status;					// 存角色狀態 可能被打到
 		bool isAlive;				// 還活者
 		int explosionRange;			// 爆炸範圍 初始 1 吃道具增加
-
 	protected:
 		//CAnimation animation;		// 擦子的動畫
 		CMovingBitmap P1_down, P1_up, P1_left, P1_right;

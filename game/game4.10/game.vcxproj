@@ -353,6 +353,7 @@
     <Image Include="res\blocks_y.bmp" />
     <Image Include="RES\Bomb.bmp" />
     <Image Include="RES\bomb2.bmp" />
+    <Image Include="RES\bomb3.bmp" />
     <Image Include="res\grass.bmp" />
     <Image Include="res\house_b.bmp" />
     <Image Include="res\house_r.bmp" />
