@@ -103,14 +103,17 @@ namespace game_framework {
 						if (exp_Map[i + k][j] == 4 && (i + k) < 13 && k != temp)
 						{
 							int random_num = (rand() % 6);
-							if (random_num < 3)
-								mapCopy[i + k + 1][j] = 0;
-							else if(random_num == 3)
-								mapCopy[i + k + 1][j] = 10;
-							else if (random_num == 4)
-								mapCopy[i + k + 1][j] = 11;
-							else if(random_num == 5)
-								mapCopy[i + k + 1][j] = 12;
+							if (map[i + k + 1][j] != 1 && map[i + k + 1][j] != 2 && map[i + k + 1][j] != 3 && map[i + k + 1][j] != 7 && map[i + k + 1][j] != 0)
+							{
+								if (random_num < 3)
+									mapCopy[i + k + 1][j] = 0;
+								else if (random_num == 3)
+									mapCopy[i + k + 1][j] = 10;
+								else if (random_num == 4)
+									mapCopy[i + k + 1][j] = 11;
+								else if (random_num == 5)
+									mapCopy[i + k + 1][j] = 12;
+							}
 						}
 					}
 					//開找3 4
@@ -149,14 +152,17 @@ namespace game_framework {
 						if (exp_Map[i - k][j] == 2 && (i - k) >= 0 && k != temp)
 						{
 							int random_num = (rand() % 6);
-							if (random_num < 3)
-								mapCopy[i - k - 1][j] = 0;
-							else if (random_num == 3)
-								mapCopy[i - k - 1][j] = 10;
-							else if (random_num == 4)
-								mapCopy[i - k - 1][j] = 11;
-							else if (random_num == 5)
-								mapCopy[i - k - 1][j] = 12;
+							if (map[i - k - 1][j] != 1 && map[i - k - 1][j] != 2 && map[i - k - 1][j] != 3 && map[i - k - 1][j] != 7 && map[i - k - 1][j] != 0)
+							{
+								if (random_num < 3)
+									mapCopy[i - k - 1][j] = 0;
+								else if (random_num == 3)
+									mapCopy[i - k - 1][j] = 10;
+								else if (random_num == 4)
+									mapCopy[i - k - 1][j] = 11;
+								else if (random_num == 5)
+									mapCopy[i - k - 1][j] = 12;
+							}
 						}
 					}
 
@@ -190,17 +196,21 @@ namespace game_framework {
 
 					for (k = 0; k <= temp; k++)
 					{
-						if (exp_Map[i][j+k] == 8 && (j + k) < 15 && k != temp)
+						
+						if (exp_Map[i][j + k] == 8 && (j + k) < 15 && k != temp)
 						{
 							int random_num = (rand() % 6);
-							if (random_num < 3)
-								mapCopy[i][j + k + 1] = 0;
-							else if (random_num == 3)
-								mapCopy[i][j + k + 1] = 10;
-							else if (random_num == 4)
-								mapCopy[i][j + k + 1] = 11;
-							else if (random_num == 5)
-								mapCopy[i][j + k + 1] = 12;
+							if (map[i][j + k + 1] != 1 && map[i][j + k + 1] != 2 && map[i][j + k + 1] != 3 && map[i][j + k + 1] != 7 && map[i][j + k + 1] != 0)
+							{
+								if (random_num < 3)
+									mapCopy[i][j + k + 1] = 0;
+								else if (random_num == 3)
+									mapCopy[i][j + k + 1] = 10;
+								else if (random_num == 4)
+									mapCopy[i][j + k + 1] = 11;
+								else if (random_num == 5)
+									mapCopy[i][j + k + 1] = 12;
+							}
 						}
 					}
 
@@ -233,17 +243,21 @@ namespace game_framework {
 					}
 					for (k = 0; k <= temp; k++)
 					{
+						
 						if (exp_Map[i][j - k] == 6 && (j - k) >= 0 && k != temp)
 						{
 							int random_num = (rand() % 6);
-							if (random_num < 3)
-								mapCopy[i][j - k - 1] = 0;
-							else if (random_num == 3)
-								mapCopy[i][j - k - 1] = 10;
-							else if (random_num == 4)
-								mapCopy[i][j - k - 1] = 11;
-							else if (random_num == 5)
-								mapCopy[i][j - k - 1] = 12;
+							if (map[i][j - k - 1] != 1 && map[i][j - k - 1] != 2 && map[i][j - k - 1] != 3 && map[i][j - k - 1] != 7 && map[i][j - k - 1] != 0)
+							{
+								if (random_num < 3)
+									mapCopy[i][j - k - 1] = 0;
+								else if (random_num == 3)
+									mapCopy[i][j - k - 1] = 10;
+								else if (random_num == 4)
+									mapCopy[i][j - k - 1] = 11;
+								else if (random_num == 5)
+									mapCopy[i][j - k - 1] = 12;
+							}
 						}
 					}
 
@@ -256,7 +270,7 @@ namespace game_framework {
 	{
 		if (timer % 7 == 0)
 		{
-			for(int i = 0; i < 13; i++)
+			for (int i = 0; i < 13; i++)
 				for (int j = 0; j < 15; j++)
 				{
 					map[i][j] = mapCopy[i][j];
@@ -273,7 +287,7 @@ namespace game_framework {
 
 	void CGameMap::setLinkBomb()
 	{
-		for(int i = 0; i < 13; i++)
+		for (int i = 0; i < 13; i++)
 			for (int j = 0; j < 15; j++)
 			{
 				int id = idMap[i][j];
@@ -413,19 +427,19 @@ namespace game_framework {
 
 	void CGameMap::hitWater()
 	{
-		for(int i = 0; i < 13; i ++)
+		for (int i = 0; i < 13; i++)
 			for (int j = 0; j < 15; j++)
 			{
 				if (exp_Map[i][j] != 0)
 				{
-					
+
 				}
 			}
 	}
 
 	void CGameMap::checkHit()
 	{
-		
+
 	}
 	void CGameMap::OnKeyDown(UINT nChar, int Xtest, int Ytest)
 	{
@@ -467,14 +481,14 @@ namespace game_framework {
 			bballs[i].OnMove();
 		}*/
 		AnimationBomb.OnMove();
-		if (timer == -1)	
+		if (timer == -1)
 			timer = 6;	// 復原計時
 
 		setBombInfo();	// 裝炸彈
 		setLinkBomb();	// 設定連鎖
 		updateMap();
 		set_expMap();
-		
+
 
 	}
 
@@ -647,15 +661,15 @@ namespace game_framework {
 					Bomb.ShowBitmap();
 					break;
 				case 10:
-					Props_1.SetTopLeft(X + (MW * i)+5, Y + (MH * j));
+					Props_1.SetTopLeft(X + (MW * i) + 5, Y + (MH * j));
 					Props_1.ShowBitmap();
 					break;
 				case 11:
-					Props_2.SetTopLeft(X + (MW * i)+5, Y + (MH * j));
+					Props_2.SetTopLeft(X + (MW * i) + 5, Y + (MH * j));
 					Props_2.ShowBitmap();
 					break;
 				case 12:
-					Props_3.SetTopLeft(X + (MW * i)+5, Y + (MH * j));
+					Props_3.SetTopLeft(X + (MW * i) + 5, Y + (MH * j));
 					Props_3.ShowBitmap();
 					break;
 				default:
@@ -671,7 +685,7 @@ namespace game_framework {
 				case 1:
 					w_U.SetTopLeft(X + (MW * i), Y + (MH * j));
 					w_U.OnShow();
-					if(timer % 7 == 0)
+					if (timer % 7 == 0)
 					{
 						exp_Map[j][i] = 0;
 					}
@@ -733,15 +747,15 @@ namespace game_framework {
 						exp_Map[j][i] = 0;
 					}
 					break;
-				//case 9:
-				//	w_U.SetTopLeft(X + (MW * i), Y + (MH * j));
-				//	w_U.OnShow();
-				//	break;
+					//case 9:
+					//	w_U.SetTopLeft(X + (MW * i), Y + (MH * j));
+					//	w_U.OnShow();
+					//	break;
 				default:
 					ASSERT(0);
 				}
 			}
-		
+
 
 		CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
 		CFont f, * fp;
