@@ -427,14 +427,14 @@ namespace game_framework {
 
 	void CGameMap::hitWater()
 	{
-		for (int i = 0; i < 13; i++)
-			for (int j = 0; j < 15; j++)
-			{
-				if (exp_Map[i][j] != 0)
-				{
+		//for (int i = 0; i < 13; i++)
+		//	for (int j = 0; j < 15; j++)
+		//	{
+		//		if (exp_Map[i][j] != 0)
+		//		{
 
-				}
-			}
+		//		}
+		//	}
 	}
 
 	void CGameMap::checkHit()
