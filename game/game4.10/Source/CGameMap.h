@@ -134,18 +134,22 @@ namespace game_framework{
 		void OnShow();
 		void OnMove();
 		void OnKeyDown(UINT, int , int);
+		void OnProps(int, int);
 		int map[13][15];
 		int mapCopy[13][15];
 		int bombMap[13][15];	// 炸彈
 		int exp_Map[13][15];	// 爆炸
 		int timer;				// 計時器
 		int idMap[13][15];		// 炸彈角色ID
+		int set_speed(int);	//回傳角色移動速度
 		void setBombInfo();		
 		void setLinkBomb();
-		void setDistance(int , int);	
-		int p1_distance;
-		int p2_distance;
+		void setDistance(int);	
+		int p1_distance, p2_distance;	//角色水球爆炸距離
+		int p1_quantity, p2_quantity;	//角色水球放置數量
+		int p1_speed, p2_speed;			//角色移動速度
 		void set_expMap();		
+		
 		void updateMap();		
 		int X1_1, X2_1, Y1_1, Y2_1;
 		int X1_2, X2_2, Y1_2, Y2_2;

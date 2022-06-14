@@ -43,8 +43,9 @@ namespace game_framework {
 			}
 		}
 		timer = 6;
-
-		//random_num = 0;
+		p1_distance = 1, p1_quantity = 7, p1_speed = 10;
+		p2_distance = 1, p2_quantity = 7, p2_speed = 10;
+		//角色初始值設定
 	}
 
 	// 缺炸毀建築 炸到玩家
@@ -55,6 +56,7 @@ namespace game_framework {
 		//int count = 0;
 		//bool flag = false
 		for (int i = 0; i < 13; i++)
+		{
 			for (int j = 0; j < 15; j++)
 			{
 				if (bombMap[i][j] == 1)
@@ -196,7 +198,7 @@ namespace game_framework {
 
 					for (k = 0; k <= temp; k++)
 					{
-						
+
 						if (exp_Map[i][j + k] == 8 && (j + k) < 15 && k != temp)
 						{
 							int random_num = (rand() % 6);
@@ -243,7 +245,7 @@ namespace game_framework {
 					}
 					for (k = 0; k <= temp; k++)
 					{
-						
+
 						if (exp_Map[i][j - k] == 6 && (j - k) >= 0 && k != temp)
 						{
 							int random_num = (rand() % 6);
@@ -260,12 +262,11 @@ namespace game_framework {
 							}
 						}
 					}
-
+					p1_quantity += 1;
 				}
 			}
-
+		}
 	}
-
 	void CGameMap::updateMap()
 	{
 		if (timer % 7 == 0)
@@ -278,10 +279,12 @@ namespace game_framework {
 		}
 	}
 
-	void CGameMap::setDistance(int p1, int p2)
+	void CGameMap::setDistance(int player)
 	{
-		p1_distance = p1;
-		p2_distance = p2;
+		if (player == 1)
+			p1_distance += 1;
+		else if (player == 2)
+			p2_distance += 1;
 
 	}
 
@@ -410,8 +413,6 @@ namespace game_framework {
 				}
 
 			}
-
-
 	}
 
 
@@ -427,14 +428,14 @@ namespace game_framework {
 
 	void CGameMap::hitWater()
 	{
-		for (int i = 0; i < 13; i++)
-			for (int j = 0; j < 15; j++)
-			{
-				if (exp_Map[i][j] != 0)
-				{
+		//for (int i = 0; i < 13; i++)
+		//	for (int j = 0; j < 15; j++)
+		//	{
+		//		if (exp_Map[i][j] != 0)
+		//		{
 
-				}
-			}
+		//		}
+		//	}
 	}
 
 	void CGameMap::checkHit()
@@ -449,14 +450,39 @@ namespace game_framework {
 			map_init[1][1] = 9;*/
 		if (nChar == KEY_SPACE)
 		{
-			if (map[Ytest][Xtest] == 0)
+			if (map[Ytest][Xtest] == 0 && p1_quantity != 0)
 			{
+				p1_quantity -= 7;
 				bombMap[Ytest][Xtest] = 11;
 				idMap[Ytest][Xtest] = 1;
 				//map[Ytest][Xtest] = 3;
 			}
 		}
 
+	}
+	void CGameMap::OnProps(int X1, int Y1)
+	{
+		if (mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] == 10) {
+			mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] = 0;
+			p1_quantity += 7;
+		}
+		else if (mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] == 11) {
+			mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] = 0;
+			setDistance(1);
+		}
+		else if (mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] == 12) {
+			mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] = 0;
+			p1_speed += 5;
+		}
+	}
+	int CGameMap::set_speed(int player)
+	{
+		if (player == 1)
+			return p1_speed;
+		else if (player == 2)
+			return p2_speed;
+		else
+			return 0;
 	}
 	void CGameMap::setBombInfo()
 	{
@@ -765,7 +791,7 @@ namespace game_framework {
 		pDC->SetTextColor(RGB(255, 255, 0));
 
 		CString str;
-		str.Format(_T("%d"), timer);
+		str.Format(_T("%d"), p1_quantity);
 		pDC->TextOut(120, 220, str);
 		//pDC->TextOut(5,395,"Press Ctrl-F to switch in between window mode and full screen mode.");
 		//if (ENABLE_GAME_PAUSE)

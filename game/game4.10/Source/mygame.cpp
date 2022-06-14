@@ -263,6 +263,8 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	//
 	eraser.OnMove();
 	play2.OnMove();
+	gamemap.OnProps(eraser.GetX1(), eraser.GetY1());
+	eraser.SetSpeed(gamemap.set_speed(1));
 	//
 	// 判斷擦子是否碰到球
 	//
@@ -286,7 +288,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	//bball.OnMove();
 	// 傳入攻擊距離
 	//	gamemap.setDistance(eraser.explosionRange, eraser.explosionRange);
-	gamemap.setDistance(1, 1);
+	//gamemap.setDistance(1, 1);
 	gamemap.getP1Range(eraser.GetX1(), eraser.GetY1(), eraser.GetX2(), eraser.GetY2());
 	gamemap.getP2Range(play2.GetX1(), play2.GetY1(), play2.GetX2(), play2.GetY2());
 	gamemap.OnMove();

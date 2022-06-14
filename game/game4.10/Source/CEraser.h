@@ -21,6 +21,7 @@ namespace game_framework {
 		void SetMovingRight(bool flag); // 設定是否正在往右移動
 		void SetMovingUp(bool flag);	// 設定是否正在往上移動
 		void SetXY(int nx, int ny);		// 設定擦子左上角座標
+		void SetSpeed(int);				//設定擦子移動速度
 		int map_user[13][15];
 		void SetMap(int map[13][15]);
 		int speed;					// 移動速度
