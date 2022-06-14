@@ -450,7 +450,7 @@ namespace game_framework {
 			map_init[1][1] = 9;*/
 		if (nChar == KEY_SPACE)
 		{
-			if (map[Ytest][Xtest] == 0 && p1_quantity != 0)
+			if (map[Ytest][Xtest] == 0 && bombMap[Ytest][Xtest] == 0 && p1_quantity >= 7)
 			{
 				p1_quantity -= 7;
 				bombMap[Ytest][Xtest] = 11;
