@@ -43,8 +43,8 @@ namespace game_framework {
 			}
 		}
 		timer = 6;
-		p1_distance = 1, p1_quantity = 7, p1_speed = 10;
-		p2_distance = 1, p2_quantity = 7, p2_speed = 10;
+		p1_distance = 1, p1_quantity = 1, p1_speed = 10;
+		p2_distance = 1, p2_quantity = 1, p2_speed = 10;
 		//角色初始值設定
 	}
 
@@ -262,7 +262,6 @@ namespace game_framework {
 							}
 						}
 					}
-					p1_quantity += 1;
 				}
 			}
 		}
@@ -450,9 +449,9 @@ namespace game_framework {
 			map_init[1][1] = 9;*/
 		if (nChar == KEY_SPACE)
 		{
-			if (map[Ytest][Xtest] == 0 && bombMap[Ytest][Xtest] == 0 && p1_quantity >= 7)
+			if (map[Ytest][Xtest] == 0 && bombMap[Ytest][Xtest] == 0 && p1_quantity > 0)
 			{
-				p1_quantity -= 7;
+				p1_quantity -= 1;
 				bombMap[Ytest][Xtest] = 11;
 				idMap[Ytest][Xtest] = 1;
 				//map[Ytest][Xtest] = 3;
@@ -464,7 +463,7 @@ namespace game_framework {
 	{
 		if (mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] == 10) {
 			mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] = 0;
-			p1_quantity += 7;
+			p1_quantity += 1;
 		}
 		else if (mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] == 11) {
 			mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] = 0;
@@ -472,7 +471,7 @@ namespace game_framework {
 		}
 		else if (mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] == 12) {
 			mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] = 0;
-			p1_speed += 5;
+			p1_speed += 2;
 		}
 	}
 	int CGameMap::set_speed(int player)
@@ -491,9 +490,14 @@ namespace game_framework {
 			for (int i = 0; i < 13; i++)
 				for (int j = 0; j < 15; j++)
 				{
-					if (bombMap[i][j] != 0)
+					if (bombMap[i][j] > 1)
 					{
 						bombMap[i][j]--;
+					}
+					else if (bombMap[i][j] == 1)
+					{
+						bombMap[i][j]--;
+						p1_quantity += 1;
 					}
 				}
 		}
