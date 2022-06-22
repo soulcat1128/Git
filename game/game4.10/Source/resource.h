@@ -34,7 +34,6 @@
 #define IDB_HELP                        155
 #define IDB_BITMAP2                     156
 #define IDB_LOADING                     156
-#define IDB_BITMAP3                     157
 #define IDB_GREEN                       158
 #define IDB_BITMAP5                     159
 #define IDB_BLUE                        159
@@ -71,6 +70,16 @@
 #define Player2_left                    186
 #define IDB_BITMAP11                    187
 #define bomb3                           187
+#define IDB_BITMAP3                     188
+#define green_box                       189
+#define green_box2                      190
+#define rock                            191
+#define cactus                          192
+#define earth                           193
+#define tent_b                          194
+#define tent_r                          195
+#define IDB_BITMAP13                    196
+#define tent_y                          196
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -83,7 +92,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        188
+#define _APS_NEXT_RESOURCE_VALUE        197
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

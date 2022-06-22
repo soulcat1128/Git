@@ -43,6 +43,7 @@ namespace game_framework {
 			}
 		}
 		timer = 6;
+		audio[0] = 0, audio[1] = 0, audio[2] = 0, audio[3] = 0;
 		p1_distance = 1, p1_quantity = 1, p1_speed = 10;
 		p2_distance = 1, p2_quantity = 1, p2_speed = 10;
 		//角色初始值設定
@@ -107,7 +108,7 @@ namespace game_framework {
 							int random_num = (rand() % 6);
 							if (map[i + k + 1][j] != 1 && map[i + k + 1][j] != 2 && map[i + k + 1][j] != 3 && map[i + k + 1][j] != 7 && map[i + k + 1][j] != 0)
 							{
-								if (random_num < 3)
+								if (random_num < 3 || map[i + k + 1][j] >= 10)
 									mapCopy[i + k + 1][j] = 0;
 								else if (random_num == 3)
 									mapCopy[i + k + 1][j] = 10;
@@ -156,7 +157,7 @@ namespace game_framework {
 							int random_num = (rand() % 6);
 							if (map[i - k - 1][j] != 1 && map[i - k - 1][j] != 2 && map[i - k - 1][j] != 3 && map[i - k - 1][j] != 7 && map[i - k - 1][j] != 0)
 							{
-								if (random_num < 3)
+								if (random_num < 3 || map[i - k - 1][j] >= 10)
 									mapCopy[i - k - 1][j] = 0;
 								else if (random_num == 3)
 									mapCopy[i - k - 1][j] = 10;
@@ -204,7 +205,7 @@ namespace game_framework {
 							int random_num = (rand() % 6);
 							if (map[i][j + k + 1] != 1 && map[i][j + k + 1] != 2 && map[i][j + k + 1] != 3 && map[i][j + k + 1] != 7 && map[i][j + k + 1] != 0)
 							{
-								if (random_num < 3)
+								if (random_num < 3 || map[i][j + k + 1] >= 10)
 									mapCopy[i][j + k + 1] = 0;
 								else if (random_num == 3)
 									mapCopy[i][j + k + 1] = 10;
@@ -251,7 +252,7 @@ namespace game_framework {
 							int random_num = (rand() % 6);
 							if (map[i][j - k - 1] != 1 && map[i][j - k - 1] != 2 && map[i][j - k - 1] != 3 && map[i][j - k - 1] != 7 && map[i][j - k - 1] != 0)
 							{
-								if (random_num < 3)
+								if (random_num < 3 || map[i][j - k - 1] >= 10)
 									mapCopy[i][j - k - 1] = 0;
 								else if (random_num == 3)
 									mapCopy[i][j - k - 1] = 10;
@@ -444,9 +445,6 @@ namespace game_framework {
 	void CGameMap::OnKeyDown(UINT nChar, int Xtest, int Ytest)
 	{
 		const int KEY_SPACE = 0x20;
-		/*if (nChar == KEY_SPACE)
-			RandomBouncingBall();
-			map_init[1][1] = 9;*/
 		if (nChar == KEY_SPACE)
 		{
 			if (map[Ytest][Xtest] == 0 && bombMap[Ytest][Xtest] == 0 && p1_quantity > 0)
@@ -454,24 +452,51 @@ namespace game_framework {
 				p1_quantity -= 1;
 				bombMap[Ytest][Xtest] = 11;
 				idMap[Ytest][Xtest] = 1;
+				audio[0] = 1;
 				//map[Ytest][Xtest] = 3;
 			}
 		}
-
 	}
 	void CGameMap::OnProps(int X1, int Y1)
 	{
 		if (mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] == 10) {
 			mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] = 0;
-			p1_quantity += 1;
+			if (p1_quantity < 5)
+				p1_quantity += 1;
+			audio[2] = 1;
 		}
 		else if (mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] == 11) {
 			mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] = 0;
-			setDistance(1);
+			if (p1_distance < 7)
+				p1_distance += 1;
+			audio[2] = 1;
 		}
 		else if (mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] == 12) {
 			mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] = 0;
-			p1_speed += 2;
+			if (p1_speed < 20)
+				p1_speed += 2;
+			audio[2] = 1;
+		}
+	}
+	bool CGameMap::OnAudio(int mode)
+	{
+		if (mode == 0)
+			return audio[0];
+		else if (mode == 1)
+			return audio[1];
+		else if (mode == 2)
+			return audio[2];
+		else if (mode == 3)
+			return audio[3];
+		else
+			return 0;
+	}
+	void CGameMap::ResetAudio(int mode)
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			if (mode == i)
+				audio[i] = 0;
 		}
 	}
 	int CGameMap::set_speed(int player)
@@ -490,14 +515,20 @@ namespace game_framework {
 			for (int i = 0; i < 13; i++)
 				for (int j = 0; j < 15; j++)
 				{
-					if (bombMap[i][j] > 1)
+					if (bombMap[i][j] > 2)
 					{
 						bombMap[i][j]--;
+					}
+					else if (bombMap[i][j] == 2)
+					{
+						bombMap[i][j]--;
+						audio[1] = 1;
 					}
 					else if (bombMap[i][j] == 1)
 					{
 						bombMap[i][j]--;
 						p1_quantity += 1;
+						//audio[1] = 1;
 					}
 				}
 		}
@@ -529,14 +560,27 @@ namespace game_framework {
 	}
 	void CGameMap::LoadBitmap()
 	{
-		House_r.LoadBitmap(house_r, RGB(255, 255, 255));//1
-		House_y.LoadBitmap(house_y, RGB(255, 255, 255));//2
-		House_b.LoadBitmap(house_b, RGB(255, 255, 255));//3
-		Blocks_r.LoadBitmap(blocks_r, RGB(255, 255, 255));//4
-		Blocks_y.LoadBitmap(blocks_y, RGB(255, 255, 255));//5
-		Wooden_box.LoadBitmap(wooden_box, RGB(255, 255, 255));//6
-		Tree.LoadBitmap(tree, RGB(255, 255, 255));//7
-		Grass.LoadBitmap(grass, RGB(255, 255, 255));//8
+		House_r.LoadBitmap(house_r, RGB(255, 255, 255));		//1
+		House_y.LoadBitmap(house_y, RGB(255, 255, 255));		//2
+		House_b.LoadBitmap(house_b, RGB(255, 255, 255));		//3
+		Tree.LoadBitmap(tree, RGB(255, 255, 255));				//4
+		Blocks_r.LoadBitmap(blocks_r, RGB(255, 255, 255));		//5
+		Blocks_y.LoadBitmap(blocks_y, RGB(255, 255, 255));		//6
+		Wooden_box.LoadBitmap(wooden_box, RGB(255, 255, 255));	//7
+		Grass.LoadBitmap(grass, RGB(255, 255, 255));			//8
+
+		Green_box.LoadBitmap(green_box, RGB(255, 255, 255));	//11
+		Green_box2.LoadBitmap(green_box2, RGB(255, 255, 255));	//12
+		Rock.LoadBitmap(rock, RGB(255, 255, 255));				//13
+		Cactus.LoadBitmap(cactus, RGB(255, 255, 255));			//14
+		Earth.LoadBitmap(earth, RGB(255, 255, 255));			//15
+		Tent_b.LoadBitmap(tent_b, RGB(255, 255, 255));			//16
+		Tent_r.LoadBitmap(tent_r, RGB(255, 255, 255));			//17
+		Tent_y.LoadBitmap(tent_y, RGB(255, 255, 255));			//18
+
+		Props_1.LoadBitmap(props_1, RGB(255, 255, 255));		//21
+		Props_2.LoadBitmap(props_2, RGB(255, 255, 255));		//22
+		Props_3.LoadBitmap(props_3, RGB(255, 255, 255));		//23
 
 		Bomb.LoadBitmap(bomb, RGB(255, 255, 255));		//水球1狀態
 		Bomb2.LoadBitmap(bomb2, RGB(255, 255, 255));	// 水球2狀態
@@ -544,9 +588,7 @@ namespace game_framework {
 
 		explode.LoadBitmap(".\\res\\explode.bmp", RGB(255, 255, 255));
 
-		Props_1.LoadBitmap(props_1, RGB(255, 255, 255));
-		Props_2.LoadBitmap(props_2, RGB(255, 255, 255));
-		Props_3.LoadBitmap(props_3, RGB(255, 255, 255));
+
 
 		char* filename[3] = { ".\\res\\bomb.bmp",".\\res\\bomb2.bmp",".\\res\\explode.bmp" };
 		for (int i = 0; i < 3; i++)	// 載入動畫(由4張圖形構成)
@@ -667,20 +709,20 @@ namespace game_framework {
 					House_b.ShowBitmap();
 					break;
 				case 4:
+					Tree.SetTopLeft(X + (MW * i), Y + (MH * j));
+					Tree.ShowBitmap();
+					break;
+				case 5:
 					Blocks_r.SetTopLeft(X + (MW * i), Y + (MH * j));
 					Blocks_r.ShowBitmap();
 					break;
-				case 5:
+				case 6:
 					Blocks_y.SetTopLeft(X + (MW * i), Y + (MH * j));
 					Blocks_y.ShowBitmap();
 					break;
-				case 6:
+				case 7:
 					Wooden_box.SetTopLeft(X + (MW * i), Y + (MH * j));
 					Wooden_box.ShowBitmap();
-					break;
-				case 7:
-					Tree.SetTopLeft(X + (MW * i), Y + (MH * j));
-					Tree.ShowBitmap();
 					break;
 				case 8:
 					Grass.SetTopLeft(X + (MW * i), Y + (MH * j));

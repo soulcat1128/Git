@@ -354,7 +354,11 @@
     <Image Include="RES\Bomb.bmp" />
     <Image Include="RES\bomb2.bmp" />
     <Image Include="RES\bomb3.bmp" />
+    <Image Include="RES\cactus.bmp" />
+    <Image Include="RES\earth.bmp" />
     <Image Include="res\grass.bmp" />
+    <Image Include="RES\green_box.bmp" />
+    <Image Include="RES\green_box2.bmp" />
     <Image Include="res\house_b.bmp" />
     <Image Include="res\house_r.bmp" />
     <Image Include="res\house_y.bmp" />
@@ -371,6 +375,10 @@
     <Image Include="RES\props_1.bmp" />
     <Image Include="RES\props_2.bmp" />
     <Image Include="RES\props_3.bmp" />
+    <Image Include="RES\rock.bmp" />
+    <Image Include="RES\tent_b.bmp" />
+    <Image Include="RES\tent_r.bmp" />
+    <Image Include="RES\tent_y.bmp" />
     <Image Include="res\tree.bmp" />
     <Image Include="res\wooden_box.bmp" />
   </ItemGroup>

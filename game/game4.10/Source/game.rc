@@ -152,6 +152,22 @@ Player2_left            BITMAP                  "..\\res\\Player2_left.bmp"
 
 bomb3                   BITMAP                  "..\\res\\bomb3.bmp"
 
+green_box               BITMAP                  "..\\res\\green_box.bmp"
+
+green_box2              BITMAP                  "..\\res\\green_box2.bmp"
+
+rock                    BITMAP                  "..\\res\\rock.bmp"
+
+cactus                  BITMAP                  "..\\res\\cactus.bmp"
+
+earth                   BITMAP                  "..\\res\\earth.bmp"
+
+tent_b                  BITMAP                  "..\\res\\tent_b.bmp"
+
+tent_r                  BITMAP                  "..\\res\\tent_r.bmp"
+
+tent_y                  BITMAP                  "..\\res\\tent_y.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

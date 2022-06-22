@@ -2,18 +2,22 @@
 #include "Play2.h"
 //#include "CBall.h"
 #include "CGameMap.h"
-
 // #include "CBouncingBall.h"
 
 namespace game_framework {
+
 	/////////////////////////////////////////////////////////////////////////////
 	// Constants
 	/////////////////////////////////////////////////////////////////////////////
 
 	enum AUDIO_ID {				// 定義各種音效的編號
-		AUDIO_DING,				// 0
-		AUDIO_LAKE,				// 1
-		AUDIO_NTUT				// 2
+		AUDIO_START,			// 0
+		AUDIO_MUSIC,			// 1
+		AUDIO_BOBO,				// 2
+		AUDIO_BANG,				// 3
+		AUDIO_DING,				// 4
+		AUDIO_DIE,				// 5
+		AUDIO_OVER				// 6
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

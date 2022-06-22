@@ -319,5 +319,29 @@
     <Image Include="RES\bomb3.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\green_box.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\green_box2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\rock.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\cactus.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\earth.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\tent_b.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\tent_r.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\tent_y.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
