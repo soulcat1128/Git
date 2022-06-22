@@ -136,21 +136,21 @@ bomb                    BITMAP                  "..\\res\\bomb.bmp"
 
 bomb2                   BITMAP                  "..\\res\\bomb2.bmp"
 
-props_1                 BITMAP                  "D:\\GitHub\\Git\\game\\game4.10\\RES\\props_1.bmp"
+props_1                 BITMAP                  "..\\res\\props_1.bmp"
 
-props_2                 BITMAP                  "D:\\GitHub\\Git\\game\\game4.10\\RES\\props_2.bmp"
+props_2                 BITMAP                  "..\\res\\props_2.bmp"
 
-props_3                 BITMAP                  "D:\\GitHub\\Git\\game\\game4.10\\RES\\props_3.bmp"
+props_3                 BITMAP                  "..\\res\\props_3.bmp"
 
-Player2_down            BITMAP                  "D:\\GitHub\\Git\\game\\game4.10\\RES\\Player2_down.bmp"
+Player2_down            BITMAP                  "..\\res\\Player2_down.bmp"
 
-Player2_up              BITMAP                  "D:\\GitHub\\Git\\game\\game4.10\\RES\\Player2_up.bmp"
+Player2_up              BITMAP                  "..\\res\\Player2_up.bmp"
 
-Player2_right           BITMAP                  "D:\\GitHub\\Git\\game\\game4.10\\RES\\Player2_right.bmp"
+Player2_right           BITMAP                  "..\\res\\Player2_right.bmp"
 
-Player2_left            BITMAP                  "D:\\GitHub\\Git\\game\\game4.10\\RES\\Player2_left.bmp"
+Player2_left            BITMAP                  "..\\res\\Player2_left.bmp"
 
-bomb3                   BITMAP                  "D:\\GitHub\\Git\\game\\game4.10\\RES\\bomb3.bmp"
+bomb3                   BITMAP                  "..\\res\\bomb3.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

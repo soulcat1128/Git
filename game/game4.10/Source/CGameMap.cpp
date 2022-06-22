@@ -43,8 +43,9 @@ namespace game_framework {
 			}
 		}
 		timer = 6;
-
-		//random_num = 0;
+		p1_distance = 1, p1_quantity = 1, p1_speed = 10;
+		p2_distance = 1, p2_quantity = 1, p2_speed = 10;
+		//角色初始值設定
 	}
 
 	// 缺炸毀建築 炸到玩家
@@ -55,6 +56,7 @@ namespace game_framework {
 		//int count = 0;
 		//bool flag = false
 		for (int i = 0; i < 13; i++)
+		{
 			for (int j = 0; j < 15; j++)
 			{
 				if (bombMap[i][j] == 1)
@@ -103,14 +105,17 @@ namespace game_framework {
 						if (exp_Map[i + k][j] == 4 && (i + k) < 13 && k != temp)
 						{
 							int random_num = (rand() % 6);
-							if (random_num < 3)
-								mapCopy[i + k + 1][j] = 0;
-							else if(random_num == 3)
-								mapCopy[i + k + 1][j] = 10;
-							else if (random_num == 4)
-								mapCopy[i + k + 1][j] = 11;
-							else if(random_num == 5)
-								mapCopy[i + k + 1][j] = 12;
+							if (map[i + k + 1][j] != 1 && map[i + k + 1][j] != 2 && map[i + k + 1][j] != 3 && map[i + k + 1][j] != 7 && map[i + k + 1][j] != 0)
+							{
+								if (random_num < 3)
+									mapCopy[i + k + 1][j] = 0;
+								else if (random_num == 3)
+									mapCopy[i + k + 1][j] = 10;
+								else if (random_num == 4)
+									mapCopy[i + k + 1][j] = 11;
+								else if (random_num == 5)
+									mapCopy[i + k + 1][j] = 12;
+							}
 						}
 					}
 					//開找3 4
@@ -149,14 +154,17 @@ namespace game_framework {
 						if (exp_Map[i - k][j] == 2 && (i - k) >= 0 && k != temp)
 						{
 							int random_num = (rand() % 6);
-							if (random_num < 3)
-								mapCopy[i - k - 1][j] = 0;
-							else if (random_num == 3)
-								mapCopy[i - k - 1][j] = 10;
-							else if (random_num == 4)
-								mapCopy[i - k - 1][j] = 11;
-							else if (random_num == 5)
-								mapCopy[i - k - 1][j] = 12;
+							if (map[i - k - 1][j] != 1 && map[i - k - 1][j] != 2 && map[i - k - 1][j] != 3 && map[i - k - 1][j] != 7 && map[i - k - 1][j] != 0)
+							{
+								if (random_num < 3)
+									mapCopy[i - k - 1][j] = 0;
+								else if (random_num == 3)
+									mapCopy[i - k - 1][j] = 10;
+								else if (random_num == 4)
+									mapCopy[i - k - 1][j] = 11;
+								else if (random_num == 5)
+									mapCopy[i - k - 1][j] = 12;
+							}
 						}
 					}
 
@@ -190,17 +198,21 @@ namespace game_framework {
 
 					for (k = 0; k <= temp; k++)
 					{
-						if (exp_Map[i][j+k] == 8 && (j + k) < 15 && k != temp)
+
+						if (exp_Map[i][j + k] == 8 && (j + k) < 15 && k != temp)
 						{
 							int random_num = (rand() % 6);
-							if (random_num < 3)
-								mapCopy[i][j + k + 1] = 0;
-							else if (random_num == 3)
-								mapCopy[i][j + k + 1] = 10;
-							else if (random_num == 4)
-								mapCopy[i][j + k + 1] = 11;
-							else if (random_num == 5)
-								mapCopy[i][j + k + 1] = 12;
+							if (map[i][j + k + 1] != 1 && map[i][j + k + 1] != 2 && map[i][j + k + 1] != 3 && map[i][j + k + 1] != 7 && map[i][j + k + 1] != 0)
+							{
+								if (random_num < 3)
+									mapCopy[i][j + k + 1] = 0;
+								else if (random_num == 3)
+									mapCopy[i][j + k + 1] = 10;
+								else if (random_num == 4)
+									mapCopy[i][j + k + 1] = 11;
+								else if (random_num == 5)
+									mapCopy[i][j + k + 1] = 12;
+							}
 						}
 					}
 
@@ -233,30 +245,32 @@ namespace game_framework {
 					}
 					for (k = 0; k <= temp; k++)
 					{
+
 						if (exp_Map[i][j - k] == 6 && (j - k) >= 0 && k != temp)
 						{
 							int random_num = (rand() % 6);
-							if (random_num < 3)
-								mapCopy[i][j - k - 1] = 0;
-							else if (random_num == 3)
-								mapCopy[i][j - k - 1] = 10;
-							else if (random_num == 4)
-								mapCopy[i][j - k - 1] = 11;
-							else if (random_num == 5)
-								mapCopy[i][j - k - 1] = 12;
+							if (map[i][j - k - 1] != 1 && map[i][j - k - 1] != 2 && map[i][j - k - 1] != 3 && map[i][j - k - 1] != 7 && map[i][j - k - 1] != 0)
+							{
+								if (random_num < 3)
+									mapCopy[i][j - k - 1] = 0;
+								else if (random_num == 3)
+									mapCopy[i][j - k - 1] = 10;
+								else if (random_num == 4)
+									mapCopy[i][j - k - 1] = 11;
+								else if (random_num == 5)
+									mapCopy[i][j - k - 1] = 12;
+							}
 						}
 					}
-
 				}
 			}
-
+		}
 	}
-
 	void CGameMap::updateMap()
 	{
 		if (timer % 7 == 0)
 		{
-			for(int i = 0; i < 13; i++)
+			for (int i = 0; i < 13; i++)
 				for (int j = 0; j < 15; j++)
 				{
 					map[i][j] = mapCopy[i][j];
@@ -264,16 +278,18 @@ namespace game_framework {
 		}
 	}
 
-	void CGameMap::setDistance(int p1, int p2)
+	void CGameMap::setDistance(int player)
 	{
-		p1_distance = p1;
-		p2_distance = p2;
+		if (player == 1)
+			p1_distance += 1;
+		else if (player == 2)
+			p2_distance += 1;
 
 	}
 
 	void CGameMap::setLinkBomb()
 	{
-		for(int i = 0; i < 13; i++)
+		for (int i = 0; i < 13; i++)
 			for (int j = 0; j < 15; j++)
 			{
 				int id = idMap[i][j];
@@ -396,8 +412,6 @@ namespace game_framework {
 				}
 
 			}
-
-
 	}
 
 
@@ -413,19 +427,19 @@ namespace game_framework {
 
 	void CGameMap::hitWater()
 	{
-		for(int i = 0; i < 13; i ++)
-			for (int j = 0; j < 15; j++)
-			{
-				if (exp_Map[i][j] != 0)
-				{
-					
-				}
-			}
+		//for (int i = 0; i < 13; i++)
+		//	for (int j = 0; j < 15; j++)
+		//	{
+		//		if (exp_Map[i][j] != 0)
+		//		{
+
+		//		}
+		//	}
 	}
 
 	void CGameMap::checkHit()
 	{
-		
+
 	}
 	void CGameMap::OnKeyDown(UINT nChar, int Xtest, int Ytest)
 	{
@@ -435,14 +449,39 @@ namespace game_framework {
 			map_init[1][1] = 9;*/
 		if (nChar == KEY_SPACE)
 		{
-			if (map[Ytest][Xtest] == 0)
+			if (map[Ytest][Xtest] == 0 && bombMap[Ytest][Xtest] == 0 && p1_quantity > 0)
 			{
+				p1_quantity -= 1;
 				bombMap[Ytest][Xtest] = 11;
 				idMap[Ytest][Xtest] = 1;
 				//map[Ytest][Xtest] = 3;
 			}
 		}
 
+	}
+	void CGameMap::OnProps(int X1, int Y1)
+	{
+		if (mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] == 10) {
+			mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] = 0;
+			p1_quantity += 1;
+		}
+		else if (mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] == 11) {
+			mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] = 0;
+			setDistance(1);
+		}
+		else if (mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] == 12) {
+			mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] = 0;
+			p1_speed += 2;
+		}
+	}
+	int CGameMap::set_speed(int player)
+	{
+		if (player == 1)
+			return p1_speed;
+		else if (player == 2)
+			return p2_speed;
+		else
+			return 0;
 	}
 	void CGameMap::setBombInfo()
 	{
@@ -451,9 +490,14 @@ namespace game_framework {
 			for (int i = 0; i < 13; i++)
 				for (int j = 0; j < 15; j++)
 				{
-					if (bombMap[i][j] != 0)
+					if (bombMap[i][j] > 1)
 					{
 						bombMap[i][j]--;
+					}
+					else if (bombMap[i][j] == 1)
+					{
+						bombMap[i][j]--;
+						p1_quantity += 1;
 					}
 				}
 		}
@@ -467,14 +511,14 @@ namespace game_framework {
 			bballs[i].OnMove();
 		}*/
 		AnimationBomb.OnMove();
-		if (timer == -1)	
+		if (timer == -1)
 			timer = 6;	// 復原計時
 
 		setBombInfo();	// 裝炸彈
 		setLinkBomb();	// 設定連鎖
 		updateMap();
 		set_expMap();
-		
+
 
 	}
 
@@ -647,15 +691,15 @@ namespace game_framework {
 					Bomb.ShowBitmap();
 					break;
 				case 10:
-					Props_1.SetTopLeft(X + (MW * i)+5, Y + (MH * j));
+					Props_1.SetTopLeft(X + (MW * i) + 5, Y + (MH * j));
 					Props_1.ShowBitmap();
 					break;
 				case 11:
-					Props_2.SetTopLeft(X + (MW * i)+5, Y + (MH * j));
+					Props_2.SetTopLeft(X + (MW * i) + 5, Y + (MH * j));
 					Props_2.ShowBitmap();
 					break;
 				case 12:
-					Props_3.SetTopLeft(X + (MW * i)+5, Y + (MH * j));
+					Props_3.SetTopLeft(X + (MW * i) + 5, Y + (MH * j));
 					Props_3.ShowBitmap();
 					break;
 				default:
@@ -671,7 +715,7 @@ namespace game_framework {
 				case 1:
 					w_U.SetTopLeft(X + (MW * i), Y + (MH * j));
 					w_U.OnShow();
-					if(timer % 7 == 0)
+					if (timer % 7 == 0)
 					{
 						exp_Map[j][i] = 0;
 					}
@@ -733,15 +777,15 @@ namespace game_framework {
 						exp_Map[j][i] = 0;
 					}
 					break;
-				//case 9:
-				//	w_U.SetTopLeft(X + (MW * i), Y + (MH * j));
-				//	w_U.OnShow();
-				//	break;
+					//case 9:
+					//	w_U.SetTopLeft(X + (MW * i), Y + (MH * j));
+					//	w_U.OnShow();
+					//	break;
 				default:
 					ASSERT(0);
 				}
 			}
-		
+
 
 		CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
 		CFont f, * fp;
@@ -751,7 +795,7 @@ namespace game_framework {
 		pDC->SetTextColor(RGB(255, 255, 0));
 
 		CString str;
-		str.Format(_T("%d"), timer);
+		str.Format(_T("%d"), p1_quantity);
 		pDC->TextOut(120, 220, str);
 		//pDC->TextOut(5,395,"Press Ctrl-F to switch in between window mode and full screen mode.");
 		//if (ENABLE_GAME_PAUSE)
