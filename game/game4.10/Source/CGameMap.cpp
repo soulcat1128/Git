@@ -5,6 +5,7 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "CGameMap.h"
+#include <stdlib.h>
 
 
 
@@ -296,118 +297,94 @@ namespace game_framework {
 				int id = idMap[i][j];
 				if (bombMap[i][j] > 0 && id == 1)
 				{
-					if (i + p1_distance < 13)
+					for (int k = 1; k <= p1_distance; k++)
 					{
-						for (int k = 1; k <= p1_distance; k++)
+						if (map[i + k][j] == 0)
 						{
-							if (map[i + k][j] == 0)
+							if (bombMap[i + k][j] > bombMap[i][j] && idMap[i + k][j] == 1)
 							{
-								if (bombMap[i + k][j] > bombMap[i][j] && idMap[i + k][j] == 1)
-								{
-									bombMap[i + k][j] = bombMap[i][j];
-								}
+								bombMap[i + k][j] = bombMap[i][j];
 							}
-							else
-							{
-								break;
-							}
+						}
+						else
+						{
+							break;
 						}
 					}
 
-					if (i - p1_distance >= 0)
+					for (int k = 1; k <= p1_distance; k++)
 					{
-						for (int k = 1; k <= p1_distance; k++)
+						if (map[i - k][j] == 0)
 						{
-							if (map[i - k][j] == 0)
+							if (bombMap[i - k][j] > bombMap[i][j] && idMap[i - k][j] == 1)
 							{
-								if (bombMap[i - k][j] > bombMap[i][j] && idMap[i - k][j] == 1)
-								{
-									bombMap[i - k][j] = bombMap[i][j];
-								}
-							}
-							else
-							{
-								break;
+								bombMap[i - k][j] = bombMap[i][j];
 							}
 						}
-					}
-					if (j + p1_distance < 15)
-					{
-						for (int k = 1; k <= p1_distance; k++)
+						else
 						{
-							if (map[i][j + k] == 0)
-							{
-								if (bombMap[i][j + k] > bombMap[i][j] && idMap[i][j + k] == 1)
-								{
-									bombMap[i][j + k] = bombMap[i][j];
-								}
-							}
-							else
-							{
-								break;
-							}
+							break;
 						}
 					}
-					if (j - p1_distance >= 0)
+					for (int k = 1; k <= p1_distance; k++)
 					{
-						for (int k = 1; k <= p1_distance; k++)
+						if (map[i][j + k] == 0)
 						{
-							if (map[i][j - k] == 0)
+							if (bombMap[i][j + k] > bombMap[i][j] && idMap[i][j + k] == 1)
 							{
-								if (bombMap[i][j - k] > bombMap[i][j] && idMap[i][j - k] == 1)
-								{
-									bombMap[i][j - k] = bombMap[i][j];
-								}
+								bombMap[i][j + k] = bombMap[i][j];
 							}
-							else
+						}
+						else
+						{
+							break;
+						}
+					}
+					for (int k = 1; k <= p1_distance; k++)
+					{
+						if (map[i][j - k] == 0)
+						{
+							if (bombMap[i][j - k] > bombMap[i][j] && idMap[i][j - k] == 1)
 							{
-								break;
+								bombMap[i][j - k] = bombMap[i][j];
 							}
+						}
+						else
+						{
+							break;
 						}
 					}
 				}
 
 				else if (bombMap[i][j] > 0 && id == 2)
 				{
-					if (i + p2_distance < 13)
+					for (int k = 1; k <= p2_distance; k++)
 					{
-						for (int k = 1; k <= p2_distance; k++)
+						if (bombMap[i + k][j] > bombMap[i][j] && idMap[i + k][j] == 2)
 						{
-							if (bombMap[i + k][j] > bombMap[i][j] && idMap[i + k][j] == 2)
-							{
-								bombMap[i + k][j] = bombMap[i][j];
-							}
+							bombMap[i + k][j] = bombMap[i][j];
 						}
 					}
 
-					if (i - p2_distance >= 0)
+					for (int k = 1; k <= p2_distance; k++)
 					{
-						for (int k = 1; k <= p2_distance; k++)
+						if (bombMap[i - k][j] > bombMap[i][j] && idMap[i - k][j] == 2)
 						{
-							if (bombMap[i - k][j] > bombMap[i][j] && idMap[i - k][j] == 2)
-							{
-								bombMap[i - k][j] = bombMap[i][j];
-							}
+							bombMap[i - k][j] = bombMap[i][j];
 						}
 					}
-					if (j + p2_distance < 15)
+					for (int k = 1; k <= p2_distance; k++)
 					{
-						for (int k = 1; k <= p2_distance; k++)
+						if (bombMap[i][j + k] > bombMap[i][j] && idMap[i][j + k] == 2)
 						{
-							if (bombMap[i][j + k] > bombMap[i][j] && idMap[i][j + k] == 2)
-							{
-								bombMap[i][j + k] = bombMap[i][j];
-							}
+							bombMap[i][j + k] = bombMap[i][j];
 						}
 					}
-					if (j - p2_distance >= 0)
+					for (int k = 1; k <= p2_distance; k++)
 					{
-						for (int k = 1; k <= p2_distance; k++)
+						if (bombMap[i][j - k] > bombMap[i][j] && idMap[i][j - k] == 2)
 						{
-							if (bombMap[i][j - k] > bombMap[i][j] && idMap[i][j - k] == 2)
-							{
-								bombMap[i][j - k] = bombMap[i][j];
-							}
+							bombMap[i][j - k] = bombMap[i][j];
 						}
 					}
 				}
