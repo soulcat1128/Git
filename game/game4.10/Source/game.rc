@@ -104,7 +104,7 @@ IDB_LOADING             BITMAP                  "..\\res\\loading.bmp"
 
 IDB_BITMAP3             BITMAP                  "..\\res\\bitmap3.bmp"
 
-backgroundTest1         BITMAP                  "..\\res\\backmap.bmp"
+background1             BITMAP                  "..\\res\\backmap.bmp"
 
 Player1_down            BITMAP                  "..\\res\\Player1_down.bmp"
 
@@ -167,6 +167,8 @@ tent_b                  BITMAP                  "..\\res\\tent_b.bmp"
 tent_r                  BITMAP                  "..\\res\\tent_r.bmp"
 
 tent_y                  BITMAP                  "..\\res\\tent_y.bmp"
+
+backmap2                BITMAP                  "D:\\GitHub\\Git\\game\\game4.10\\RES\\backmap2.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

@@ -343,5 +343,8 @@
     <Image Include="RES\tent_y.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\backmap2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

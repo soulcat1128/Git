@@ -107,16 +107,16 @@ namespace game_framework {
 						if (exp_Map[i + k][j] == 4 && (i + k) < 13 && k != temp)
 						{
 							int random_num = (rand() % 6);
-							if (map[i + k + 1][j] != 1 && map[i + k + 1][j] != 2 && map[i + k + 1][j] != 3 && map[i + k + 1][j] != 7 && map[i + k + 1][j] != 0)
+							if (map[i + k + 1][j] > 4)
 							{
 								if (random_num < 3 || map[i + k + 1][j] >= 10)
 									mapCopy[i + k + 1][j] = 0;
 								else if (random_num == 3)
-									mapCopy[i + k + 1][j] = 10;
+									mapCopy[i + k + 1][j] = 21;
 								else if (random_num == 4)
-									mapCopy[i + k + 1][j] = 11;
+									mapCopy[i + k + 1][j] = 22;
 								else if (random_num == 5)
-									mapCopy[i + k + 1][j] = 12;
+									mapCopy[i + k + 1][j] = 23;
 							}
 						}
 					}
@@ -156,16 +156,16 @@ namespace game_framework {
 						if (exp_Map[i - k][j] == 2 && (i - k) >= 0 && k != temp)
 						{
 							int random_num = (rand() % 6);
-							if (map[i - k - 1][j] != 1 && map[i - k - 1][j] != 2 && map[i - k - 1][j] != 3 && map[i - k - 1][j] != 7 && map[i - k - 1][j] != 0)
+							if (map[i - k - 1][j] > 4)
 							{
 								if (random_num < 3 || map[i - k - 1][j] >= 10)
 									mapCopy[i - k - 1][j] = 0;
 								else if (random_num == 3)
-									mapCopy[i - k - 1][j] = 10;
+									mapCopy[i - k - 1][j] = 21;
 								else if (random_num == 4)
-									mapCopy[i - k - 1][j] = 11;
+									mapCopy[i - k - 1][j] = 22;
 								else if (random_num == 5)
-									mapCopy[i - k - 1][j] = 12;
+									mapCopy[i - k - 1][j] = 23;
 							}
 						}
 					}
@@ -204,16 +204,16 @@ namespace game_framework {
 						if (exp_Map[i][j + k] == 8 && (j + k) < 15 && k != temp)
 						{
 							int random_num = (rand() % 6);
-							if (map[i][j + k + 1] != 1 && map[i][j + k + 1] != 2 && map[i][j + k + 1] != 3 && map[i][j + k + 1] != 7 && map[i][j + k + 1] != 0)
+							if (map[i][j + k + 1] > 4)
 							{
 								if (random_num < 3 || map[i][j + k + 1] >= 10)
 									mapCopy[i][j + k + 1] = 0;
 								else if (random_num == 3)
-									mapCopy[i][j + k + 1] = 10;
+									mapCopy[i][j + k + 1] = 21;
 								else if (random_num == 4)
-									mapCopy[i][j + k + 1] = 11;
+									mapCopy[i][j + k + 1] = 22;
 								else if (random_num == 5)
-									mapCopy[i][j + k + 1] = 12;
+									mapCopy[i][j + k + 1] = 23;
 							}
 						}
 					}
@@ -251,16 +251,16 @@ namespace game_framework {
 						if (exp_Map[i][j - k] == 6 && (j - k) >= 0 && k != temp)
 						{
 							int random_num = (rand() % 6);
-							if (map[i][j - k - 1] != 1 && map[i][j - k - 1] != 2 && map[i][j - k - 1] != 3 && map[i][j - k - 1] != 7 && map[i][j - k - 1] != 0)
+							if (map[i][j - k - 1] > 4)
 							{
 								if (random_num < 3 || map[i][j - k - 1] >= 10)
 									mapCopy[i][j - k - 1] = 0;
 								else if (random_num == 3)
-									mapCopy[i][j - k - 1] = 10;
+									mapCopy[i][j - k - 1] = 21;
 								else if (random_num == 4)
-									mapCopy[i][j - k - 1] = 11;
+									mapCopy[i][j - k - 1] = 22;
 								else if (random_num == 5)
-									mapCopy[i][j - k - 1] = 12;
+									mapCopy[i][j - k - 1] = 23;
 							}
 						}
 					}
@@ -436,19 +436,19 @@ namespace game_framework {
 	}
 	void CGameMap::OnProps(int X1, int Y1)
 	{
-		if (mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] == 10) {
+		if (mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] == 21) {
 			mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] = 0;
 			if (p1_quantity < 5)
 				p1_quantity += 1;
 			audio[2] = 1;
 		}
-		else if (mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] == 11) {
+		else if (mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] == 22) {
 			mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] = 0;
 			if (p1_distance < 7)
 				p1_distance += 1;
 			audio[2] = 1;
 		}
-		else if (mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] == 12) {
+		else if (mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] == 23) {
 			mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] = 0;
 			if (p1_speed < 20)
 				p1_speed += 2;
@@ -673,6 +673,7 @@ namespace game_framework {
 				switch (map[j][i]) {
 				case 0:
 					break;
+				//村莊地圖
 				case 1:
 					House_r.SetTopLeft(X + (MW * i), Y + (MH * j));
 					House_r.ShowBitmap();
@@ -705,19 +706,52 @@ namespace game_framework {
 					Grass.SetTopLeft(X + (MW * i), Y + (MH * j));
 					Grass.ShowBitmap();
 					break;
+				//沙漠地圖
+				case 11:
+					Green_box.SetTopLeft(X + (MW * i), Y + (MH * j));
+					Green_box.ShowBitmap();
+					break;
+				case 12:
+					Green_box2.SetTopLeft(X + (MW * i), Y + (MH * j));
+					Green_box2.ShowBitmap();
+					break;
+				case 13:
+					Rock.SetTopLeft(X + (MW * i), Y + (MH * j));
+					Rock.ShowBitmap();
+					break;
+				case 14:
+					Cactus.SetTopLeft(X + (MW * i), Y + (MH * j));
+					Cactus.ShowBitmap();
+					break;
+				case 15:
+					Earth.SetTopLeft(X + (MW * i), Y + (MH * j));
+					Earth.ShowBitmap();
+					break;
+				case 16:
+					Tent_b.SetTopLeft(X + (MW * i), Y + (MH * j));
+					Tent_b.ShowBitmap();
+					break;
+				case 17:
+					Tent_r.SetTopLeft(X + (MW * i), Y + (MH * j));
+					Tent_r.ShowBitmap();
+					break;
+				case 18:
+					Tent_y.SetTopLeft(X + (MW * i), Y + (MH * j));
+					Tent_y.ShowBitmap();
+					break;
 				case 9:
 					Bomb.SetTopLeft(X + (MW * i), Y + (MH * j));
 					Bomb.ShowBitmap();
 					break;
-				case 10:
+				case 21:
 					Props_1.SetTopLeft(X + (MW * i) + 5, Y + (MH * j));
 					Props_1.ShowBitmap();
 					break;
-				case 11:
+				case 22:
 					Props_2.SetTopLeft(X + (MW * i) + 5, Y + (MH * j));
 					Props_2.ShowBitmap();
 					break;
-				case 12:
+				case 23:
 					Props_3.SetTopLeft(X + (MW * i) + 5, Y + (MH * j));
 					Props_3.ShowBitmap();
 					break;
