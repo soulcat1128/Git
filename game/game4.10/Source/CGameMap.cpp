@@ -452,7 +452,7 @@ namespace game_framework {
 		const char KEY_E = 0x45;
 		if (nChar == KEY_SPACE)
 		{
-			if (map[Ytest][Xtest] == 0 && bombMap[Ytest][Xtest] == 0 && p1_quantity > 0 && id == 1)
+			if (map[Ytest][Xtest] == 0 && bombMap[Ytest][Xtest] == 0 && p1_quantity > 0 && id == 1 && p1Status == 5)
 			{
 				p1_quantity -= 1;
 				bombMap[Ytest][Xtest] = 11;
@@ -463,7 +463,7 @@ namespace game_framework {
 		}
 		if (nChar == KEY_E)
 		{
-			if (map[Ytest][Xtest] == 0 && bombMap[Ytest][Xtest] == 0 && p2_quantity > 0 && id == 2)
+			if (map[Ytest][Xtest] == 0 && bombMap[Ytest][Xtest] == 0 && p2_quantity > 0 && id == 2 && p2Status == 5)
 			{
 				p2_quantity -= 1;
 				bombMap[Ytest][Xtest] = 11;
