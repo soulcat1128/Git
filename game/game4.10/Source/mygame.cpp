@@ -94,6 +94,7 @@ void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_ESC = 27;
 	const char KEY_SPACE = 0x20;
 	const char KEY_ENTER = 13;
+	
 	if (nChar == KEY_SPACE)
 	{
 		map_mode = 1;	//按Space進入地圖1
@@ -230,8 +231,8 @@ void CGameStateRun::OnBeginState()
 		//ball[i].SetDelay(x_pos);
 		//ball[i].SetIsAlive(true);
 	}
-	eraser.Initialize();
-	play2.Initialize();
+	eraser.Initialize(1);
+	play2.Initialize(2);
 	background.SetTopLeft(BACKGROUND_X,0);				// 設定背景的起始座標
 	//help.SetTopLeft(0, SIZE_Y - help.Height());			// 設定說明圖的起始座標
 	hits_left.SetInteger(HITS_LEFT);					// 指定剩下的撞擊數
@@ -247,6 +248,7 @@ void CGameStateRun::OnBeginState()
 void CGameStateRun::OnMove()							// 移動遊戲元素
 {
 	//
+	// 如果希望修改cursor的樣式，則將下面程式的commment取消即可
 	// 如果希望修改cursor的樣式，則將下面程式的commment取消即可
 	//
 	// SetCursor(AfxGetApp()->LoadCursor(IDC_GAMECURSOR));
@@ -280,7 +282,10 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	//
 	eraser.OnMove();
 	play2.OnMove();
-	gamemap.OnProps(eraser.GetX1(), eraser.GetY1());
+	gamemap.OnProps(eraser.GetX1(), eraser.GetY1(), 1);
+	gamemap.OnProps(play2.GetX1(), play2.GetY1(), 2);
+	gamemap.getP1Range(eraser.GetX1(), eraser.GetY1());
+	gamemap.getP2Range(play2.GetX1(), play2.GetY1());
 	for (int i = 0; i < 4; i++)
 	{
 		if (gamemap.OnAudio(i) == 1)
@@ -290,6 +295,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 		}
 	}
 	eraser.SetSpeed(gamemap.set_speed(1));
+	play2.SetSpeed(gamemap.set_speed(2));
 	//
 	// 判斷擦子是否碰到球
 	//
@@ -314,11 +320,28 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	// 傳入攻擊距離
 	//	gamemap.setDistance(eraser.explosionRange, eraser.explosionRange);
 	//gamemap.setDistance(1, 1);
-	gamemap.getP1Range(eraser.GetX1(), eraser.GetY1(), eraser.GetX2(), eraser.GetY2());
-	gamemap.getP2Range(play2.GetX1(), play2.GetY1(), play2.GetX2(), play2.GetY2());
+	gamemap.getP1Range(eraser.GetX1(), eraser.GetY1());
+	gamemap.getP2Range(play2.GetX1(), play2.GetY1());
 	gamemap.OnMove();
 	eraser.SetMap(gamemap.map);
 	play2.SetMap(gamemap.map);
+	int p1s = gamemap.checkP1Status();
+	int p2s = gamemap.checkP2Status();
+	if (p2s != 5)
+	{
+		play2.setP2Status(p2s);
+		play2.SetSpeed(2);
+	}
+	if (p1s != 5)
+	{
+		eraser.setP1Status(p1s);
+		eraser.SetSpeed(2);
+	}
+
+	if (p1s == 0 || p2s == 0)
+	{
+		GotoGameState(GAME_STATE_OVER);
+	}
 }
 
 void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
@@ -380,6 +403,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_D = 0x44; // keyboard D
 	const char KEY_S = 0x53; // keyboard S
 	const char KEY_R = 0x52; // keyboard R
+	const char KEY_E = 0x45; // keyboard E
 	//gamemap.OnKeyDown(nChar, int, int);
 	int GetX = eraser.GetX1()/ 70;
 	int GetY = eraser.GetY1()/ 70;
@@ -395,9 +419,20 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		int Xtest = (eraser.GetX1() + 35) / 70;
 		int Ytest = (eraser.GetY1() + 35) / 70;
 		//eraser.SetMap(map_init);
-		gamemap.OnKeyDown(nChar, Xtest, Ytest);
+		gamemap.OnKeyDown(nChar, Xtest, Ytest, 1);
 		eraser.SetMap(gamemap.map);
+		play2.SetMap(gamemap.map);
 	}
+
+	if (nChar == KEY_E) {
+		int Xtest = (play2.GetX1() + 35) / 70;
+		int Ytest = (play2 .GetY1() + 35) / 70;
+		//eraser.SetMap(map_init);
+		gamemap.OnKeyDown(nChar, Xtest, Ytest, 2);
+		eraser.SetMap(gamemap.map);
+		play2.SetMap(gamemap.map);
+	}
+
 	if (nChar == KEY_A)
 		play2.SetMovingLeft(true);
 	if (nChar == KEY_D)
@@ -410,7 +445,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		int Xtest = (eraser.GetX1() + 35) / 70;
 		int Ytest = (eraser.GetY1() + 35) / 70;
 		//eraser.SetMap(map_init);
-		gamemap.OnKeyDown(nChar, Xtest, Ytest);
+		gamemap.OnKeyDown(nChar, Xtest, Ytest, 1);
 		eraser.SetMap(gamemap.map);
 	}
 

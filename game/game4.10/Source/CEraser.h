@@ -12,7 +12,8 @@ namespace game_framework {
 		int  GetY1();					// 擦子左上角 y 座標
 		int  GetX2();					// 擦子右下角 x 座標
 		int  GetY2();					// 擦子右下角 y 座標
-		void Initialize();				// 設定擦子為初始值
+		int user_id;
+		void Initialize(int who);				// 設定擦子為初始值
 		void LoadBitmap();				// 載入圖形
 		void OnMove();					// 移動擦子
 		void OnShow();					// 將擦子圖形貼到畫面
@@ -28,13 +29,21 @@ namespace game_framework {
 		int status;					// 存角色狀態 可能被打到
 		bool isAlive;				// 還活者
 		int explosionRange;			// 爆炸範圍 初始 1 吃道具增加
+		void setP1Status(int s);		// 更新p1狀態
+		void setP2Status(int s);		// 更新p2狀態
+		void setid(int id);
+		int getId();
+		int getStatus();
+
 	protected:
 		//CAnimation animation;		// 擦子的動畫
-		CMovingBitmap P1_down, P1_up, P1_left, P1_right;
+		CMovingBitmap P1_down, P1_up, P1_left, P1_right, p1die1, p1die2;
+		CMovingBitmap P2_down, P2_up, P2_left, P2_right, p2die1, p2die2;
 		int x, y, mode;					// 擦子左上角座標
 		bool isMovingDown;			// 是否正在往下移動
 		bool isMovingLeft;			// 是否正在往左移動
 		bool isMovingRight;			// 是否正在往右移動
 		bool isMovingUp;			// 是否正在往上移動
+
 	};
 }

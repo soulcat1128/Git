@@ -44,10 +44,12 @@ namespace game_framework {
 				
 			}
 		}
-		timer = 6;
+		timer = 6, timerS = 30;
 		audio[0] = 0, audio[1] = 0, audio[2] = 0, audio[3] = 0;
 		p1_distance = 1, p1_quantity = 1, p1_speed = 10;
 		p2_distance = 1, p2_quantity = 1, p2_speed = 10;
+		p1Status = 5, p2Status = 5;
+		hitP1 = false, hitP2 = false;
 		//角色初始值設定
 	}
 
@@ -394,44 +396,78 @@ namespace game_framework {
 	}
 
 
-	void CGameMap::getP1Range(int x1, int y1, int x2, int y2)
+	void CGameMap::getP1Range(int x1, int y1)
 	{
-		X1_1 = x1, X2_1 = x2, Y1_1 = y1, Y2_1 = y2;
+		X1_1 = x1, Y1_1 = y1;
 	}
 
-	void CGameMap::getP2Range(int x1, int y1, int x2, int y2)
+	void CGameMap::getP2Range(int x1, int y1)
 	{
-		X1_2 = x1, X2_2 = x2, Y1_2 = y1, Y2_2 = y2;
+		X1_2 = x1, Y1_2 = y1;
 	}
 
 	void CGameMap::hitWater()
 	{
-		//for (int i = 0; i < 13; i++)
-		//	for (int j = 0; j < 15; j++)
-		//	{
-		//		if (exp_Map[i][j] != 0)
-		//		{
-
-		//		}
-		//	}
+		if (exp_Map[(Y1_1 + 47) / 70][(X1_1 + 35) / 70] != 0) {
+			hitP1 = true;
+		}
+		if (exp_Map[(Y1_2 + 47) / 70][(X1_2 + 35) / 70] != 0 ) {
+			hitP2 = true;
+		}
 	}
-
-	void CGameMap::checkHit()
+	int CGameMap::checkP1Status()
 	{
-
+		return p1Status;
 	}
-	void CGameMap::OnKeyDown(UINT nChar, int Xtest, int Ytest)
+	int CGameMap::checkP2Status()
+	{
+		return p2Status;
+	}
+	void CGameMap::checkHitP1()
+	{
+		if (hitP1 == true)
+		{
+			if (timerS % 31 == 0)
+			{
+				p1Status--;
+			}
+		}
+	}
+	void CGameMap::checkHitP2()
+	{
+		if (hitP2 == true)
+		{
+			if (timerS % 31 == 0)
+			{
+				p2Status--;
+			}
+		}
+	}
+
+	void CGameMap::OnKeyDown(UINT nChar, int Xtest, int Ytest, int id)
 	{
 		const char KEY_SPACE = 0x20;
 		const char KEY_Num0 = 0x60;	//玩家1密技 殺死玩家2
 		const char KEY_R = 0x52;	//玩家2密技 殺死玩家1
+		const char KEY_E = 0x45;
 		if (nChar == KEY_SPACE)
 		{
-			if (map[Ytest][Xtest] == 0 && bombMap[Ytest][Xtest] == 0 && p1_quantity > 0)
+			if (map[Ytest][Xtest] == 0 && bombMap[Ytest][Xtest] == 0 && p1_quantity > 0 && id == 1)
 			{
 				p1_quantity -= 1;
 				bombMap[Ytest][Xtest] = 11;
 				idMap[Ytest][Xtest] = 1;
+				audio[0] = 1;
+				mapCopy[Ytest][Xtest] = 10;
+			}
+		}
+		if (nChar == KEY_E)
+		{
+			if (map[Ytest][Xtest] == 0 && bombMap[Ytest][Xtest] == 0 && p2_quantity > 0 && id == 2)
+			{
+				p2_quantity -= 1;
+				bombMap[Ytest][Xtest] = 11;
+				idMap[Ytest][Xtest] = 2;
 				audio[0] = 1;
 				mapCopy[Ytest][Xtest] = 10;
 			}
@@ -457,24 +493,43 @@ namespace game_framework {
 			audio[0] = 1;
 		}
 	}
-	void CGameMap::OnProps(int X1, int Y1)
+	void CGameMap::OnProps(int X1, int Y1, int id)
 	{
-		if (mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] == 21) {
+		if (mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] == 21 && id == 1) {
 			mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] = 0;
 			if (p1_quantity < 5)
 				p1_quantity += 1;
 			audio[2] = 1;
 		}
-		else if (mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] == 22) {
+		else if (mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] == 22 && id == 1) {
 			mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] = 0;
 			if (p1_distance < 7)
 				p1_distance += 1;
 			audio[2] = 1;
 		}
-		else if (mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] == 23) {
+		else if (mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] == 23 && id == 1) {
 			mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] = 0;
 			if (p1_speed < 20)
 				p1_speed += 2;
+			audio[2] = 1;
+		}
+		//-----------------------------------------------------------//
+		if (mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] == 21 && id == 2) {
+			mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] = 0;
+			if (p2_quantity < 5)
+				p2_quantity += 1;
+			audio[2] = 1;
+		}
+		else if (mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] == 22 && id == 2) {
+			mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] = 0;
+			if (p2_distance < 7)
+				p2_distance += 1;
+			audio[2] = 1;
+		}
+		else if (mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] == 23 && id == 2) {
+			mapCopy[(Y1 + 47) / 70][(X1 + 35) / 70] = 0;
+			if (p2_speed < 20)
+				p2_speed += 2;
 			audio[2] = 1;
 		}
 	}
@@ -529,6 +584,8 @@ namespace game_framework {
 						bombMap[i][j]--;
 						mapCopy[i][j] = 0;
 						p1_quantity += 1;
+						//                          yo yo yo 我在這 這裡是被我臨時放來回復 p2_quantity 的 需要你來搞 甘溫
+						p2_quantity += 1;
 						//audio[1] = 1;
 					}
 				}
@@ -554,6 +611,7 @@ namespace game_framework {
 	void CGameMap::OnMove()
 	{
 		timer--;	// 計時
+		timerS--;
 		/*
 		for (int i = 0; i < random_num; i++)
 		{
@@ -562,11 +620,16 @@ namespace game_framework {
 		AnimationBomb.OnMove();
 		if (timer == -1)
 			timer = 6;	// 復原計時
+		if (timerS == -1)
+			timer = 30;
 
 		setBombInfo();	// 裝炸彈
 		setLinkBomb();	// 設定連鎖
 		updateMap();
 		set_expMap();
+		hitWater();
+		checkHitP1();
+		checkHitP2();
 
 
 	}
@@ -892,7 +955,7 @@ namespace game_framework {
 		pDC->SetTextColor(RGB(255, 255, 0));
 
 		CString str;
-		str.Format(_T("%d"), p1_quantity);
+		str.Format(_T("%d"), p1Status);
 		pDC->TextOut(120, 220, str);
 		//pDC->TextOut(5,395,"Press Ctrl-F to switch in between window mode and full screen mode.");
 		//if (ENABLE_GAME_PAUSE)

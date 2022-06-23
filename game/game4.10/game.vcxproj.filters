@@ -358,5 +358,20 @@
     <Image Include="RES\operate.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\bitmap15.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Player1_die1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Player1_die2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Player2_die1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Player2_die2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

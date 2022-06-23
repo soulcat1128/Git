@@ -98,7 +98,7 @@ namespace game_framework {
 		// CBall* ball;		// 球的陣列
 		CMovingBitmap	corner;		// 角落圖
 		CEraser			eraser;		// 角色
-		Play2			play2;
+		CEraser			play2;
 		CInteger		hits_left;	// 剩下的撞擊數
 		CBouncingBall   bball;		// 反覆彈跳的球
 	};

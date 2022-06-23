@@ -13,7 +13,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// いゅ (羉砰芖) resources
+// 中文 (繁體，台灣) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHT)
 LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL
@@ -168,11 +168,19 @@ tent_r                  BITMAP                  "..\\res\\tent_r.bmp"
 
 tent_y                  BITMAP                  "..\\res\\tent_y.bmp"
 
-backmap2                BITMAP                  "D:\\GitHub\\Git\\game\\game4.10\\RES\\backmap2.bmp"
+backmap2                BITMAP                  "..\\res\\backmap2.bmp"
 
-bull                    BITMAP                  "D:\\GitHub\\Git\\game\\game4.10\\RES\\null.bmp"
+bull                    BITMAP                  "..\\res\\null.bmp"
 
-operate                 BITMAP                  "D:\\GitHub\\Git\\game\\game4.10\\RES\\operate.bmp"
+operate                 BITMAP                  "..\\res\\operate.bmp"
+
+Player1_die1            BITMAP                  "..\\res\\Player1_die1.bmp"
+
+Player1_die2            BITMAP                  "..\\res\\Player1_die2.bmp"
+
+Player2_die1            BITMAP                  "..\\res\\Player2_die1.bmp"
+
+Player2_die2            BITMAP                  "..\\res\\Player2_die2.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -182,12 +190,12 @@ operate                 BITMAP                  "D:\\GitHub\\Git\\game\\game4.10
 
 IDC_GAMECURSOR          CURSOR                  "..\\res\\gamecurs.cur"
 
-#endif    // いゅ (羉砰芖) resources
+#endif    // 中文 (繁體，台灣) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// 璣ゅ (瓣) resources
+// 英文 (美國) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
@@ -485,7 +493,7 @@ BEGIN
     ID_BUTTON_UNITTEST      "Perform Unit Test"
 END
 
-#endif    // 璣ゅ (瓣) resources
+#endif    // 英文 (美國) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
