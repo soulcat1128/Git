@@ -71,7 +71,7 @@ namespace game_framework {
 		int y2 = GetY2();
 
 		if (isMovingUp) {
-			if (y > 0 && (map_user[(y - speed) / 70][(x + 35) / 70] == 0 || map_user[(y - speed) / 70][(x + 35) / 70] >= 9)) {
+			if (y > 0 && (map_user[(y - speed) / 70][(x + 35) / 70] == 0 || map_user[(y - speed) / 70][(x + 35) / 70] > 20)) {
 				y -= speed;
 				mode = 0;
 			}
@@ -82,7 +82,7 @@ namespace game_framework {
 				while (temp > 0)
 				{
 					temp--;
-					if (y > 0 && (map_user[(y - temp) / 70][(x + 35) / 70] == 0 || map_user[(y - temp) / 70][(x + 35) / 70] == 9))
+					if (y > 0 && (map_user[(y - temp) / 70][(x + 35) / 70] == 0 || map_user[(y - temp) / 70][(x + 35) / 70] > 20))
 					{
 							y--;
 					}
@@ -90,7 +90,7 @@ namespace game_framework {
 			}
 		}
 		else if (isMovingDown) {
-			if (y < 817 && (map_user[(y2 + speed) / 70][(x + 35) / 70] == 0 || map_user[(y2 + speed)/70][(x + 35) / 70] >= 9)) {
+			if (y < 817 && (map_user[(y2 + speed) / 70][(x + 35) / 70] == 0 || map_user[(y2 + speed)/70][(x + 35) / 70] > 20)) {
 				y += speed;
 				mode = 1;
 			}
@@ -100,7 +100,7 @@ namespace game_framework {
 				while (temp > 0)
 				{
 					temp--;
-					if (y  < 817 && (map_user[(y2 + temp) / 70][(x + 35) / 70] == 0 || map_user[(y2 + temp)/70][(x + 35) / 70] == 9))
+					if (y  < 817 && (map_user[(y2 + temp) / 70][(x + 35) / 70] == 0 || map_user[(y2 + temp)/70][(x + 35) / 70] > 20))
 					{
 						y++;
 					}
@@ -108,7 +108,7 @@ namespace game_framework {
 			}
 		}
 		else if (isMovingLeft) {
-			if (x > 0 && (map_user[(y + 49) / 70][(x - speed) / 70] == 0 || map_user[(y + 49) / 70][(x - speed) / 70] >= 9)) {
+			if (x > 0 && (map_user[(y + 49) / 70][(x - speed) / 70] == 0 || map_user[(y + 49) / 70][(x - speed) / 70] > 20)) {
 				x -= speed;
 				mode = 2;
 			}
@@ -118,7 +118,7 @@ namespace game_framework {
 				while (temp > 0)
 				{
 					temp--;
-					if (x > 0 && (map_user[(y + 49) / 70][(x - temp) / 70] == 0 || map_user[(y + 49) / 70][(x - temp) / 70] == 9))
+					if (x > 0 && (map_user[(y + 49) / 70][(x - temp) / 70] == 0 || map_user[(y + 49) / 70][(x - temp) / 70] > 20))
 					{
 						x--;
 					}
@@ -127,7 +127,7 @@ namespace game_framework {
 			}
 		}
 		else if (isMovingRight) {
-			if (x < 980 && (map_user[(y + 49) / 70][(x2 + speed) / 70] == 0 || map_user[(y + 49) / 70][(x2 + speed) / 70] >= 9)) {
+			if (x < 980 && (map_user[(y + 49) / 70][(x2 + speed) / 70] == 0 || map_user[(y + 49) / 70][(x2 + speed) / 70] > 20)) {
 				x += speed;
 				mode = 3;
 			}
@@ -137,7 +137,7 @@ namespace game_framework {
 				while (temp > 0)
 				{
 					temp--;
-					if (x < 980 && (map_user[(y + 49) / 70][(x2 + temp) / 70] == 0 || map_user[(y + 49) / 70][(x2 + temp) / 70] == 9))
+					if (x < 980 && (map_user[(y + 49) / 70][(x2 + temp) / 70] == 0 || map_user[(y + 49) / 70][(x2 + temp) / 70] > 20))
 					{
 						x++;
 					}

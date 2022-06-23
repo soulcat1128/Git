@@ -170,6 +170,8 @@ tent_y                  BITMAP                  "..\\res\\tent_y.bmp"
 
 backmap2                BITMAP                  "D:\\GitHub\\Git\\game\\game4.10\\RES\\backmap2.bmp"
 
+bull                    BITMAP                  "D:\\GitHub\\Git\\game\\game4.10\\RES\\null.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -204,7 +206,7 @@ IDR_MAINFRAME           BITMAP                  "..\\res\\Toolbar.bmp"
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDR_MAINFRAME           ICON                    "..\\res\\game.ico"
+IDR_MAINFRAME           ICON                    "..\\res\\BNB.ico"
 
 IDR_GAMETYPE            ICON                    "..\\res\\gameDoc.ico"
 
@@ -288,8 +290,8 @@ BEGIN
     DEFPUSHBUTTON   "OK",IDOK,172,7,39,14,WS_GROUP
     LTEXT           "Liense: GPL",IDC_STATIC,39,35,119,8
     PUSHBUTTON      "ReadMe",IDC_README,172,24,39,13,WS_GROUP
-    LTEXT           "Author: Woei-Kae Chen, CSIE Department, NTUT",IDC_STATIC,39,47,159,8
-    LTEXT           "http://www.ntut.edu.tw/~wkchen/game",IDC_STATIC,39,60,159,8
+    LTEXT           "Author: Shin-Yu Lin & Jia-Yu Gu",IDC_STATIC,39,47,159,8
+    LTEXT           "https://github.com/soulcat69/Git",IDC_STATIC,39,60,159,8
 END
 
 

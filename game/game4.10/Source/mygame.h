@@ -20,6 +20,8 @@ namespace game_framework {
 		AUDIO_OVER				// 6
 	};
 
+	static int map_mode;
+
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class為遊戲的遊戲開頭畫面物件
 	// 每個Member function的Implementation都要弄懂
@@ -31,7 +33,7 @@ namespace game_framework {
 		void OnInit();  								// 遊戲的初值及圖形設定
 		void OnBeginState();							// 設定每次重玩所需的變數
 		void OnKeyUp(UINT, UINT, UINT); 				// 處理鍵盤Up的動作
-		void OnLButtonDown(UINT nFlags, CPoint point);  // 處理滑鼠的動作
+		//void OnLButtonDown(UINT nFlags, CPoint point);  // 處理滑鼠的動作
 	protected:
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
@@ -91,7 +93,7 @@ namespace game_framework {
 		CMovingBitmap practice;
 		int picX, picY;
 		const int		NUMBALLS;	// 球的總數
-		CMovingBitmap	background;	// 背景圖
+		CMovingBitmap	background, background2;	// 背景圖
 		CMovingBitmap	help;		// 說明圖
 		// CBall* ball;		// 球的陣列
 		CMovingBitmap	corner;		// 角落圖

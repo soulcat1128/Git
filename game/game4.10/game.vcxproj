@@ -322,11 +322,7 @@
     <ClInclude Include="Source\mygame.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Source\game.rc">
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-    </ResourceCompile>
+    <ResourceCompile Include="Source\game.rc" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\圖檔\bangP1.bmp" />
@@ -347,11 +343,13 @@
     <Image Include="RES\backgroundTest1.bmp" />
     <Image Include="res\backmap.bmp" />
     <Image Include="RES\backmap2.bmp" />
+    <Image Include="res\bitmap12.bmp" />
     <Image Include="res\bitmap3.bmp" />
     <Image Include="res\bitmap4.bmp" />
     <Image Include="res\bitmap5.bmp" />
     <Image Include="res\blocks_r.bmp" />
     <Image Include="res\blocks_y.bmp" />
+    <Image Include="res\BNB.ico" />
     <Image Include="RES\Bomb.bmp" />
     <Image Include="RES\bomb2.bmp" />
     <Image Include="RES\bomb3.bmp" />
@@ -364,6 +362,7 @@
     <Image Include="res\house_r.bmp" />
     <Image Include="res\house_y.bmp" />
     <Image Include="res\LOGO.bmp" />
+    <Image Include="RES\null.bmp" />
     <Image Include="RES\Player1.bmp" />
     <Image Include="res\Player1_down.bmp" />
     <Image Include="res\Player1_left.bmp" />

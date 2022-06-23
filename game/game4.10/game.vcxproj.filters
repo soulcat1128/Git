@@ -346,5 +346,14 @@
     <Image Include="RES\backmap2.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\bitmap12.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\null.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\BNB.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

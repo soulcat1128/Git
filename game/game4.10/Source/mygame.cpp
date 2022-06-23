@@ -91,17 +91,26 @@ void CPractice::OnShow()
 void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	const char KEY_ESC = 27;
-	const char KEY_SPACE = ' ';
+	const char KEY_SPACE = 0x20;
+	const char KEY_ENTER = 13;
 	if (nChar == KEY_SPACE)
+	{
+		map_mode = 1;	//按Space進入地圖1
 		GotoGameState(GAME_STATE_RUN);						// 切換至GAME_STATE_RUN
+	}
+	else if (nChar == KEY_ENTER)
+	{
+		map_mode = 2;	//按Enter進入地圖2
+		GotoGameState(GAME_STATE_RUN);						// 切換至GAME_STATE_RUN
+	}
 	else if (nChar == KEY_ESC)								// Demo 關閉遊戲的方法
 		PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE,0,0);	// 關閉遊戲
 }
 
-void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
-{
-	GotoGameState(GAME_STATE_RUN);		// 切換至GAME_STATE_RUN
-}
+//void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
+//{
+//	GotoGameState(GAME_STATE_RUN);		// 切換至GAME_STATE_RUN
+//}
 
 void CGameStateInit::OnShow()
 {
@@ -119,7 +128,7 @@ void CGameStateInit::OnShow()
 	fp=pDC->SelectObject(&f);					// 選用 font f
 	pDC->SetBkColor(RGB(0,0,0));
 	pDC->SetTextColor(RGB(255,255,0));
-	pDC->TextOut(120,220,"Please click mouse or press SPACE to begin.");
+	pDC->TextOut(120,220,"Map selection:Press Space to the village or Press Enter to the desert");
 	//pDC->TextOut(5,395,"Press Ctrl-F to switch in between window mode and full screen mode.");
 	//if (ENABLE_GAME_PAUSE)
 		//pDC->TextOut(5,425,"Press Ctrl-Q to pause the Game.");
@@ -224,6 +233,10 @@ void CGameStateRun::OnBeginState()
 	hits_left.SetTopLeft(HITS_LEFT_X,HITS_LEFT_Y);		// 指定剩下撞擊數的座標
 	CAudio::Instance()->Play(AUDIO_START, false);		// 撥放 WAVE
 	CAudio::Instance()->Play(AUDIO_MUSIC, true);			// 撥放 MIDI
+	if (map_mode == 1)
+		gamemap.set_map(1);	//設定要載入的地圖
+	else
+		gamemap.set_map(2);	//設定要載入的地圖
 }
 
 void CGameStateRun::OnMove()							// 移動遊戲元素
@@ -305,8 +318,8 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 
 void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 {
-	c_practice.LoadBitmap();
 	gamemap.LoadBitmap();
+	c_practice.LoadBitmap();
 	//
 	// 當圖很多時，OnInit載入所有的圖要花很多時間。為避免玩遊戲的人
 	//     等的不耐煩，遊戲會出現「Loading ...」，顯示Loading的進度。
@@ -320,8 +333,8 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	//	ball[i].LoadBitmap();								// 載入第i個球的圖形
 	eraser.LoadBitmap();
 	play2.LoadBitmap();
-	//background.LoadBitmap(backmap);					// 載入背景的圖形
-	background.LoadBitmap(backmap2);
+	background.LoadBitmap(backmap);		// 載入地圖1的背景圖形
+	background2.LoadBitmap(backmap2);	// 載入地圖2的背景圖形
 	//
 	// 完成部分Loading動作，提高進度
 	//
@@ -333,8 +346,8 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	//practice.LoadBitmap(IDB_BITMAP3, RGB(255, 255, 255));
 	practice.LoadBitmap(IDB_BITMAP3);
 	//help.LoadBitmap(IDB_HELP,RGB(255,255,255));				// 載入說明的圖形
-	corner.LoadBitmap(IDB_CORNER);							// 載入角落圖形
-	corner.ShowBitmap(background);							// 將corner貼到background
+	//corner.LoadBitmap(IDB_CORNER);							// 載入角落圖形
+	//corner.ShowBitmap(background);							// 將corner貼到background
 	bball.LoadBitmap();										// 載入圖形
 	hits_left.LoadBitmap();									
 	CAudio::Instance()->Load(AUDIO_START,  "sounds\\start.wav");	// 載入編號0的聲音ding.wav
@@ -355,12 +368,13 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_UP    = 0x26; // keyboard上箭頭
 	const char KEY_RIGHT = 0x27; // keyboard右箭頭
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
-	const char KEY_SPACE = 0x20; // keyboard下箭頭
+	const char KEY_SPACE = 0x20; // keyboard空白箭頭
 	
 	const char KEY_A = 0x41; // keyboard A
 	const char KEY_W = 0x57; // keyboard W
 	const char KEY_D = 0x44; // keyboard D
 	const char KEY_S = 0x53; // keyboard S
+	const char KEY_R = 0x52; // keyboard R
 	//gamemap.OnKeyDown(nChar, int, int);
 	int GetX = eraser.GetX1()/ 70;
 	int GetY = eraser.GetY1()/ 70;
@@ -387,6 +401,13 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		play2.SetMovingUp(true);
 	if (nChar == KEY_S)
 		play2.SetMovingDown(true);
+	if (nChar == KEY_R) {
+		int Xtest = (eraser.GetX1() + 35) / 70;
+		int Ytest = (eraser.GetY1() + 35) / 70;
+		//eraser.SetMap(map_init);
+		gamemap.OnKeyDown(nChar, Xtest, Ytest);
+		eraser.SetMap(gamemap.map);
+	}
 
 }
 
@@ -428,18 +449,21 @@ void CGameStateRun::OnShow()
 	//
 	//  貼上背景圖、撞擊數、球、擦子、彈跳的球
 	//
-	background.ShowBitmap();			// 貼上背景圖
-	//help.ShowBitmap();					// 貼上說明圖
-	hits_left.ShowBitmap();				// 貼上彈跳的球
+	if (map_mode == 1)
+		background.ShowBitmap();			//貼上背景圖
+	else
+		background2.ShowBitmap();			//貼上背景圖
+	//help.ShowBitmap();					//貼上說明圖
+	hits_left.ShowBitmap();					//貼上彈跳的球
 	
 	//
 	//  貼上左上及右下角落的圖
 	//
 	gamemap.OnShow();
-	corner.SetTopLeft(0,0);
-	corner.ShowBitmap();
-	corner.SetTopLeft(SIZE_X-corner.Width(), SIZE_Y-corner.Height());
-	corner.ShowBitmap();
+	//corner.SetTopLeft(0,0);
+	//corner.ShowBitmap();
+	//corner.SetTopLeft(SIZE_X-corner.Width(), SIZE_Y-corner.Height());
+	//corner.ShowBitmap();
 	eraser.OnShow();					// 貼上擦子
 	play2.OnShow();
 
