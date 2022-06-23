@@ -355,5 +355,8 @@
     <Image Include="res\BNB.ico">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\operate.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

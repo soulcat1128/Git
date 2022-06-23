@@ -363,6 +363,7 @@
     <Image Include="res\house_y.bmp" />
     <Image Include="res\LOGO.bmp" />
     <Image Include="RES\null.bmp" />
+    <Image Include="RES\operate.bmp" />
     <Image Include="RES\Player1.bmp" />
     <Image Include="res\Player1_down.bmp" />
     <Image Include="res\Player1_left.bmp" />
