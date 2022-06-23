@@ -104,7 +104,7 @@ IDB_LOADING             BITMAP                  "..\\res\\loading.bmp"
 
 IDB_BITMAP3             BITMAP                  "..\\res\\bitmap3.bmp"
 
-background1             BITMAP                  "..\\res\\backmap.bmp"
+backmap                 BITMAP                  "..\\res\\backmap.bmp"
 
 Player1_down            BITMAP                  "..\\res\\Player1_down.bmp"
 

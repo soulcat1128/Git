@@ -39,6 +39,7 @@
 #define IDB_BLUE                        159
 #define backgroundTest1                 160
 #define background1                     160
+#define backmap                         160
 #define player1                         161
 #define bangP1                          162
 #define Player1_down                    163
@@ -81,7 +82,6 @@
 #define tent_r                          195
 #define IDB_BITMAP13                    196
 #define tent_y                          196
-#define IDB_BITMAP12                    197
 #define backmap2                        197
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
