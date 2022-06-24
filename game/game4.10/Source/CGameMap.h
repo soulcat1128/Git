@@ -112,17 +112,7 @@ namespace game_framework{
 	{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
 	{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
 
-	//class CBumb
-	//{
-	//public:
-	//	int sleepTime;
-	//	int bumpMap[13][15];
-	//protected:
-	//	CAnimation AnimationBumb;	// 控制爆炸動畫
 
-	//};
-
-	// B 開頭表示 bump
 	class CGameMap 
 	{
 	public:
@@ -173,14 +163,13 @@ namespace game_framework{
 			Green_box, Green_box2, Rock, Cactus, Earth, Tent_b, Tent_r, Tent_y,
 			NULLNULL, Bomb, Bomb2, Bomb3, explode, Props_1, Props_2, Props_3;
 		CAnimation w_L, w_L_E, w_R, w_R_E, w_U, w_U_E, w_D, w_D_E;
-		//CMovingBitmap 
 		CAnimation AnimationBomb;
 		CAnimation testforbomb;
 		CAnimation testforbomb2;
 
 		const int X, Y;
 		const int MW, MH;
-		//int random_num;
+
 	};
 
 }

@@ -21,9 +21,6 @@
 	6. 給爆炸加聲音
 
 
-	代辦:
-		檢測爆炸碰到人
-		做2個陣列存取 每個炸彈時間 爆炸畫面計時陣列
 
 */
 
@@ -53,13 +50,10 @@ namespace game_framework {
 		//角色初始值設定
 	}
 
-	// 缺炸毀建築 炸到玩家
+	// 爆炸計算
 	void CGameMap::set_expMap()
 	{
 		int k = 0;
-
-		//int count = 0;
-		//bool flag = false
 		for (int i = 0; i < 13; i++)
 		{
 			for (int j = 0; j < 15; j++)
@@ -123,11 +117,7 @@ namespace game_framework {
 							}
 						}
 					}
-					//開找3 4
-
-
-
-
+					
 					for (k = 1; k <= temp; k++)
 					{
 						if (i - k >= 0) {
@@ -641,11 +631,7 @@ namespace game_framework {
 	{
 		timer--;	// 計時
 		timerS--;
-		/*
-		for (int i = 0; i < random_num; i++)
-		{
-			bballs[i].OnMove();
-		}*/
+
 		AnimationBomb.OnMove();
 		if (timer == -1)
 			timer = 6;	// 復原計時
@@ -654,9 +640,9 @@ namespace game_framework {
 
 		setBombInfo();	// 裝炸彈
 		setLinkBomb();	// 設定連鎖
-		updateMap();
+		updateMap();	// 更新爆炸後的地圖
 		set_expMap();
-		hitWater();
+		hitWater();     // 確認是否被炸到
 		checkHitP1();
 		checkHitP2();
 

@@ -92,8 +92,7 @@ namespace game_framework {
 
 	void CEraser::OnMove()
 	{
-		
-		//const int speed = 10;
+
 		int x2 = GetX2();
 		int y2 = GetY2();
 
