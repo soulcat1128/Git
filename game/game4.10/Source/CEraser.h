@@ -1,4 +1,4 @@
-#include "CGameMap.h"
+﻿#include "CGameMap.h"
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class提供可以用鍵盤或滑鼠控制的擦子
