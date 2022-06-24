@@ -94,6 +94,16 @@
 #define Player2_die2                    204
 #define IDB_BITMAP15                    205
 #define over                            205
+#define explode                         206
+#define expl                            206
+#define water_right                     207
+#define water_right_end                 208
+#define water_left                      209
+#define water_left_end                  210
+#define water_down                      211
+#define water_down_end                  212
+#define water_up                        213
+#define water_up_end                    214
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -106,7 +116,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        206
+#define _APS_NEXT_RESOURCE_VALUE        217
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

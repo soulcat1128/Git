@@ -184,6 +184,24 @@ Player2_die2            BITMAP                  "..\\res\\Player2_die2.bmp"
 
 over                    BITMAP                  "..\\res\\over.bmp"
 
+expl                    BITMAP                  "..\\RES\\explode.bmp"
+
+water_right             BITMAP                  "..\\RES\\water_right.bmp"
+
+water_right_end         BITMAP                  "..\\RES\\water_right_end.bmp"
+
+water_left              BITMAP                  "..\\RES\\water_left.bmp"
+
+water_left_end          BITMAP                  "..\\RES\\water_left_end.bmp"
+
+water_down              BITMAP                  "..\\RES\\water_down.bmp"
+
+water_down_end          BITMAP                  "..\\RES\\water_down_end.bmp"
+
+water_up                BITMAP                  "..\\RES\\water_up.bmp"
+
+water_up_end            BITMAP                  "..\\RES\\water_up_end.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -218,7 +236,7 @@ IDR_MAINFRAME           BITMAP                  "..\\res\\Toolbar.bmp"
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDR_MAINFRAME           ICON                    "..\\res\\BNB.ico"
+IDR_MAINFRAME           ICON                    "..\\res\\GAME.ico"
 
 IDR_GAMETYPE            ICON                    "..\\res\\gameDoc.ico"
 

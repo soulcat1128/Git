@@ -356,6 +356,7 @@
     <Image Include="RES\bomb3.bmp" />
     <Image Include="RES\cactus.bmp" />
     <Image Include="RES\earth.bmp" />
+    <Image Include="RES\explode.bmp" />
     <Image Include="res\grass.bmp" />
     <Image Include="RES\green_box.bmp" />
     <Image Include="RES\green_box2.bmp" />
@@ -387,6 +388,14 @@
     <Image Include="RES\tent_r.bmp" />
     <Image Include="RES\tent_y.bmp" />
     <Image Include="res\tree.bmp" />
+    <Image Include="RES\water_down.bmp" />
+    <Image Include="RES\water_down_end.bmp" />
+    <Image Include="RES\water_left.bmp" />
+    <Image Include="RES\water_left_end.bmp" />
+    <Image Include="RES\water_right.bmp" />
+    <Image Include="RES\water_right_end.bmp" />
+    <Image Include="RES\water_up.bmp" />
+    <Image Include="RES\water_up_end.bmp" />
     <Image Include="res\wooden_box.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

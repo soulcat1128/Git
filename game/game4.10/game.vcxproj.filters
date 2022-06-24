@@ -376,5 +376,32 @@
     <Image Include="RES\over.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\explode.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\water_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\water_right_end.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\water_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\water_left_end.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\water_down.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\water_down_end.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\water_up.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\water_up_end.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -79,15 +79,15 @@ namespace game_framework {
 		P1_up.LoadBitmap(Player1_up, RGB(255, 255, 255));
 		P1_left.LoadBitmap(Player1_left, RGB(255, 255, 255));
 		P1_right.LoadBitmap(Player1_right, RGB(255, 255, 255));
-		p1die1.LoadBitmap(".\\res\\Player1_die1.bmp", RGB(255, 255, 255));
-		p1die2.LoadBitmap(".\\res\\Player1_die2.bmp", RGB(255, 255, 255));
+		p1die1.LoadBitmap(Player1_die1, RGB(255, 255, 255));
+		p1die2.LoadBitmap(Player1_die2, RGB(255, 255, 255));
 
 		P2_down.LoadBitmap(Player2_down, RGB(255, 255, 255));
 		P2_up.LoadBitmap(Player2_up, RGB(255, 255, 255));
 		P2_left.LoadBitmap(Player2_left, RGB(255, 255, 255));
 		P2_right.LoadBitmap(Player2_right, RGB(255, 255, 255));
-		p2die1.LoadBitmap(".\\res\\Player2_die1.bmp", RGB(255, 255, 255));
-		p2die2.LoadBitmap(".\\res\\Player2_die2.bmp", RGB(255, 255, 255));
+		p2die1.LoadBitmap(Player2_die1, RGB(255, 255, 255));
+		p2die2.LoadBitmap(Player2_die2, RGB(255, 255, 255));
 	}
 
 	void CEraser::OnMove()

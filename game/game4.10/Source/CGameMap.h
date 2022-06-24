@@ -161,11 +161,8 @@ namespace game_framework{
 	protected:
 		CMovingBitmap	House_r, House_y, House_b, Tree, Blocks_r, Blocks_y, Wooden_box, Grass,
 			Green_box, Green_box2, Rock, Cactus, Earth, Tent_b, Tent_r, Tent_y,
-			NULLNULL, Bomb, Bomb2, Bomb3, explode, Props_1, Props_2, Props_3;
-		CAnimation w_L, w_L_E, w_R, w_R_E, w_U, w_U_E, w_D, w_D_E;
-		CAnimation AnimationBomb;
-		CAnimation testforbomb;
-		CAnimation testforbomb2;
+			NULLNULL, Bomb, Bomb2, Bomb3, Explode, Props_1, Props_2, Props_3,
+			w_L, w_L_E, w_R, w_R_E, w_U, w_U_E, w_D, w_D_E;
 
 		const int X, Y;
 		const int MW, MH;

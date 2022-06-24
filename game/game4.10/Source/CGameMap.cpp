@@ -632,7 +632,7 @@ namespace game_framework {
 		timer--;	// 計時
 		timerS--;
 
-		AnimationBomb.OnMove();
+		//AnimationBomb.OnMove();
 		if (timer == -1)
 			timer = 6;	// 復原計時
 		if (timerS == -1)
@@ -683,44 +683,44 @@ namespace game_framework {
 		Bomb2.LoadBitmap(bomb2, RGB(255, 255, 255));	// 水球2狀態
 		Bomb3.LoadBitmap(bomb3, RGB(255, 255, 255));	// 水球3狀態
 
-		explode.LoadBitmap(".\\res\\explode.bmp", RGB(255, 255, 255));
+		Explode.LoadBitmap(expl, RGB(255, 255, 255));
 
 
 
-		char* filename[3] = { ".\\res\\bomb.bmp",".\\res\\bomb2.bmp",".\\res\\explode.bmp" };
-		for (int i = 0; i < 3; i++)	// 載入動畫(由4張圖形構成)
-		{
-			AnimationBomb.AddBitmap(filename[i], RGB(255, 255, 255));
-			AnimationBomb.SetDelayCount(25);
-		}
-		testforbomb.AddBitmap(".\\res\\bomb2.bmp", RGB(255, 255, 255));
-		testforbomb.SetDelayCount(25);
+		//char* filename[3] = { ".\\res\\bomb.bmp",".\\res\\bomb2.bmp",".\\res\\explode.bmp" };
+		//for (int i = 0; i < 3; i++)	// 載入動畫(由4張圖形構成)
+		//{
+		//	AnimationBomb.AddBitmap(filename[i], RGB(255, 255, 255));
+		//	AnimationBomb.SetDelayCount(25);
+		//}
+		//testforbomb.AddBitmap(".\\res\\bomb2.bmp", RGB(255, 255, 255));
+		//testforbomb.SetDelayCount(25);
 
-		testforbomb2.AddBitmap(".\\res\\explode.bmp", RGB(255, 255, 255));
-		testforbomb2.SetDelayCount(25);
+		//testforbomb2.AddBitmap(".\\res\\explode.bmp", RGB(255, 255, 255));
+		//testforbomb2.SetDelayCount(25);
 
-		w_R.AddBitmap(".\\res\\water_right.bmp", RGB(255, 255, 255));
+		w_R.LoadBitmap(water_right, RGB(255, 255, 255));
 		//w_R.SetDelayCount(25);
 
-		w_R_E.AddBitmap(".\\res\\water_right_end.bmp", RGB(255, 255, 255));
+		w_R_E.LoadBitmap(water_right_end, RGB(255, 255, 255));
 		//w_R_E.SetDelayCount(25);
 
-		w_L.AddBitmap(".\\res\\water_left.bmp", RGB(255, 255, 255));
+		w_L.LoadBitmap(water_left, RGB(255, 255, 255));
 		//w_L.SetDelayCount(25);
 
-		w_L_E.AddBitmap(".\\res\\water_left_end.bmp", RGB(255, 255, 255));
+		w_L_E.LoadBitmap(water_left_end, RGB(255, 255, 255));
 		//w_L_E.SetDelayCount(25);
 
-		w_U.AddBitmap(".\\res\\water_up.bmp", RGB(255, 255, 255));
+		w_U.LoadBitmap(water_up, RGB(255, 255, 255));
 		//w_U.SetDelayCount(25);
 
-		w_U_E.AddBitmap(".\\res\\water_up_end.bmp", RGB(255, 255, 255));
+		w_U_E.LoadBitmap(water_up_end, RGB(255, 255, 255));
 		//w_U_E.SetDelayCount(25);
 
-		w_D.AddBitmap(".\\res\\water_down.bmp", RGB(255, 255, 255));
+		w_D.LoadBitmap(water_down, RGB(255, 255, 255));
 		//w_D.SetDelayCount(25);
 
-		w_D_E.AddBitmap(".\\res\\water_down_end.bmp", RGB(255, 255, 255));
+		w_D_E.LoadBitmap(water_down_end, RGB(255, 255, 255));
 		//w_D_E.SetDelayCount(25);
 
 	}
@@ -781,8 +781,8 @@ namespace game_framework {
 					Bomb.ShowBitmap();
 					break;
 				case 1:
-					explode.SetTopLeft(X + (MW * i), Y + (MH * j));
-					explode.ShowBitmap();
+					Explode.SetTopLeft(X + (MW * i), Y + (MH * j));
+					Explode.ShowBitmap();
 					break;
 				default:
 					ASSERT(0);
@@ -889,7 +889,7 @@ namespace game_framework {
 					break;
 				case 1:
 					w_U.SetTopLeft(X + (MW * i), Y + (MH * j));
-					w_U.OnShow();
+					w_U.ShowBitmap();
 					if (timer % 7 == 0)
 					{
 						exp_Map[j][i] = 0;
@@ -898,7 +898,7 @@ namespace game_framework {
 					break;
 				case 2:
 					w_U_E.SetTopLeft(X + (MW * i), Y + (MH * j));
-					w_U_E.OnShow();
+					w_U_E.ShowBitmap();
 					if (timer % 7 == 0)
 					{
 						exp_Map[j][i] = 0;
@@ -906,7 +906,7 @@ namespace game_framework {
 					break;
 				case 3:
 					w_D.SetTopLeft(X + (MW * i), Y + (MH * j));
-					w_D.OnShow();
+					w_D.ShowBitmap();
 					if (timer % 7 == 0)
 					{
 						exp_Map[j][i] = 0;
@@ -914,7 +914,7 @@ namespace game_framework {
 					break;
 				case 4:
 					w_D_E.SetTopLeft(X + (MW * i), Y + (MH * j));
-					w_D_E.OnShow();
+					w_D_E.ShowBitmap();
 					if (timer % 7 == 0)
 					{
 						exp_Map[j][i] = 0;
@@ -922,7 +922,7 @@ namespace game_framework {
 					break;
 				case 5:
 					w_L.SetTopLeft(X + (MW * i), Y + (MH * j));
-					w_L.OnShow();
+					w_L.ShowBitmap();
 					if (timer % 7 == 0)
 					{
 						exp_Map[j][i] = 0;
@@ -930,7 +930,7 @@ namespace game_framework {
 					break;
 				case 6:
 					w_L_E.SetTopLeft(X + (MW * i), Y + (MH * j));
-					w_L_E.OnShow();
+					w_L_E.ShowBitmap();
 					if (timer % 7 == 0)
 					{
 						exp_Map[j][i] = 0;
@@ -938,7 +938,7 @@ namespace game_framework {
 					break;
 				case 7:
 					w_R.SetTopLeft(X + (MW * i), Y + (MH * j));
-					w_R.OnShow();
+					w_R.ShowBitmap();
 					if (timer % 7 == 0)
 					{
 						exp_Map[j][i] = 0;
@@ -946,7 +946,7 @@ namespace game_framework {
 					break;
 				case 8:
 					w_R_E.SetTopLeft(X + (MW * i), Y + (MH * j));
-					w_R_E.OnShow();
+					w_R_E.ShowBitmap();
 					if (timer % 7 == 0)
 					{
 						exp_Map[j][i] = 0;
