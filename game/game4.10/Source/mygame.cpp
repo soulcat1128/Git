@@ -91,9 +91,9 @@ void CPractice::OnShow()
 
 void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-	const char KEY_ESC = 27;
+	const char KEY_ESC = 0x1B;
 	const char KEY_SPACE = 0x20;
-	const char KEY_ENTER = 13;
+	const char KEY_ENTER = 0x0D;
 	
 	if (nChar == KEY_SPACE)
 	{
@@ -157,6 +157,8 @@ void CGameStateOver::OnMove()
 	counter--;
 	if (counter < 0)
 		GotoGameState(GAME_STATE_INIT);
+	else if (counter == 120)
+		CAudio::Instance()->Play(AUDIO_OVER, false);
 }
 
 void CGameStateOver::OnBeginState()
@@ -166,6 +168,7 @@ void CGameStateOver::OnBeginState()
 
 void CGameStateOver::OnInit()
 {
+	gameover.LoadBitmap(over, RGB(0, 0, 0));
 	//c_practice.LoadBitmap();
 	//c_practice.LoadBitmap();
 	//
@@ -185,17 +188,19 @@ void CGameStateOver::OnInit()
 
 void CGameStateOver::OnShow()
 {
-	CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
-	CFont f,*fp;
-	f.CreatePointFont(160,"Times New Roman");	// 產生 font f; 160表示16 point的字
-	fp=pDC->SelectObject(&f);					// 選用 font f
-	pDC->SetBkColor(RGB(0,0,0));
-	pDC->SetTextColor(RGB(255,255,0));
-	char str[80];								// Demo 數字對字串的轉換
-	sprintf(str, "Game Over ! (%d)", counter / 30);
-	pDC->TextOut(240,210,str);
-	pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
-	CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
+	gameover.SetTopLeft((SIZE_X- gameover.Width())/2, (SIZE_Y- gameover.Height())/2);
+	gameover.ShowBitmap();
+	//CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
+	//CFont f,*fp;
+	//f.CreatePointFont(160,"Times New Roman");	// 產生 font f; 160表示16 point的字
+	//fp=pDC->SelectObject(&f);					// 選用 font f
+	//pDC->SetBkColor(RGB(0,0,0));
+	//pDC->SetTextColor(RGB(255,255,0));
+	//char str[80];								// Demo 數字對字串的轉換
+	//sprintf(str, "Game Over ! (%d)", counter / 30);
+	//pDC->TextOut(240,210,str);
+	//pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
+	//CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -337,9 +342,10 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 		eraser.setP1Status(p1s);
 		eraser.SetSpeed(2);
 	}
-
 	if (p1s == 0 || p2s == 0)
 	{
+		CAudio::Instance()->Play(AUDIO_DIE, false);
+		CAudio::Instance()->Stop(AUDIO_MUSIC);
 		GotoGameState(GAME_STATE_OVER);
 	}
 }
@@ -396,14 +402,16 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_UP    = 0x26; // keyboard上箭頭
 	const char KEY_RIGHT = 0x27; // keyboard右箭頭
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
-	const char KEY_SPACE = 0x20; // keyboard空白箭頭
+	const char KEY_ENTER = 0x0D;	// keyboard Enter
+	const char KEY_Num0 = 0x60;
 	
-	const char KEY_A = 0x41; // keyboard A
-	const char KEY_W = 0x57; // keyboard W
-	const char KEY_D = 0x44; // keyboard D
-	const char KEY_S = 0x53; // keyboard S
-	const char KEY_R = 0x52; // keyboard R
-	const char KEY_E = 0x45; // keyboard E
+	const char KEY_A = 0x41;		// keyboard A
+	const char KEY_W = 0x57;		// keyboard W
+	const char KEY_D = 0x44;		// keyboard D
+	const char KEY_S = 0x53;		// keyboard S
+	const char KEY_SPACE = 0x20; // keyboard空白鍵
+	const char KEY_R = 0x52;		// keyboard R
+	
 	//gamemap.OnKeyDown(nChar, int, int);
 	int GetX = eraser.GetX1()/ 70;
 	int GetY = eraser.GetY1()/ 70;
@@ -415,7 +423,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		eraser.SetMovingUp(true);
 	if (nChar == KEY_DOWN)
 		eraser.SetMovingDown(true);
-	if (nChar == KEY_SPACE) {
+	if (nChar == KEY_ENTER) {
 		int Xtest = (eraser.GetX1() + 35) / 70;
 		int Ytest = (eraser.GetY1() + 35) / 70;
 		//eraser.SetMap(map_init);
@@ -423,16 +431,13 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		eraser.SetMap(gamemap.map);
 		play2.SetMap(gamemap.map);
 	}
-
-	if (nChar == KEY_E) {
+	if (nChar == KEY_Num0) {
 		int Xtest = (play2.GetX1() + 35) / 70;
-		int Ytest = (play2 .GetY1() + 35) / 70;
-		//eraser.SetMap(map_init);
-		gamemap.OnKeyDown(nChar, Xtest, Ytest, 2);
+		int Ytest = (play2.GetY1() + 35) / 70;
+		gamemap.OnKeyDown(nChar, Xtest, Ytest, 1);
 		eraser.SetMap(gamemap.map);
 		play2.SetMap(gamemap.map);
 	}
-
 	if (nChar == KEY_A)
 		play2.SetMovingLeft(true);
 	if (nChar == KEY_D)
@@ -441,12 +446,20 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		play2.SetMovingUp(true);
 	if (nChar == KEY_S)
 		play2.SetMovingDown(true);
+	if (nChar == KEY_SPACE) {
+		int Xtest = (play2.GetX1() + 35) / 70;
+		int Ytest = (play2.GetY1() + 35) / 70;
+		//eraser.SetMap(map_init);
+		gamemap.OnKeyDown(nChar, Xtest, Ytest, 2);
+		eraser.SetMap(gamemap.map);
+		play2.SetMap(gamemap.map);
+	}
 	if (nChar == KEY_R) {
 		int Xtest = (eraser.GetX1() + 35) / 70;
 		int Ytest = (eraser.GetY1() + 35) / 70;
-		//eraser.SetMap(map_init);
-		gamemap.OnKeyDown(nChar, Xtest, Ytest, 1);
+		gamemap.OnKeyDown(nChar, Xtest, Ytest, 2);
 		eraser.SetMap(gamemap.map);
+		play2.SetMap(gamemap.map);
 	}
 
 }
@@ -494,7 +507,7 @@ void CGameStateRun::OnShow()
 	else
 		background2.ShowBitmap();			//貼上背景圖
 	//help.ShowBitmap();					//貼上說明圖
-	hits_left.ShowBitmap();					//貼上彈跳的球
+	//hits_left.ShowBitmap();					//貼上彈跳的球
 	
 	//
 	//  貼上左上及右下角落的圖

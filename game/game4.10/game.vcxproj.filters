@@ -373,5 +373,8 @@
     <Image Include="RES\Player2_die2.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\over.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

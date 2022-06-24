@@ -365,6 +365,7 @@
     <Image Include="res\LOGO.bmp" />
     <Image Include="RES\null.bmp" />
     <Image Include="RES\operate.bmp" />
+    <Image Include="RES\over.bmp" />
     <Image Include="RES\Player1.bmp" />
     <Image Include="RES\Player1_die1.bmp" />
     <Image Include="RES\Player1_die2.bmp" />

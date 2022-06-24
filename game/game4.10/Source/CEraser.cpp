@@ -134,7 +134,7 @@ namespace game_framework {
 			}
 		}
 		else if (isMovingLeft) {
-			if (x > 0 && (map_user[(y + 49) / 70][(x - speed) / 70] == 0 || map_user[(y + 49) / 70][(x - speed) / 70] > 20)) {
+			if (x > 0 && (map_user[(y + 35) / 70][(x - speed) / 70] == 0 || map_user[(y + 35) / 70][(x - speed) / 70] > 20)) {
 				x -= speed;
 				mode = 2;
 			}
@@ -144,16 +144,15 @@ namespace game_framework {
 				while (temp > 0)
 				{
 					temp--;
-					if (x > 0 && (map_user[(y + 49) / 70][(x - temp) / 70] == 0 || map_user[(y + 49) / 70][(x - temp) / 70] > 20))
+					if (x > 0 && (map_user[(y + 35) / 70][(x - temp) / 70] == 0 || map_user[(y + 35) / 70][(x - temp) / 70] > 20))
 					{
 						x--;
 					}
 				}
-
 			}
 		}
 		else if (isMovingRight) {
-			if (x < 980 && (map_user[(y + 49) / 70][(x2 + speed) / 70] == 0 || map_user[(y + 49) / 70][(x2 + speed) / 70] > 20)) {
+			if (x < 980 && (map_user[(y + 35) / 70][(x2 + speed) / 70] == 0 || map_user[(y + 35) / 70][(x2 + speed) / 70] > 20)) {
 				x += speed;
 				mode = 3;
 			}
@@ -163,7 +162,7 @@ namespace game_framework {
 				while (temp > 0)
 				{
 					temp--;
-					if (x < 980 && (map_user[(y + 49) / 70][(x2 + temp) / 70] == 0 || map_user[(y + 49) / 70][(x2 + temp) / 70] > 20))
+					if (x < 980 && (map_user[(y + 35) / 70][(x2 + temp) / 70] == 0 || map_user[(y + 35) / 70][(x2 + temp) / 70] > 20))
 					{
 						x++;
 					}
@@ -245,22 +244,22 @@ namespace game_framework {
 		{
 			if (status == 4)
 			{
-				p1die1.SetTopLeft(x, y);
+				p1die1.SetTopLeft(x - 20, y - 8);
 				p1die1.ShowBitmap();
 			}
 			else if (status == 3)
 			{
-				p1die2.SetTopLeft(x, y);
+				p1die2.SetTopLeft(x - 20, y - 8);
 				p1die2.ShowBitmap();
 			}
 			else if (status == 2)
 			{
-				p1die1.SetTopLeft(x, y);
+				p1die1.SetTopLeft(x - 20, y - 8);
 				p1die1.ShowBitmap();
 			}
 			else if (status == 1)
 			{
-				p1die2.SetTopLeft(x, y);
+				p1die2.SetTopLeft(x - 20, y - 8);
 				p1die2.ShowBitmap();
 			}
 
@@ -289,22 +288,22 @@ namespace game_framework {
 		{
 			if (status == 4)
 			{
-				p2die1.SetTopLeft(x, y);
+				p2die1.SetTopLeft(x - 13, y - 8);
 				p2die1.ShowBitmap();
 			}
 			else if (status == 3)
 			{
-				p2die2.SetTopLeft(x, y);
+				p2die2.SetTopLeft(x - 13, y - 8);
 				p2die2.ShowBitmap();
 			}
 			else if (status == 2)
 			{
-				p2die1.SetTopLeft(x, y);
+				p2die1.SetTopLeft(x - 13, y - 8);
 				p2die1.ShowBitmap();
 			}
 			else if (status == 1)
 			{
-				p2die2.SetTopLeft(x, y);
+				p2die2.SetTopLeft(x - 13, y - 8);
 				p2die2.ShowBitmap();
 			}
 

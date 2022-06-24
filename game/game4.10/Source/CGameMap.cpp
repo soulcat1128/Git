@@ -449,8 +449,8 @@ namespace game_framework {
 		const char KEY_SPACE = 0x20;
 		const char KEY_Num0 = 0x60;	//玩家1密技 殺死玩家2
 		const char KEY_R = 0x52;	//玩家2密技 殺死玩家1
-		const char KEY_E = 0x45;
-		if (nChar == KEY_SPACE)
+		const char KEY_ENTER = 0x0D;
+		if (nChar == KEY_ENTER)
 		{
 			if (map[Ytest][Xtest] == 0 && bombMap[Ytest][Xtest] == 0 && p1_quantity > 0 && id == 1 && p1Status == 5)
 			{
@@ -461,7 +461,7 @@ namespace game_framework {
 				mapCopy[Ytest][Xtest] = 10;
 			}
 		}
-		if (nChar == KEY_E)
+		if (nChar == KEY_SPACE)
 		{
 			if (map[Ytest][Xtest] == 0 && bombMap[Ytest][Xtest] == 0 && p2_quantity > 0 && id == 2 && p2Status == 5)
 			{
@@ -472,21 +472,41 @@ namespace game_framework {
 				mapCopy[Ytest][Xtest] = 10;
 			}
 		}
-		if (nChar == KEY_R)
+		if (nChar == KEY_R && id == 2)
 		{
-			if (map[Ytest - 1][Xtest] == 0) {
+			if (map[Ytest - 1][Xtest] == 0 && Ytest > 0) {
 				bombMap[Ytest - 1][Xtest] = 11;
 				mapCopy[Ytest - 1][Xtest] = 10;
 			}
-			if (map[Ytest + 1][Xtest] == 0) {
+			if (map[Ytest + 1][Xtest] == 0 && Ytest < 12) {
 				bombMap[Ytest + 1][Xtest] = 11;
 				mapCopy[Ytest + 1][Xtest] = 10;
 			}
-			if (map[Ytest][Xtest - 1] == 0) {
+			if (map[Ytest][Xtest - 1] == 0 && Xtest > 0) {
 				bombMap[Ytest][Xtest - 1] = 11;
 				mapCopy[Ytest][Xtest - 1] = 10;
 			}
-			if (map[Ytest][Xtest + 1] == 0) {
+			if (map[Ytest][Xtest + 1] == 0 && Xtest < 14) {
+				bombMap[Ytest][Xtest + 1] = 11;
+				mapCopy[Ytest][Xtest + 1] = 10;
+			}
+			audio[0] = 1;
+		}
+		if (nChar == KEY_Num0 && id == 1)
+		{
+			if (map[Ytest - 1][Xtest] == 0 && Ytest > 0) {
+				bombMap[Ytest - 1][Xtest] = 11;
+				mapCopy[Ytest - 1][Xtest] = 10;
+			}
+			if (map[Ytest + 1][Xtest] == 0 && Ytest < 12) {
+				bombMap[Ytest + 1][Xtest] = 11;
+				mapCopy[Ytest + 1][Xtest] = 10;
+			}
+			if (map[Ytest][Xtest - 1] == 0 && Xtest > 0) {
+				bombMap[Ytest][Xtest - 1] = 11;
+				mapCopy[Ytest][Xtest - 1] = 10;
+			}
+			if (map[Ytest][Xtest + 1] == 0 && Xtest < 14) {
 				bombMap[Ytest][Xtest + 1] = 11;
 				mapCopy[Ytest][Xtest + 1] = 10;
 			}
@@ -583,10 +603,10 @@ namespace game_framework {
 					{
 						bombMap[i][j]--;
 						mapCopy[i][j] = 0;
-						p1_quantity += 1;
-						//                          yo yo yo 我在這 這裡是被我臨時放來回復 p2_quantity 的 需要你來搞 甘溫
-						p2_quantity += 1;
-						//audio[1] = 1;
+						if (idMap[i][j] == 1)
+							p1_quantity += 1;
+						if (idMap[i][j] == 2)
+							p2_quantity += 1;
 					}
 				}
 		}
@@ -605,8 +625,17 @@ namespace game_framework {
 					map[i][j] = map2_init[i][j];
 					mapCopy[i][j] = map2_init[i][j];
 				}
+				bombMap[i][j] = map_bomb[i][j];
+				idMap[i][j] = map_id[i][j];
+				exp_Map[i][j] = map_explosion[i][j];
 			}
 		}
+		timer = 6, timerS = 30;
+		audio[0] = 0, audio[1] = 0, audio[2] = 0, audio[3] = 0;
+		p1_distance = 1, p1_quantity = 1, p1_speed = 10;
+		p2_distance = 1, p2_quantity = 1, p2_speed = 10;
+		p1Status = 5, p2Status = 5;
+		hitP1 = false, hitP2 = false;
 	}
 	void CGameMap::OnMove()
 	{
@@ -947,22 +976,22 @@ namespace game_framework {
 			}
 
 
-		CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
-		CFont f, * fp;
-		f.CreatePointFont(160, "Times New Roman");	// 產生 font f; 160表示16 point的字
-		fp = pDC->SelectObject(&f);					// 選用 font f
-		pDC->SetBkColor(RGB(0, 0, 0));
-		pDC->SetTextColor(RGB(255, 255, 0));
+		//CDC* pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
+		//CFont f, * fp;
+		//f.CreatePointFont(160, "Times New Roman");	// 產生 font f; 160表示16 point的字
+		//fp = pDC->SelectObject(&f);					// 選用 font f
+		//pDC->SetBkColor(RGB(0, 0, 0));
+		//pDC->SetTextColor(RGB(255, 255, 0));
 
-		CString str;
-		str.Format(_T("%d"), p1Status);
-		pDC->TextOut(120, 220, str);
+		//CString str;
+		//str.Format(_T("%d"), p1Status);
+		//pDC->TextOut(120, 220, str);
 		//pDC->TextOut(5,395,"Press Ctrl-F to switch in between window mode and full screen mode.");
 		//if (ENABLE_GAME_PAUSE)
 			//pDC->TextOut(5,425,"Press Ctrl-Q to pause the Game.");
 		//pDC->TextOut(5, 455, "Press Alt-F4 or ESC to Quit.");
 		//pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
-		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
+		//CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 
 		/* 原本練習的map 的 ball
 		for (int i = 0; i < random_num; i++) {
